@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link type="text/css" rel="stylesheet" media="screen" href="home.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery-1.12.3.min.js"></script>
 <!-- Latest compiled and minified CSS -->
@@ -16,7 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default test">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
