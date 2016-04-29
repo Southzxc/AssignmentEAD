@@ -1,5 +1,32 @@
 @CHARSET "ISO-8859-1";
-
-.navbar navbar-default test {
-	color: black;
+body{
+	font-family: 'Lato', sans-serif;
+}
+.navbar-searchbar {
+    margin-right:16px;
+}
+.navbar-border{
+	border-radius: 0px;
+	box-shadow:initial;
+	
+	border:0;
+	background:transparent;
+	font-size:15px;
+	
+}
+/* LEFT TO RIGHT */
+.sliding-u-l-r > li > a {
+display: inline-block;
+}
+.sliding-u-l-r > li > a:after {
+content: '';
+display: block;
+height: 1.5px;
+width: 0;
+background: transparent;
+transition: width .5s ease, background-color .5s ease;
+}
+.sliding-u-l-r > li > a:hover:after {
+width: 100%;
+background: black;
 }
