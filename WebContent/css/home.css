@@ -46,6 +46,10 @@ img{
     color: white;
 }
 
+.navbar-default .navbar-brand:visited {
+    color: white;
+}
+
 .sliding-u-l-r > li > a {
 display: inline-block;
 }
@@ -99,5 +103,14 @@ background: white;
     #login-dp .bottom{
         background-color: inherit;
         border-top:0 none;
+        
     }
+    .navbar-border{
+    position:relative;
+    }
+}
+
+.thumbnail {
+	width: 250px;
+	height: auto;
 }

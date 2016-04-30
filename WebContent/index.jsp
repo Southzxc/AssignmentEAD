@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery-1.12.3.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Lato'
@@ -30,7 +31,7 @@
 <title>Vapour Store</title>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-border ">
+	<nav class="navbar navbar-inverse navbar-border ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -44,25 +45,26 @@
 			<a class="navbar-brand" href="#">VAPOUR</a>
 		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav sliding-u-l-r ">
-				<li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">Link</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-			</ul>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav sliding-u-l-r ">
+        <li><a href="#">PC <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">XBOX</a></li>
+        <li><a href="#">NINTENDO</a></li>
+        <li><a href="#">WII U</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATEGORY <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Adventure</a></li>
+            <li><a href="#">Casual</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Popular Tags</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Discount</a></li>
+          </ul>
+        </li>
+      </ul>			
 			<form class="navbar-form navbar-right navbar-searchbar" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
@@ -135,9 +137,9 @@
     <div class="thumbnail">
       <img src="./image/cod.jpg" alt="COD">
       <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <h3>Call of Duty: Black OPs</h3>
+        <p>The biggest first-person action series of all time and the follow-up to critically acclaimed Call of Duty®: Modern Warfare 2 returns with Call of Duty®: Black Ops.</p>
+        <p><a href="#" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-default" role="button">Buy Now</a></p>
       </div>
     </div>
   </div>
