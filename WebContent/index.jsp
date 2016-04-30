@@ -114,12 +114,8 @@
 	<div class="middle">
 		<h1>Title</h1>
 	</div>
-
-
-
 	<%
 		out.println("some");
 	%>
-
 </body>
 </html>
