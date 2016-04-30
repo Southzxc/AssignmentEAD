@@ -30,3 +30,7 @@ transition: width .5s ease, background-color .5s ease;
 width: 100%;
 background: black;
 }
+
+.message {
+	color: black;
+}
