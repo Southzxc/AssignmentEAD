@@ -114,3 +114,8 @@ background: white;
 	width: 250px;
 	height: auto;
 }
+
+.row {
+	padding-left: 5em;
+	padding-top: 5em;
+}
