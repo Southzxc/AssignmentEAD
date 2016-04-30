@@ -82,7 +82,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="http://www.webgranth.com/wp-content/uploads/2013/11/Computer-Game-Wallpaper2.jpg" alt="controllers" />
+      <img src="./image/Computer-Game-Wallpaper2.jpg" alt="controllers" />
       <div class="carousel-caption message">
         <h1>Welcome to VAPOUR</h1>
       </div>

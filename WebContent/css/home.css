@@ -12,7 +12,8 @@ body{
 	border:0;
 	background:transparent;
 	font-size:15px;
-	
+	position: absolute;
+	z-index: 1;
 }
 /* LEFT TO RIGHT */
 .sliding-u-l-r > li > a {
@@ -32,5 +33,5 @@ background: black;
 }
 
 .message {
-	color: black;
+	padding-bottom: 50em;
 }
