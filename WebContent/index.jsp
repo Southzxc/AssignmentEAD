@@ -71,7 +71,7 @@
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right sliding-u-l-r">
 				<li><p class="navbar-text">Already have an account?</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -144,7 +144,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="row">
   <div class="col-sm-6 col-md-4">

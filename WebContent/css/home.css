@@ -66,9 +66,9 @@ width: 100%;
 background: white;
 }
 
-.message {
+/* .message {
 	padding-bottom: 20em;
-}
+} */
 
 #login-dp{
     min-width: 250px;
@@ -95,6 +95,16 @@ background: white;
     margin-bottom: 10px;
 }
 
+.thumbnail {
+	width: 250px;
+	height: auto;
+}
+
+/* .row {
+	padding-left: 5em;
+	padding-top: 5em;
+} */ /*use another name*/
+
 @media(max-width:768px){
     #login-dp{
         background-color: inherit;
@@ -107,15 +117,7 @@ background: white;
     }
     .navbar-border{
     position:relative;
+    background:#252b2d;
+    margin-bottom:0px;
     }
-}
-
-.thumbnail {
-	width: 250px;
-	height: auto;
-}
-
-.row {
-	padding-left: 5em;
-	padding-top: 5em;
 }
