@@ -74,10 +74,12 @@
 </nav>
 
 <img src="./image/Computer-Game-Wallpaper2.jpg" alt="controllers" />
-
-
-
+<div class="middle">
 <h1>Title</h1>
+</div>
+
+
+
 <%
 out.println("some");
 %>

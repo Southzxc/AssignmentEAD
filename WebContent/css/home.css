@@ -11,12 +11,17 @@ body{
 	border:0;
 	background:transparent;
 	font-size:15px;
-	position: absolute;
+	position: relative;
 	z-index: 10;
 }
 
 img{
 	width:100%;
+}
+
+.middle{
+	text-align:center;
+	margin-top:-200px;
 }
 /* LEFT TO RIGHT */
 .sliding-u-l-r > li > a {
