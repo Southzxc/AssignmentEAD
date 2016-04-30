@@ -11,7 +11,7 @@ body{
 	border:0;
 	background:transparent;
 	font-size:15px;
-	position: relative;
+	position: absolute;
 	z-index: 10;
 }
 
@@ -24,6 +24,28 @@ img{
 	margin-top:-200px;
 }
 /* LEFT TO RIGHT */
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a:visited {
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+	font-size:150%;
+    color: white;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: white;
+}
+
 .sliding-u-l-r > li > a {
 display: inline-block;
 }
@@ -37,11 +59,11 @@ transition: width .5s ease, background-color .5s ease;
 }
 .sliding-u-l-r > li > a:hover:after {
 width: 100%;
-background: black;
+background: white;
 }
 
 .message {
-	padding-bottom: 50em;
+	padding-bottom: 20em;
 }
 
 #login-dp{
