@@ -8,6 +8,7 @@
 <script src="js/jquery-1.12.3.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Lato'
 	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -132,7 +133,9 @@
   </div>
 </div>
 
-<div class="row">
+<p id="headtags">POPULAR:</p>
+
+<div class="gamesrow">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="./image/cod.jpg" alt="COD">
@@ -145,18 +148,7 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="..." alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
+
 	<%
 		out.println("some");
 	%>

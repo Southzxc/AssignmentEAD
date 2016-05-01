@@ -102,10 +102,10 @@ background: white;
 	height: auto;
 }
 
-/* .row {
+.gamesrow {
 	padding-left: 5em;
-	padding-top: 5em;
-} */ /*use another name*/
+	padding-top: 3em;
+} 
 
 @media(max-width:768px){
     #login-dp{
@@ -122,4 +122,12 @@ background: white;
     background:#252b2d;
     margin-bottom:0px;
     }
+}
+
+#headtags {
+	color: white ;
+	font-family: 'Oswald', sans-serif;
+	font-size: 200%;
+	padding-top: 2em;
+	padding-left: 2em;
 }
