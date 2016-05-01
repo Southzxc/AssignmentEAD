@@ -11,7 +11,7 @@
 String user = request.getParameter("user");
 String pwd = request.getParameter("password");
 if(user.equals("admin") && pwd.equals("password")){
-	response.sendRedirect("adminPage.jsp");
+	response.sendRedirect("adminHomePage.jsp");
 }else{
 	out.println("login fail");
 }
