@@ -43,18 +43,23 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">VAPOUR</a>
+			<a class="navbar-brand" href="index.jsp">SP Games Store</a>
 		</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav sliding-u-l-r ">
-        <li><a href="#">PC <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">XBOX</a></li>
-        <li><a href="#">NINTENDO</a></li>
-        <li><a href="#">WII U</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATEGORY <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Platforms<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">PC</a></li>
+            <li><a href="#">XBOX</a></li>
+            <li><a href="#">NINTENDO</a></li>
+            <li><a href="#">WII U</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Adventure</a></li>

@@ -12,8 +12,6 @@ body{
 	border:0;
 	background:transparent;
 	font-size:15px;
-	position: absolute;
-	z-index: 1;
 }
 
 
@@ -106,6 +104,10 @@ background: #CCCCCC;
 	padding-left: 5em;
 	padding-top: 3em;
 } 
+
+.table-inverse{
+	background-color: white;
+}
 
 @media(max-width:768px){
     #login-dp{

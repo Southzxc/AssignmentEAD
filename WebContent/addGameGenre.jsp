@@ -29,7 +29,7 @@
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen"
 	href="css/home.css" />
-<title>Administrator Page</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-border ">
@@ -88,57 +88,6 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 	
-<div class="container">
-<%
-	try{
-		Class.forName("com.mysql.jdbc.Driver");
-
-		String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
-
-		Connection conn =   DriverManager.getConnection(connURL);
-
-		PreparedStatement pstmt=conn.prepareStatement("Select * from games");
-		
-		/* pstmt.setString(1, username); */
-		
-		ResultSet rs=pstmt.executeQuery();
-%>
-		<table class="table table-bordered table-inverse">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Title</th>
-					<th>Company</th>
-					<th class="col-md-2">Release date</th>
-					<th>Description</th>
-					<th>Price</th>
-				
-				</tr>		
-			</thead>
-<%		while(rs.next()){
-			%>
-			<tbody>
-				<tr>
-					
-					<td><%=rs.getInt("gameID") %></td>
-					<td><%=rs.getString("title") %></td>
-					<td><%=rs.getString("company") %></td>
-					<td><%=rs.getDate("releaseDate") %></td>
-					<td><%=rs.getString("description") %></td> <!-- NEED TO DO A MORE BUTTON -->
-					<td><%=rs.getDouble("price") %></td>
-					
-	 			</tr>
- 			</tbody>
- 			
-<%		}
-		rs.close();
-	}catch(Exception e){
-		out.println(e);//remember to change when submitting code 
-	}
 	
-
-%>	
-		</table>
-</div>
 </body>
 </html>
