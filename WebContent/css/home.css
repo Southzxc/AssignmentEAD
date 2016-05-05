@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 body{
 	font-family: 'Lato', sans-serif;
-	background-color:rgb(12,12,12);
+	background-color:rgb(34,34,34);
 }
 .navbar-searchbar {
     margin-right:16px;
@@ -28,28 +28,28 @@ img{
 /* LEFT TO RIGHT */
 
 .navbar-default .navbar-nav>li>a {
-    color: white;
+    color: #CCCCCC;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    color: white;
+    color: #CCCCCC;
 }
 
 .navbar-default .navbar-nav>li>a:visited {
-    color: white;
+    color: #CCCCCC;
 }
 
 .navbar-default .navbar-brand {
 	font-size:150%;
-    color: white;
+    color: #CCCCCC;
 }
 
 .navbar-default .navbar-brand:hover {
-    color: white;
+    color: #CCCCCC;
 }
 
 .navbar-default .navbar-brand:visited {
-    color: white;
+    color: #CCCCCC;
 }
 
 .sliding-u-l-r > li > a {
@@ -65,7 +65,7 @@ transition: width .5s ease, background-color .5s ease;
 }
 .sliding-u-l-r > li > a:hover:after {
 width: 100%;
-background: white;
+background: #CCCCCC;
 }
 
 /* .message {

@@ -83,11 +83,11 @@
 								 <form class="form" role="form" method="post" action="verifyUser.jsp" accept-charset="UTF-8" id="login-nav">
 										<div class="form-group">
 											 <!-- <label class="sr-only" for="exampleInputUser2">Email address</label> -->
-											 <input type="text" class="form-control" id="exampleInputUser2" name="user" placeholder="Username" required>
+											 <input type="text" class="form-control" id="exampleInputUser2" name="username" placeholder="Username" required>
 										</div>
 										<div class="form-group">
 											 <!-- <label class="sr-only" for="exampleInputPassword2">Password</label> -->
-											 <input type="password" class="form-control" id="exampleInputPassword2" name="password" placeholder="Password" required>
+											 <input type="password" class="form-control" id="exampleInputPassword2" name="userpwd" placeholder="Password" required>
                                              <div class="help-block text-right"><a href="">Forget the password ?</a></div>
 										</div>
 										<div class="form-group">

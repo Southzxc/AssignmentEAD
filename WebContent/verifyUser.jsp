@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,13 +9,41 @@
 </head>
 <body>
 <%
-String user = request.getParameter("user");
-String pwd = request.getParameter("password");
-if(user.equals("admin") && pwd.equals("password")){
-	response.sendRedirect("adminHomePage.jsp");
-}else{
-	out.println("login fail");
+
+String username = request.getParameter("username");
+String userpwd = request.getParameter("userpwd");
+try{
+	
+		Class.forName("com.mysql.jdbc.Driver");
+
+		String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
+
+		Connection conn =   DriverManager.getConnection(connURL);
+
+		PreparedStatement pstmt=conn.prepareStatement("Select username, userpwd from users where username = ?");
+		
+		pstmt.setString(1, username);
+		
+		ResultSet rs=pstmt.executeQuery();
+		String usernameDB = "";
+		String userpwdDB = "";
+		while(rs.next()){
+			usernameDB = rs.getString("username");
+		    userpwdDB = rs.getString("userpwd");
+
+		}//end while
+		if(usernameDB.equals(username) && userpwdDB.equals(userpwd)){
+			response.sendRedirect("adminHomePage.jsp");
+			rs.close();
+		}else{
+			out.println("login fail");
+		}
+
+	
+}catch(Exception e){
+	out.println(e);//change to error message when submitting
 }
+
 %>
 </body>
 </html>
