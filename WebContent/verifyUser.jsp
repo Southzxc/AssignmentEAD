@@ -35,8 +35,12 @@ try{
 		if(usernameDB.equals(username) && userpwdDB.equals(userpwd)){
 			response.sendRedirect("adminHomePage.jsp");
 			rs.close();
-		}else{
-			out.println("login fail");
+		}else{%>
+		<div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Warning!</strong> There was a problem with your network connection.
+    </div>
+			<%response.sendRedirect("index.jsp");
 		}
 
 	

@@ -32,7 +32,7 @@
 <title>Vapour Store</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-border ">
+	<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
