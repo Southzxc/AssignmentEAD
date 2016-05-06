@@ -121,37 +121,44 @@
                             </li>
                         </ol>
                     </div>
+                    
 					<div class="col-lg-6">
 
-                        <form role="form">
+                        <form role="form" method="post" action="addgame.jsp">
 
                             <div class="form-group">
-                                <label>Text Input</label>
-                                <input class="form-control">
+                                <label>Title:</label>
+                                <input class="form-control" name="gametitle">
                                 <p class="help-block">Example block-level help text here.</p>
+                                
                             </div>
 
                             <div class="form-group">
-                                <label>Text Input with Placeholder</label>
-                                <input class="form-control" placeholder="Enter text">
+                                <label>Company:</label>
+                                <input class="form-control" name="gamecompany">
                             </div>
 
                             <div class="form-group">
-                                <label>Static Control</label>
-                                <p class="form-control-static">email@example.com</p>
+                                <label>Release Date:</label>
+                                <input class="form-control" name="gamereleasedate">
                             </div>
 
                             <div class="form-group">
-                                <label>File input</label>
-                                <input type="file">
+                                <label>Description:</label>
+                                <textarea class="form-control" rows="3" name="gamedescription"></textarea>
                             </div>
 
+							<div class="form-group">
+                                <label>Price:</label>
+                                <input class="form-control" name="gameprice">
+                            </div>
+                            
                             <div class="form-group">
-                                <label>Text area</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                <label>Image Location:</label>
+                                <input class="form-control" name="gameimagelocation">
                             </div>
 
-                            <div class="form-group">
+<!--                             <div class="form-group">
                                 <label>Checkboxes</label>
                                 <div class="checkbox">
                                     <label>
@@ -235,7 +242,7 @@
                                     <option>4</option>
                                     <option>5</option>
                                 </select>
-                            </div>
+                            </div> -->
 
                             <button type="submit" class="btn btn-default">Submit Button</button>
                             <button type="reset" class="btn btn-default">Reset Button</button>

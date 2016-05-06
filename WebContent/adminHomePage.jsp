@@ -158,7 +158,9 @@
 						<td><%=rs.getString("company") %></td>
 						<td><%=rs.getDate("releaseDate") %></td>
 						<td><%=rs.getDouble("price") %></td>
-						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">Description</button></td>
+						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">Description</button>
+						<a href="deletegame.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-danger btn-sm">DELETE</a></td>
+						
 						<div class="modal fade bs-example-modal-sm" id="description<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 						  <div class="modal-dialog modal-sm">
 						    <div class="modal-content">
