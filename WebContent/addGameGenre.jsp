@@ -123,225 +123,97 @@
                     </div>
                     
 					<div class="col-lg-6">
-					
-<form id="gameForm" method="post" action="addGame.jsp">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-xs-8">
-                <label class="control-label">Title:</label>
-                <input type="text" class="form-control" name="gameTitle" />
-            </div>
-
-            <!-- <div class="col-xs-4 selectContainer">
-                <label class="control-label">Genre</label>
-                <select class="form-control" name="genre">
-                    <option value="">Choose a genre</option>
-                    <option value="action">Action</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="horror">Horror</option>
-                    <option value="romance">Romance</option>
-                </select>
-            </div> -->
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="row">
-            <div class="col-xs-4">
-                <label class="control-label">Company:</label>
-                <input type="text" class="form-control" name="gameCompany" />
-            </div>
-
-            <div class="col-xs-4">
-                <label class="control-label">Release Date:</label>
-                <input type="text" class="form-control" name="gameReleaseDate" />
-            </div>
-
-            <div class="col-xs-4">
-                <label class="control-label">Price:</label>
-                <input type="text" class="form-control" name="gamePrice" />
-            </div>
-        </div>
-    </div>
-
-	<div class="form-group">
-        <div class="row">
-            <div class="col-xs-12">
-                <label class="control-label">Image Location:</label>
-                <input type="text" class="form-control" name="gameImageLocation" />
-            </div>
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <label class="control-label">Desciption:</label>
-        <textarea class="form-control" name="gameDescription" rows="8"></textarea>
-    </div>
-
-
-    <button type="submit" class="btn btn-default">Add</button>
-</form>
-					
-					
-
-                        <!-- <form id="gameForm" role="form" method="post" action="addGame.jsp">
-							<h2>Add Game</h2>
-                            <div class="form-group">
-                            	<label>Title:</label>
-                                <input type="text" class="form-control" name="gameTitle">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Company:</label>
-                                <input class="form-control" name="gameCompany">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Release Date:</label>
-                                <input class="form-control" name="gameReleaseDate">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Description:</label>
-                                <textarea class="form-control" rows="3" name="gameDescription"></textarea>
-                            </div>
-
+						<!-- Add game form -->
+						<form id="gameForm" method="post" action="addGame.jsp">
+						    <div class="form-group">
+						        <div class="row">
+						            <div class="col-xs-8">
+						                <label class="control-label">Title:</label>
+						                <input type="text" class="form-control" name="gameTitle" />
+						            </div>
+						
+						            <!-- <div class="col-xs-4 selectContainer">
+						                <label class="control-label">Genre</label>
+						                <select class="form-control" name="genre">
+						                    <option value="">Choose a genre</option>
+						                    <option value="action">Action</option>
+						                    <option value="comedy">Comedy</option>
+						                    <option value="horror">Horror</option>
+						                    <option value="romance">Romance</option>
+						                </select>
+						            </div> -->
+						        </div>
+						    </div>
+						
+						    <div class="form-group">
+						        <div class="row">
+						            <div class="col-xs-4">
+						                <label class="control-label">Company:</label>
+						                <input type="text" class="form-control" name="gameCompany" />
+						            </div>
+						
+						            <div class="col-xs-4">
+						                <label class="control-label">Release Date:</label>
+						                <input type="text" class="form-control" name="gameReleaseDate" />
+						            </div>
+						
+						            <div class="col-xs-4">
+						                <label class="control-label">Price:</label>
+						                <input type="text" class="form-control" name="gamePrice" />
+						            </div>
+						        </div>
+						    </div>
+						
 							<div class="form-group">
-                                <label>Price:</label>
-                                <input class="form-control" name="gamePrice">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Image Location:</label>
-                                <input class="form-control" name="gameImageLocation">
-                            </div> -->
-
-<!--                             <div class="form-group">
-                                <label>Checkboxes</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 1
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 2
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 3
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Inline Checkboxes</label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">1
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">2
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">3
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Radio Buttons</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Inline Radio Buttons</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Selects</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Multiple Selects</label>
-                                <select multiple class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div> -->
-<!-- 
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
-
-                        </form> -->
-
+						        <div class="row">
+						            <div class="col-xs-12">
+						                <label class="control-label">Image Location:</label>
+						                <input type="text" class="form-control" name="gameImageLocation" />
+						            </div>
+						        </div>
+						    </div>
+						    
+						    <div class="form-group">
+						        <label class="control-label">Desciption:</label>
+						        <textarea class="form-control" name="gameDescription" rows="8"></textarea>
+						    </div>
+						
+						
+						    <button type="submit" class="btn btn-default">Add</button>
+						</form>
+						
+						<!-- PAGE SEPARATOR -->
+						<div class="container-liquid" >
+						    <div class="row">
+						        <div class="col-xs-12"><hr></div>
+						        <hr>
+						    </div>
+						</div> 		
+						
+						<!-- Add Genre Form -->
+						<form id="gameForm" method="post" action="addGenre.jsp">
+						    <div class="form-group">
+						        <div class="row">
+						            <div class="col-xs-2">
+						                <label class="control-label">Genre:</label>
+						                <input type="text" class="form-control" name="genre" />
+						            </div>
+						        </div>
+						    </div>
+					        <button type="submit" class="btn btn-default">Add</button>
+						</form>
+						
                     </div>
-
 				</div>
+				<!-- /.row -->
             </div>
-                <!-- /.row -->
-                
-                
-<div class="container-liquid" style="margin:0px; padding: 0px">
-    <div class="row">
-        <div class="col-xs-12"><hr></div>
-        <hr>
-    </div>
-</div> <!-- PAGE SEPARATOR -->
-
-<form id="gameForm" method="post" action="addGenre.jsp">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-xs-2">
-                <label class="control-label">Genre:</label>
-                <input type="text" class="form-control" name="genre" />
-            </div>
-        </div>
-    </div>
-            <button type="submit" class="btn btn-default">Add</button>
-</form>
-
-            </div>    
             <!-- /.container-fluid -->
 
+            </div>    
+           	<!-- /#page-wrapper -->
+
         </div>
-        <!-- /#page-wrapper -->
-
-
-    <!-- /#wrapper -->
-    
-    
+        <!-- /#wrapper -->
+  
 </body>
 </html>
