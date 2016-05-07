@@ -122,12 +122,13 @@
                         </ol>
                     </div>
                     
-					<div class="col-lg-6">
+					<div class="col-lg-10 col-lg-offset-1">
 						<!-- Add game form -->
+						<h2>Add game</h2>
 						<form id="gameForm" method="post" action="addGame.jsp">
 						    <div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-8">
+						            <div class="col-xs-8 ">
 						                <label class="control-label">Title:</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
@@ -174,8 +175,8 @@
 						    </div>
 						    
 						    <div class="form-group">
-						        <label class="control-label">Desciption:</label>
-						        <textarea class="form-control" name="gameDescription" rows="8"></textarea>
+						        <label class="control-label">Description:</label>
+						        <textarea class="form-control" name="gameDescription" rows="6"></textarea>
 						    </div>
 						
 						
@@ -189,12 +190,12 @@
 						        <hr>
 						    </div>
 						</div> 		
-						
+						<h2>Add genre</h2>
 						<!-- Add Genre Form -->
 						<form id="gameForm" method="post" action="addGenre.jsp">
 						    <div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-2">
+						            <div class="col-xs-4">
 						                <label class="control-label">Genre:</label>
 						                <input type="text" class="form-control" name="genre" />
 						            </div>
@@ -204,6 +205,7 @@
 						</form>
 						
                     </div>
+                    
 				</div>
 				<!-- /.row -->
             </div>
