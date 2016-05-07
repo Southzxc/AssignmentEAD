@@ -123,8 +123,60 @@
                     </div>
                     
 					<div class="col-lg-6">
+					
+					<form id="gameForm" method="post" action="addGame.jsp">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-8">
+                <label class="control-label">Title:</label>
+                <input type="text" class="form-control" name="gameTitle" />
+            </div>
 
-                        <form id="gameForm" role="form" method="post" action="addGame.jsp">
+            <!-- <div class="col-xs-4 selectContainer">
+                <label class="control-label">Genre</label>
+                <select class="form-control" name="genre">
+                    <option value="">Choose a genre</option>
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="horror">Horror</option>
+                    <option value="romance">Romance</option>
+                </select>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-4">
+                <label class="control-label">Company:</label>
+                <input type="text" class="form-control" name="gameCompany" />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Release Date:</label>
+                <input type="text" class="form-control" name="gameReleaseDate" />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Price:</label>
+                <input type="text" class="form-control" name="gamePrice" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label">Desciption:</label>
+        <textarea class="form-control" name="gameDescription" rows="8"></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-default">Add</button>
+</form>
+					
+					
+
+                        <!-- <form id="gameForm" role="form" method="post" action="addGame.jsp">
 							<h2>Add Game</h2>
                             <div class="form-group">
                             	<label>Title:</label>
@@ -154,7 +206,7 @@
                             <div class="form-group">
                                 <label>Image Location:</label>
                                 <input class="form-control" name="gameImageLocation">
-                            </div>
+                            </div> -->
 
 <!--                             <div class="form-group">
                                 <label>Checkboxes</label>
@@ -241,11 +293,11 @@
                                     <option>5</option>
                                 </select>
                             </div> -->
-
+<!-- 
                             <button type="submit" class="btn btn-default">Submit Button</button>
                             <button type="reset" class="btn btn-default">Reset Button</button>
 
-                        </form>
+                        </form> -->
 
                     </div>
 
