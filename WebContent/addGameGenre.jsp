@@ -124,7 +124,7 @@
                     
 					<div class="col-lg-6">
 					
-					<form id="gameForm" method="post" action="addGame.jsp">
+<form id="gameForm" method="post" action="addGame.jsp">
     <div class="form-group">
         <div class="row">
             <div class="col-xs-8">
@@ -312,6 +312,26 @@
 				</div>
             </div>
                 <!-- /.row -->
+                
+                
+<div class="container-liquid" style="margin:0px; padding: 0px">
+    <div class="row">
+        <div class="col-xs-12"><hr></div>
+        <hr>
+    </div>
+</div> <!-- PAGE SEPARATOR -->
+
+<form id="gameForm" method="post" action="addGenre.jsp">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Genre:</label>
+                <input type="text" class="form-control" name="genre" />
+            </div>
+        </div>
+    </div>
+            <button type="submit" class="btn btn-default">Add</button>
+</form>
 
             </div>    
             <!-- /.container-fluid -->
@@ -321,5 +341,7 @@
 
 
     <!-- /#wrapper -->
+    
+    
 </body>
 </html>
