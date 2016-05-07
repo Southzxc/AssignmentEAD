@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SP Games Store Admin</a>
+                <a class="navbar-brand" href="index.html">SB Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -115,7 +115,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="glyphicon glyphicon-dashboard"></i> Dashboard
+                                <i class="fa fa-dashboard"></i> Dashboard
                             </li>
                         </ol>
                     </div>
@@ -135,18 +135,16 @@
 		ResultSet rs=pstmt.executeQuery();
 %>
 	<div class="col-lg-12">
-		<h2>Games</h2>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-		
+						<th>ID</th>
 						<th>Title</th>
 						<th>Company</th>
-						<th>Release date</th>
+						<th class="col-md-2">Release date</th>
 						<th>Price</th>
 						<th>Description</th>
-						<th>Manage</th>
 					
 					</tr>		
 				</thead>
@@ -155,15 +153,14 @@
 				<tbody>
 					<tr>
 						
+						<td><%=rs.getInt("gameID") %></td>
 						<td><%=rs.getString("title") %></td>
 						<td><%=rs.getString("company") %></td>
 						<td><%=rs.getDate("releaseDate") %></td>
 						<td><%=rs.getDouble("price") %></td>
+						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">Description</button>
+						<a href="deletegame.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-danger btn-sm">DELETE</a></td>
 						
-						<!-- Modal button for Description -->
-						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">Description</button></td>
-						
-						<!-- Modal for Description -->
 						<div class="modal fade bs-example-modal-sm" id="description<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 						  <div class="modal-dialog modal-sm">
 						    <div class="modal-content">
@@ -174,104 +171,38 @@
 						      <div class="modal-body">
 						      	<%=rs.getString("description") %>
 						      </div>						    
-						    </div>
-						  </div>
-						</div>
-						
-						<!-- Modal button for delete game-->
-						<td><button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGame<%=rs.getInt("gameID")%>"></button></td>
-						
-						<!-- Modal for delete game -->
-						<div class="modal fade bs-example-modal-sm" id="deleteGame<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-						  <div class="modal-dialog modal-sm">
-						    <div class="modal-content">
-							  <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Warning</h4>
-						      </div>
-						      <div class="modal-body">
-						      	Are you sure you want to delete?
-						      </div>
-						      <div class="modal-footer">
-						      	<a href="deleteGame.jsp?gameID=<%=rs.getInt("gameID")%>" type="button" class="btn btn-danger">Delete</a>
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>						      
-						      </div>						    
+						      
 						    </div>
 						  </div>
 						</div>						
+						
+						
+						
 		 			</tr>
 	 			</tbody>
 	 			
-<%		}		%>
-			</table>
-		</div>
-	</div>
-		<% pstmt=conn.prepareStatement("Select * from genre");
-		
-			rs=pstmt.executeQuery();%>
-	
-	<div class="col-lg-3">
-		<h2>Genre</h2>
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Genre</th>
-						<th>Manage</th>
-					</tr>
-				</thead>
-<%		while(rs.next()){
-				%>
-				<tbody>
-					<tr>
-						<td><%=rs.getString("genreName") %></td>
-						
-						<!-- Modal button for delete genre -->
-						<td><button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGenre<%=rs.getInt("genreID")%>"></button></td>
-						
-						<!-- Modal for delete genre -->
-						<div class="modal fade bs-example-modal-sm" id="deleteGenre<%=rs.getInt("genreID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-						  <div class="modal-dialog modal-sm">
-						    <div class="modal-content">
-							  <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Warning</h4>
-						      </div>
-						      <div class="modal-body">
-						      	Are you sure you want to delete?
-						      </div>
-						      <div class="modal-footer">
-						      	<a href="deleteGenre.jsp?genreID=<%=rs.getInt("genreID")%>" type="button" class="btn btn-danger">Delete</a>
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>						      
-						      </div>						    
-						    </div>
-						  </div>
-						</div>
-					
-					</tr>
-				</tbody>		
-<%		}		%>
-			</table>
-		</div>
-	</div>
-<%			rs.close();
+<%		}
+			rs.close();
 		}catch(Exception e){
 			out.println(e);//remember to change when submitting code 
 		}
 		
 	
 	%>	
-					
+			</table>
+		</div>
+	</div>		
 				</div>
-				<!-- /.row -->
             </div>
-                <!-- /.container-fluid -->
+                <!-- /.row -->
 
             </div>    
-            <!-- /#page-wrapper -->
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- /#wrapper -->
-         
+        <!-- /#page-wrapper -->
+
+
+    <!-- /#wrapper -->
 </body>
 </html>
