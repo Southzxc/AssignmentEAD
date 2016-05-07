@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-String gameID = request.getParameter("gameID");
+String genreID = request.getParameter("genreID");
 
 Class.forName("com.mysql.jdbc.Driver");
 
@@ -17,15 +17,14 @@ String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxox
 
 Connection conn =   DriverManager.getConnection(connURL);
 
-PreparedStatement pstmt=conn.prepareStatement("DELETE from games WHERE gameID=?");
+PreparedStatement pstmt=conn.prepareStatement("DELETE from genre WHERE genreID=?");
 
-pstmt.setString(1, gameID);
+pstmt.setString(1, genreID);
 
 int count = pstmt.executeUpdate();
 conn.close();
 
 response.sendRedirect("adminHomePage.jsp");
 %>
-
 </body>
 </html>

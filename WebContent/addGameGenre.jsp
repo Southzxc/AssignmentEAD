@@ -29,7 +29,7 @@
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen" href="css/home.css" />
 <link type="text/css" rel="stylesheet" media="screen" href="css/sb-admin.css" />
-<title>Insert title here</title>
+<title>Adminstrator Page</title>
 </head>
 <body>
 <div id="wrapper">
@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html">SP Games Store Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -124,38 +124,36 @@
                     
 					<div class="col-lg-6">
 
-                        <form role="form" method="post" action="addgame.jsp">
-
+                        <form id="gameForm" role="form" method="post" action="addGame.jsp">
+							<h2>Add Game</h2>
                             <div class="form-group">
-                                <label>Title:</label>
-                                <input class="form-control" name="gametitle">
-                                <p class="help-block">Example block-level help text here.</p>
-                                
+                            	<label>Title:</label>
+                                <input type="text" class="form-control" name="gameTitle">
                             </div>
 
                             <div class="form-group">
                                 <label>Company:</label>
-                                <input class="form-control" name="gamecompany">
+                                <input class="form-control" name="gameCompany">
                             </div>
 
                             <div class="form-group">
                                 <label>Release Date:</label>
-                                <input class="form-control" name="gamereleasedate">
+                                <input class="form-control" name="gameReleaseDate">
                             </div>
 
                             <div class="form-group">
                                 <label>Description:</label>
-                                <textarea class="form-control" rows="3" name="gamedescription"></textarea>
+                                <textarea class="form-control" rows="3" name="gameDescription"></textarea>
                             </div>
 
 							<div class="form-group">
                                 <label>Price:</label>
-                                <input class="form-control" name="gameprice">
+                                <input class="form-control" name="gamePrice">
                             </div>
                             
                             <div class="form-group">
                                 <label>Image Location:</label>
-                                <input class="form-control" name="gameimagelocation">
+                                <input class="form-control" name="gameImageLocation">
                             </div>
 
 <!--                             <div class="form-group">

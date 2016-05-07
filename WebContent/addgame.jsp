@@ -10,12 +10,12 @@
 <body>
 
 <%
- String gametitle = request.getParameter("gametitle");
- String gamecompany = request.getParameter("gamecompany");
- String gamereleasedate = request.getParameter("gamereleasedate");
- String gamedescription = request.getParameter("gamedescription");
- String gameprice = request.getParameter("gameprice");
- String gameimagelocation = request.getParameter("gameimagelocation");
+ String gameTitle = request.getParameter("gameTitle");
+ String gameCompany = request.getParameter("gameCompany");
+ String gameReleaseDate = request.getParameter("gameReleaseDate");
+ String gameDescription = request.getParameter("gameDescription");
+ String gamePrice = request.getParameter("gamePrice");
+ String gameImageLocation = request.getParameter("gameImageLocation");
  
 Class.forName("com.mysql.jdbc.Driver");
 
@@ -27,12 +27,12 @@ String sqlStr="INSERT into games(title,company,releaseDate,description,price,ima
 
 PreparedStatement pstmt=conn.prepareStatement(sqlStr);  
 
-pstmt.setString(1, gametitle);
-pstmt.setString(2, gamecompany);
-pstmt.setString(3, gamereleasedate);
-pstmt.setString(4, gamedescription);
-pstmt.setString(5, gameprice);
-pstmt.setString(6, gameimagelocation);
+pstmt.setString(1, gameTitle);
+pstmt.setString(2, gameCompany);
+pstmt.setString(3, gameReleaseDate);
+pstmt.setString(4, gameDescription);
+pstmt.setString(5, gamePrice);
+pstmt.setString(6, gameImageLocation);
 
 int count = pstmt.executeUpdate();
 conn.close();
