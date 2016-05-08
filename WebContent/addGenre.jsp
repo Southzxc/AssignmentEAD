@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.sql.*" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,20 +11,25 @@
 <%
 String genre = request.getParameter("genre");
 
-Class.forName("com.mysql.jdbc.Driver");
+try{
+	Class.forName("com.mysql.jdbc.Driver");
 
-String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
+	String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
 
-Connection conn =   DriverManager.getConnection(connURL);
+	Connection conn =   DriverManager.getConnection(connURL);
 
-String sqlStr="INSERT into genre(genreName)  VALUES(?)";
+	PreparedStatement pstmt=conn.prepareStatement("INSERT into genre(genreName)  VALUES(?)");
 
-PreparedStatement pstmt=conn.prepareStatement(sqlStr);
+	pstmt.setString(1, genre);
 
-pstmt.setString(1, genre);
+	pstmt.executeUpdate();
 
-int count = pstmt.executeUpdate();
-conn.close();
+	conn.close();
+}catch(Exception e){
+	out.println(e); //remember to change to error message when submitting
+}
+
+
 %>
 GENRE ADDED
 </body>

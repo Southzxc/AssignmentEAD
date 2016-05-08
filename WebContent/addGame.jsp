@@ -16,27 +16,29 @@
  String gameDescription = request.getParameter("gameDescription");
  String gamePrice = request.getParameter("gamePrice");
  String gameImageLocation = request.getParameter("gameImageLocation");
- 
-Class.forName("com.mysql.jdbc.Driver");
 
-String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
+ try{
+	 Class.forName("com.mysql.jdbc.Driver");
 
-Connection conn =   DriverManager.getConnection(connURL);
+	 String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
 
-String sqlStr="INSERT into games(title,company,releaseDate,description,price,imageLocation)  VALUES(?,?,?,?,?,?)";
+	 Connection conn =   DriverManager.getConnection(connURL);
 
-PreparedStatement pstmt=conn.prepareStatement(sqlStr);  
+	 PreparedStatement pstmt=conn.prepareStatement("INSERT into games(title,company,releaseDate,description,price,imageLocation)  VALUES(?,?,?,?,?,?)");  
 
-pstmt.setString(1, gameTitle);
-pstmt.setString(2, gameCompany);
-pstmt.setString(3, gameReleaseDate);
-pstmt.setString(4, gameDescription);
-pstmt.setString(5, gamePrice);
-pstmt.setString(6, gameImageLocation);
+	 pstmt.setString(1, gameTitle);
+	 pstmt.setString(2, gameCompany);
+	 pstmt.setString(3, gameReleaseDate);
+	 pstmt.setString(4, gameDescription);
+	 pstmt.setString(5, gamePrice);
+	 pstmt.setString(6, gameImageLocation);
 
-int count = pstmt.executeUpdate();
-conn.close();
+	 pstmt.executeUpdate();
 
+	 conn.close();
+ }catch(Exception e){
+	 out.println(e); //remember to change to error message when submitting
+ }
 
 
 %>

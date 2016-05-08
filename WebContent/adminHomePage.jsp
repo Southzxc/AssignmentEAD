@@ -128,12 +128,12 @@
 
 		Connection conn =   DriverManager.getConnection(connURL);
 
-		PreparedStatement pstmt=conn.prepareStatement("Select * from games");
-		
-		/* pstmt.setString(1, username); */
+		PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games ORDER BY title ASC");
 		
 		ResultSet rs=pstmt.executeQuery();
+		
 %>
+	<!-- GAMES TABLE START -->
 	<div class="col-lg-12">
 		<h2>Games</h2>
 		<div class="table-responsive">
@@ -154,7 +154,6 @@
 				%>
 				<tbody>
 					<tr>
-						
 						<td><%=rs.getString("title") %></td>
 						<td><%=rs.getString("company") %></td>
 						<td><%=rs.getDate("releaseDate") %></td>
@@ -178,8 +177,93 @@
 						  </div>
 						</div>
 						
+						<td>
+						<!-- Modal button for edit game -->
+						<button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-edit" data-toggle="modal" data-target="#editGame<%=rs.getInt("gameID")%>"></button>
 						<!-- Modal button for delete game-->
-						<td><button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGame<%=rs.getInt("gameID")%>"></button></td>
+						<button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGame<%=rs.getInt("gameID")%>"></button>
+						</td>
+						
+						<!-- Modal for edit game -->
+						<div class="modal fade" id="editGame<%=rs.getInt("gameID")%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Edit game info</h4>
+						      </div>
+						      <div class="modal-body">
+						        <form action="updateGameInfo.jsp" method="post">
+						        	<div class="form-group">
+								        <div class="row">
+								            <div class="col-xs-2">
+								                <label class="control-label">ID</label>
+								                <input type="text" class="form-control" name="gameID" value="<%=rs.getInt("gameID")%>" readonly/>
+								            </div>
+								        </div>
+								    </div>					
+								    <div class="form-group">
+								        <div class="row">
+								            <div class="col-xs-8 ">
+								                <label class="control-label">Title</label>
+								                <input type="text" class="form-control" name="gameTitle" value="<%=rs.getString("title")%>" />
+								            </div>
+								
+								            <!-- <div class="col-xs-4 selectContainer">
+								                <label class="control-label">Genre</label>
+								                <select class="form-control" name="genre">
+								                    <option value="">Choose a genre</option>
+								                    <option value="action">Action</option>
+								                    <option value="comedy">Comedy</option>
+								                    <option value="horror">Horror</option>
+								                    <option value="romance">Romance</option>
+								                </select>
+								            </div> -->
+								        </div>
+								    </div>
+								
+								    <div class="form-group">
+								        <div class="row">
+								            <div class="col-xs-4">
+								                <label class="control-label">Company</label>
+								                <input type="text" class="form-control" name="gameCompany" value="<%=rs.getString("company")%>" />
+								            </div>
+								
+								            <div class="col-xs-4">
+								                <label class="control-label">Release Date</label>
+								                <input type="text" class="form-control" name="gameReleaseDate" value="<%=rs.getString("releaseDate")%>" />
+								            </div>
+								
+								            <div class="col-xs-4">
+								                <label class="control-label">Price</label>
+								                <input type="text" class="form-control" name="gamePrice" value="<%=rs.getDouble("price")%>" />
+								            </div>
+								        </div>
+								    </div>
+								
+									<div class="form-group">
+								        <div class="row">
+								            <div class="col-xs-12">
+								                <label class="control-label">Image Location</label>
+								                <input type="text" class="form-control" name="gameImageLocation" value="<%=rs.getString("imageLocation") %>"/>
+								            </div>
+								        </div>
+								    </div>
+								    
+								    <div class="form-group">
+								        <label class="control-label">Description</label>
+								        <textarea class="form-control" name="gameDescription" rows="6"><%=rs.getString("description")%></textarea>
+								    </div>
+								    <button type="submit" class="btn btn-default">Save changes</button>
+								    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        </form>
+						        <!-- End of form -->
+						      </div>
+						      <!-- End of modal body -->
+						    </div>
+						  </div>
+						</div>
+						<!-- End of modal for edit game -->						
 						
 						<!-- Modal for delete game -->
 						<div class="modal fade bs-example-modal-sm" id="deleteGame<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -206,10 +290,13 @@
 			</table>
 		</div>
 	</div>
-		<% pstmt=conn.prepareStatement("Select * from genre");
+	<!-- GAMES TABLE END -->
+		
+		<% pstmt=conn.prepareStatement("SELECT * FROM genre ORDER BY genreName ASC");
 		
 			rs=pstmt.executeQuery();%>
 	
+	<!-- GENRE TABLE START -->
 	<div class="col-lg-3">
 		<h2>Genre</h2>
 		<div class="table-responsive">
@@ -226,8 +313,49 @@
 					<tr>
 						<td><%=rs.getString("genreName") %></td>
 						
+						<td>
+						<!-- Modal button for edit genre -->
+						<button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-edit" data-toggle="modal" data-target="#editGenre<%=rs.getInt("genreID")%>"></button>
 						<!-- Modal button for delete genre -->
-						<td><button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGenre<%=rs.getInt("genreID")%>"></button></td>
+						<button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGenre<%=rs.getInt("genreID")%>"></button>
+						</td>
+						
+						<!-- Modal for edit genre -->
+						<div class="modal fade bs-example-modal-sm" id="editGenre<%=rs.getInt("genreID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+						  <div class="modal-dialog modal-sm">
+						    <div class="modal-content">
+							  <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Edit genre info</h4>
+						      </div>
+						      <div class="modal-body">
+								<form id="gameForm" method="post" action="updateGenreInfo.jsp">
+									<div class="form-group">
+								        <div class="row">
+								            <div class="col-xs-4">
+								                <label class="control-label">ID</label>
+								                <input type="text" class="form-control" name="genreID" value="<%=rs.getInt("genreID")%>" readonly/>
+								            </div>
+								        </div>
+								    </div>
+								    <div class="form-group">
+								        <div class="row">
+								            <div class="col-xs-8">
+								                <label class="control-label">Genre</label>
+								                <input type="text" class="form-control" name="genre" value="<%=rs.getString("genreName") %>" />
+								            </div>
+								        </div>
+								    </div>
+							        <button type="submit" class="btn btn-default">Save changes</button>
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</form>
+								<!-- End of form -->						      	
+						      </div>
+						      <!-- End of modal-body -->						    
+						    </div>
+						  </div>
+						</div>
+						<!-- End of modal for edit genre -->
 						
 						<!-- Modal for delete genre -->
 						<div class="modal fade bs-example-modal-sm" id="deleteGenre<%=rs.getInt("genreID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -254,6 +382,7 @@
 			</table>
 		</div>
 	</div>
+	<!-- GENRE TABLE END -->
 <%			rs.close();
 		}catch(Exception e){
 			out.println(e);//remember to change when submitting code 
@@ -265,13 +394,11 @@
 				</div>
 				<!-- /.row -->
             </div>
-                <!-- /.container-fluid -->
-
-            </div>    
-            <!-- /#page-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
+            <!-- /.container-fluid -->
+        </div>    
+        <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
          
 </body>
 </html>

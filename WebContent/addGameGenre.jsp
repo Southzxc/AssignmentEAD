@@ -129,11 +129,11 @@
 						    <div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-8 ">
-						                <label class="control-label">Title:</label>
+						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
 						
-						            <!-- <div class="col-xs-4 selectContainer">
+						           <!--  <div class="col-xs-4 selectContainer">
 						                <label class="control-label">Genre</label>
 						                <select class="form-control" name="genre">
 						                    <option value="">Choose a genre</option>
@@ -149,17 +149,17 @@
 						    <div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-4">
-						                <label class="control-label">Company:</label>
+						                <label class="control-label">Company</label>
 						                <input type="text" class="form-control" name="gameCompany" />
 						            </div>
 						
 						            <div class="col-xs-4">
-						                <label class="control-label">Release Date:</label>
+						                <label class="control-label">Release Date</label>
 						                <input type="text" class="form-control" name="gameReleaseDate" />
 						            </div>
 						
 						            <div class="col-xs-4">
-						                <label class="control-label">Price:</label>
+						                <label class="control-label">Price</label>
 						                <input type="text" class="form-control" name="gamePrice" />
 						            </div>
 						        </div>
@@ -168,14 +168,14 @@
 							<div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-12">
-						                <label class="control-label">Image Location:</label>
+						                <label class="control-label">Image Location</label>
 						                <input type="text" class="form-control" name="gameImageLocation" />
 						            </div>
 						        </div>
 						    </div>
 						    
 						    <div class="form-group">
-						        <label class="control-label">Description:</label>
+						        <label class="control-label">Description</label>
 						        <textarea class="form-control" name="gameDescription" rows="6"></textarea>
 						    </div>
 						
@@ -196,7 +196,7 @@
 						    <div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-4">
-						                <label class="control-label">Genre:</label>
+						                <label class="control-label">Genre</label>
 						                <input type="text" class="form-control" name="genre" />
 						            </div>
 						        </div>

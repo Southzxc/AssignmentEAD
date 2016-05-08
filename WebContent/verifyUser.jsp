@@ -20,7 +20,7 @@ try{
 
 		Connection conn =   DriverManager.getConnection(connURL);
 
-		PreparedStatement pstmt=conn.prepareStatement("Select username, userpwd from users where username = ?");
+		PreparedStatement pstmt=conn.prepareStatement("SELECT username, userpwd FROM users WHERE username = ?");
 		
 		pstmt.setString(1, username);
 		
@@ -36,16 +36,18 @@ try{
 			response.sendRedirect("adminHomePage.jsp");
 			rs.close();
 		}else{%>
+		<!-- WHAT IS THIS  -->
 		<div class="alert alert-warning">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Warning!</strong> There was a problem with your network connection.
-    </div>
+    	</div>
+    	<!-- TILL HERE -->
 			<%response.sendRedirect("index.jsp");
 		}
 
 	
 }catch(Exception e){
-	out.println(e);//change to error message when submitting
+	out.println(e); //remember to change to error message when submitting
 }
 
 %>

@@ -10,6 +10,12 @@
 <body>
 <%
 String gameID = request.getParameter("gameID");
+String gameTitle = request.getParameter("gameTitle");
+String gameCompany = request.getParameter("gameCompany");
+String gameReleaseDate = request.getParameter("gameReleaseDate");
+String gameDescription = request.getParameter("gameDescription");
+String gamePrice = request.getParameter("gamePrice");
+String gameImageLocation = request.getParameter("gameImageLocation");
 
 try{
 	Class.forName("com.mysql.jdbc.Driver");
@@ -18,9 +24,15 @@ try{
 
 	Connection conn =   DriverManager.getConnection(connURL);
 
-	PreparedStatement pstmt=conn.prepareStatement("DELETE from games WHERE gameID=?");
+	PreparedStatement pstmt=conn.prepareStatement("UPDATE games SET title=?, company=?, releaseDate=?, description=?, price=?, imagelocation=? WHERE gameID=?");
 
-	pstmt.setString(1, gameID);
+	pstmt.setString(1, gameTitle);
+	pstmt.setString(2, gameCompany);
+	pstmt.setString(3, gameReleaseDate);
+	pstmt.setString(4, gameDescription);
+	pstmt.setString(5, gamePrice);
+	pstmt.setString(6, gameImageLocation);
+	pstmt.setString(7, gameID);
 
 	pstmt.executeUpdate();
 
@@ -32,6 +44,5 @@ try{
 }
 
 %>
-
 </body>
 </html>

@@ -10,6 +10,7 @@
 <body>
 <%
 String genreID = request.getParameter("genreID");
+String genre = request.getParameter("genre");
 
 try{
 	Class.forName("com.mysql.jdbc.Driver");
@@ -18,10 +19,11 @@ try{
 
 	Connection conn =   DriverManager.getConnection(connURL);
 
-	PreparedStatement pstmt=conn.prepareStatement("DELETE from genre WHERE genreID=?");
-
-	pstmt.setString(1, genreID);
-
+	PreparedStatement pstmt=conn.prepareStatement("UPDATE genre SET genreName=? WHERE genreID=?");
+	
+	pstmt.setString(1, genre);
+	pstmt.setString(2, genreID);
+	
 	pstmt.executeUpdate();
 
 	conn.close();
