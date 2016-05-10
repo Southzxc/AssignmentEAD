@@ -16,7 +16,8 @@
  String gameDescription = request.getParameter("gameDescription");
  String gamePrice = request.getParameter("gamePrice");
  String gameImageLocation = request.getParameter("gameImageLocation");
-
+ String[] genre = request.getParameterValues("genre");
+ 
  try{
 	 Class.forName("com.mysql.jdbc.Driver");
 
@@ -34,8 +35,20 @@
 	 pstmt.setString(6, gameImageLocation);
 
 	 pstmt.executeUpdate();
-	pstmt=conn.prepareStatement("");
-	 conn.close();
+	pstmt=conn.prepareStatement("SELECT max(gameid) 'gameid' from games");
+	
+	ResultSet rs = pstmt.executeQuery();
+	rs.next();
+	int gameid = rs.getInt(1);
+	rs.close();
+	
+	for (String g:genre) {
+	pstmt=conn.prepareStatement("INSERT into games_genre VALUES (?,?)");
+	pstmt.setInt(1,gameid);
+	pstmt.setInt(2,Integer.parseInt(g));
+	pstmt.executeUpdate();	
+	}
+	conn.close();
  }catch(Exception e){
 	 out.println(e); //remember to change to error message when submitting
  }
