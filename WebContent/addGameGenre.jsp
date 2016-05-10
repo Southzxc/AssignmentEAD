@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery-1.12.3.min.js"></script>
+<!-- JQUERY PLUGIN FOR DROPDOWN -->
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Lato'
 	rel='stylesheet' type='text/css'>
 	<!-- Latest compiled and minified CSS -->
@@ -29,7 +31,9 @@
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen" href="css/home.css" />
 <link type="text/css" rel="stylesheet" media="screen" href="css/sb-admin.css" />
-<title>Adminstrator Page</title>
+<link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />
+
+<title>Administrator Page</title>
 </head>
 <body>
 <div id="wrapper">
@@ -132,17 +136,43 @@
 						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
-						
-						           <!--  <div class="col-xs-4 selectContainer">
-						                <label class="control-label">Genre</label>
-						                <select class="form-control" name="genre">
-						                    <option value="">Choose a genre</option>
-						                    <option value="action">Action</option>
-						                    <option value="comedy">Comedy</option>
-						                    <option value="horror">Horror</option>
-						                    <option value="romance">Romance</option>
+						            <div class="col-xs-4 selectContainer">
+						                <label class="control-label">Genre</label><br> <!-- can br? -->
+						                <select id = "chooseGenre" class="form-control" name="genre" multiple="multiple">					
+					<%
+						try{
+							Class.forName("com.mysql.jdbc.Driver");
+
+							String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
+
+							Connection conn =   DriverManager.getConnection(connURL);
+
+							PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM genre");
+							
+							ResultSet rs=pstmt.executeQuery();
+							
+							while(rs.next()){ 
+					%>						
+						                    <option value="<%=rs.getInt("genreID")%>"><%=rs.getString("genreName")%></option>						                    						               							
+					<%		}
+					%>		
 						                </select>
-						            </div> -->
+						            </div>											
+					<%	}catch(Exception e){
+						out.println(e);
+					}
+					
+					%>	
+
+						            <!-- Script for calling the drop down -->
+									<script type="text/javascript">
+									    $(document).ready(function() {
+									        $('#chooseGenre').multiselect({
+									        	nonSelectedText:'None',
+									        	numberDisplayed: 2
+									        });
+									    });
+									</script>						            
 						        </div>
 						    </div>
 						

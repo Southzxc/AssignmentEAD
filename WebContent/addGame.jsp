@@ -34,7 +34,7 @@
 	 pstmt.setString(6, gameImageLocation);
 
 	 pstmt.executeUpdate();
-
+	pstmt=conn.prepareStatement("");
 	 conn.close();
  }catch(Exception e){
 	 out.println(e); //remember to change to error message when submitting
