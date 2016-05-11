@@ -10,7 +10,7 @@
 <!--JQUERY PLUGIN FOR STARS RATING -->
 <link rel="stylesheet" href="css/jquery.rating.css"> 
  <script src="js/jquery.form.js"></script>
-<script src="js/jquery.js"></script>
+<script src="js/jquery-1.12.3.min.js"></script>
 <script src="js/jquery.rating.pack.js"></script> 
 
 <!-- JQUERY PLUGIN FOR DROPDOWN -->
@@ -53,11 +53,12 @@
 <div class="col-lg-10 col-lg-offset-1">
 						<!-- Add game form -->
 						<h2>Reviews & Comments</h2>
-						<form id="gameForm" method="post" action="addGame.jsp">
+						<form id="gameForm" method="post" action="addComment.jsp">				    			    
+						    						    
 						    <div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-4 ">
-						                <label class="control-label">Name</label>
+						                <label class="control-label">Commenter Name:</label>
 						                <input type="text" class="form-control" name="commentName" />
 						            </div>				            
 						        </div>
@@ -80,7 +81,7 @@
 						    	<div class="row">
 						    	<div class="col-xs-5">
 						        <label class="control-label">Comments:</label>
-						        <textarea class="form-control" name="gameDescription" rows="8"></textarea>
+						        <textarea class="form-control" name="comment" rows="8"></textarea>
 						        </div>
 						        </div>
 						    </div>
