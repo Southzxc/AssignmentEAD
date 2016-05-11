@@ -132,6 +132,7 @@
 		
 		ResultSet rs=pstmt.executeQuery();
 		
+		
 %>
 	<!-- GAMES TABLE START -->
 	<div class="col-lg-12">
@@ -145,12 +146,16 @@
 						<th>Company</th>
 						<th>Release date</th>
 						<th>Price</th>
-						<th>Description</th>
+						<th>More information</th>
 						<th>Manage</th>
 					
 					</tr>		
 				</thead>
 <%		while(rs.next()){
+				String gameID = rs.getString("gameID");				
+				pstmt = conn.prepareStatement("SELECT genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
+				pstmt.setString(1, gameID);
+				ResultSet genreName = pstmt.executeQuery();
 				%>
 				<tbody>
 					<tr>
@@ -159,8 +164,8 @@
 						<td><%=rs.getDate("releaseDate") %></td>
 						<td><%=rs.getDouble("price") %></td>
 						
-						<!-- Modal button for Description -->
-						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">Description</button></td>
+						<!-- Modal button for more info -->
+						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">More information</button></td>
 						
 						<!-- Modal for Description -->
 						<div class="modal fade bs-example-modal-sm" id="description<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -168,10 +173,20 @@
 						    <div class="modal-content">
 							  <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Description</h4>
+						        <h4 class="modal-title" id="myModalLabel">More information</h4>
 						      </div>
-						      <div class="modal-body">
-						      	<%=rs.getString("description") %>
+						      <div class="modal-body">						      	
+						      	<h4>Description</h4>
+						      	<%=rs.getString("description")%>
+						      	<h4>Image Location</h4>
+						      	<%=rs.getString("imageLocation")%>
+						      	<h4>Genre</h4>
+						      	<%
+						      	while(genreName.next()){%>
+						      		<%=genreName.getString("genreName") %><br>
+						      	<%}
+						      	%>
+						      	
 						      </div>						    
 						    </div>
 						  </div>
