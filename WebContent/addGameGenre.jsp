@@ -137,7 +137,7 @@
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
 						            <div class="col-xs-4 selectContainer">
-						                <label class="control-label">Genre</label><br> <!-- can br? -->
+						                <label class="control-label">Genre</label><br>
 						                <select id = "chooseGenre" class="form-control" name="genre" multiple="multiple">					
 					<%
 						try{
@@ -168,6 +168,7 @@
 									<script type="text/javascript">
 									    $(document).ready(function() {
 									        $('#chooseGenre').multiselect({
+									        	includeSelectAllOption: true,
 									        	nonSelectedText:'None',
 									        	numberDisplayed: 2
 									        });

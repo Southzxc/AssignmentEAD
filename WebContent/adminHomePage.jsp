@@ -9,6 +9,10 @@
 <script src="js/jquery-1.12.3.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Lato'
 	rel='stylesheet' type='text/css'>
+	
+<!-- JQUERY PLUGIN FOR DROPDOWN -->
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -28,7 +32,8 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen" href="css/home.css" />
-<link type="text/css" rel="stylesheet" media="screen" href="css/sb-admin.css" />	
+<link type="text/css" rel="stylesheet" media="screen" href="css/sb-admin.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />	
 <title>Administrator Page</title>
 </head>
 <body>
@@ -175,18 +180,17 @@
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title" id="myModalLabel">More information</h4>
 						      </div>
-						      <div class="modal-body">						      	
-						      	<h4>Description</h4>
-						      	<%=rs.getString("description")%>
-						      	<h4>Image Location</h4>
-						      	<%=rs.getString("imageLocation")%>
+						      <div class="modal-body">						      						      							      	
 						      	<h4>Genre</h4>
 						      	<%
 						      	while(genreName.next()){%>
 						      		<%=genreName.getString("genreName") %><br>
 						      	<%}
 						      	%>
-						      	
+						      	<h4>Description</h4>
+						      	<%=rs.getString("description")%>
+						      	<h4>Image Location</h4>
+						      	<%=rs.getString("imageLocation")%>
 						      </div>						    
 						    </div>
 						  </div>
@@ -224,16 +228,30 @@
 								                <input type="text" class="form-control" name="gameTitle" value="<%=rs.getString("title")%>" />
 								            </div>
 								
-								            <!-- <div class="col-xs-4 selectContainer">
-								                <label class="control-label">Genre</label>
-								                <select class="form-control" name="genre">
-								                    <option value="">Choose a genre</option>
-								                    <option value="action">Action</option>
-								                    <option value="comedy">Comedy</option>
-								                    <option value="horror">Horror</option>
-								                    <option value="romance">Romance</option>
+								            <div class="col-xs-4 selectContainer">
+								                <label class="control-label">Genre</label><br>
+								                <select class="form-control chooseGenre" name="genre" multiple="multiple">
+								                    <%
+								                    pstmt = conn.prepareStatement("SELECT * FROM genre");
+													ResultSet updateGenre = pstmt.executeQuery();
+
+													
+													while(updateGenre.next()){
+								                    %>
+								                    <option value="<%=updateGenre.getInt("genreID")%>" ><%=updateGenre.getString("genreName") %></option>
+								                    <% } %>								                    
 								                </select>
-								            </div> -->
+								            </div>
+								            <!-- Script for calling the drop down -->
+											<script type="text/javascript">
+											    $(document).ready(function() {
+											        $('.chooseGenre').multiselect({
+											        	includeSelectAllOption: true,
+											        	nonSelectedText:'None',
+											        	numberDisplayed: 2
+											        });
+											    });
+											</script>								            
 								        </div>
 								    </div>
 								
