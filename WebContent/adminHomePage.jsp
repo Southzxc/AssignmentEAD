@@ -238,7 +238,6 @@
 								                    <%
 								                    pstmt = conn.prepareStatement("SELECT * FROM genre");
 													ResultSet updateGenre = pstmt.executeQuery();
-
 													
 													while(updateGenre.next()){
 								                    %>

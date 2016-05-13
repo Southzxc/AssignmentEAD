@@ -17,7 +17,7 @@
  String gamePrice = request.getParameter("gamePrice");
  String gameImageLocation = request.getParameter("gameImageLocation");
  String[] genre = request.getParameterValues("genre");
- 
+ System.out.println(genre);
  try{
 	 Class.forName("com.mysql.jdbc.Driver");
 

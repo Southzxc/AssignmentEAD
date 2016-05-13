@@ -16,8 +16,10 @@ String gameReleaseDate = request.getParameter("gameReleaseDate");
 String gameDescription = request.getParameter("gameDescription");
 String gamePrice = request.getParameter("gamePrice");
 String gameImageLocation = request.getParameter("gameImageLocation");
+String[] genre = request.getParameterValues("genre");
+System.out.println(genre);
 
-try{
+
 	Class.forName("com.mysql.jdbc.Driver");
 
 	String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
@@ -35,13 +37,28 @@ try{
 	pstmt.setString(7, gameID);
 
 	pstmt.executeUpdate();
-
+	
+	pstmt = conn.prepareStatement("DELETE FROM games_genre where gameID = ?");
+	
+	pstmt.setString(1, gameID);
+	
+	pstmt.executeUpdate();
+	if(genre == null){
+		System.out.println("There is nothing");
+	}else{
+		for(String g: genre){
+			pstmt = conn.prepareStatement("INSERT INTO games_genre VALUES (?,?)");
+			pstmt.setString(1, gameID);
+			pstmt.setString(2, g);
+			pstmt.executeUpdate();
+		}		
+	}
+	
+	
 	conn.close();
 
 	response.sendRedirect("adminHomePage.jsp");
-}catch(Exception e){
-	out.println(e); //remember to change to error message when submitting
-}
+
 
 %>
 </body>
