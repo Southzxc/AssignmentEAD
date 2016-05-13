@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import = "java.sql.*" %>
+<%@ page import = "java.sql.*, java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -158,7 +158,7 @@
 				</thead>
 <%		while(rs.next()){
 				String gameID = rs.getString("gameID");				
-				pstmt = conn.prepareStatement("SELECT genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
+				pstmt = conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
 				pstmt.setString(1, gameID);
 				ResultSet genreName = pstmt.executeQuery();
 				%>
@@ -183,9 +183,13 @@
 						      <div class="modal-body">						      						      							      	
 						      	<h4>Genre</h4>
 						      	<%
-						      	while(genreName.next()){%>
+						      	ArrayList<Integer> a1 = new ArrayList<Integer>();
+						      	while(genreName.next()){
+						      		a1.add(genreName.getInt("genreID"));
+						      		%>
 						      		<%=genreName.getString("genreName") %><br>
 						      	<%}
+						      	
 						      	%>
 						      	<h4>Description</h4>
 						      	<%=rs.getString("description")%>
@@ -238,7 +242,7 @@
 													
 													while(updateGenre.next()){
 								                    %>
-								                    <option value="<%=updateGenre.getInt("genreID")%>" ><%=updateGenre.getString("genreName") %></option>
+								                    <option value="<%=updateGenre.getInt("genreID")%>" <%=a1.contains(updateGenre.getInt("genreID")) ? "selected" : "" %>><%=updateGenre.getString("genreName") %></option>
 								                    <% } %>								                    
 								                </select>
 								            </div>
