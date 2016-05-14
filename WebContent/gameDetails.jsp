@@ -28,12 +28,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
-<link type="text/css" rel="stylesheet" media="screen"
-	href="css/home.css" />
+
 <title>Vapour Store</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
+	<nav class="navbar navbar-inverse navbar-border ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -119,82 +118,150 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+    <!-- Page Content -->
+    <div class="container">
 
-SLIDE SHOW MAYBE
+        <div class="row">
 
-<div id="featured" class="container col-lg-8">
-  <h2>Dynamic Tabs</h2>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
-    <li><a data-toggle="tab" href="#menu1">Newly Added</a></li>
-    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-  </ul>
+            <div class="col-md-3">
+                <p class="lead">Shop Name</p>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">Category 1</a>
+                    <a href="#" class="list-group-item">Category 2</a>
+                    <a href="#" class="list-group-item">Category 3</a>
+                </div>
+            </div>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Popular</h3>
-      <%	Class.forName("com.mysql.jdbc.Driver");
+            <div class="col-md-9">
+            
+      <%	
+      		String gameID=request.getParameter("gameID");
+      	
+      		Class.forName("com.mysql.jdbc.Driver");
 
  	 		String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
 
   			Connection conn =   DriverManager.getConnection(connURL);
 
- 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT games.gameID, title, price, description, imageLocation from games,games_genre where games.gameID=games_genre.gameID and genreID=41");
+ 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT title, company, releaseDate, description, price, imageLocation, preOwned, genreName from games g, games_genre gg, genre gr where g.gameID=gg.gameID AND gg.genreID=gr.genreID AND g.gameID=?");
 
+ 		 	pstmt.setString(1,gameID);
+ 		 	
  		 	ResultSet rs=pstmt.executeQuery();
 
  		 	%>
  		 	<%while(rs.next()) { %>
  		 	
-  				<div class="col-sm-6 col-md-4">
-   					 <div class="thumbnail">
-    					  <img src="<%=rs.getString("imageLocation") %>" alt="...">
-     					 <div class="caption">
-     					    <h3><%=rs.getString("title") %></h3>
-      						<p><%=rs.getString("description") %></p>
-     					    <p>$<%=rs.getDouble("price") %></p>
-      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
-    				     </div>
- 				     </div>
- 				 </div>
-			<%} rs.close();%>
-			
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Newly Added</h3>
-       <%	
- 		 	PreparedStatement newGame=conn.prepareStatement("SELECT gameID, title, price, description, imageLocation from games ORDER BY gameID desc LIMIT 9");
+                <div class="thumbnail">
+                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right">$<%=rs.getDouble("price") %></h4>
+                        <h4><%=rs.getString("title") %>
+                        </h4>
+                        <p><%=rs.getString("company") %></p>
+                        <%-- <p><%=rs.getString("genreName") %></p> --%>
+                        <p><%=rs.getString("description") %></p>
+                    </div>
+                    
+                    <%} %>
+                    
+                    
+                    <div class="ratings">
+                        <p class="pull-right">3 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            4.0 stars
+                        </p>
+                    </div>
+                </div>
 
- 		 	ResultSet game=newGame.executeQuery();
+                <div class="well">
 
- 		 	%>
- 		 	<%while(game.next()) { %>
- 		 	
-  				<div class="col-sm-6 col-md-4">
-   					 <div class="thumbnail">
-    					  <img src="<%=game.getString("imageLocation") %>" alt="...">
-     					 <div class="caption">
-     					    <h3><%=game.getString("title") %></h3>
-      						<p><%=game.getString("description") %></p>
-     					    <p>$<%=game.getDouble("price") %></p>
-      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
-    				     </div>
- 				     </div>
- 				 </div>
-			<%} %> 
+                    <div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">10 days ago</span>
+                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">12 days ago</span>
+                            <p>I've alredy ordered another one!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">15 days ago</span>
+                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    
-    <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
     </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-  </div>
-</div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
