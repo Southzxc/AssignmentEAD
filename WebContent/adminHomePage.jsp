@@ -136,7 +136,7 @@
 
 		Connection conn =   DriverManager.getConnection(connURL);
 
-		PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games ORDER BY title ASC");
+		PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games");
 		
 		ResultSet rs=pstmt.executeQuery();
 		
@@ -175,9 +175,9 @@
 						<!-- Modal button for more info -->
 						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">More information</button></td>
 						
-						<!-- Modal for Description -->
-						<div class="modal fade bs-example-modal-sm" id="description<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-						  <div class="modal-dialog modal-sm">
+						<!-- Modal for more info -->
+						<div class="modal fade " id="description<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog">
 						    <div class="modal-content">
 							  <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -190,12 +190,14 @@
 						      	while(genreName.next()){
 						      		a1.add(genreName.getInt("genreID"));
 						      		%>
-						      		<%=genreName.getString("genreName") %><br>
+						      		<%=genreName.getString("genreName") %>
 						      	<%}
 						      	
 						      	%>
 						      	<h4>Description</h4>
 						      	<%=rs.getString("description")%>
+						      	<h4>Preowned</h4>
+						      	<%=rs.getString("preOwned")%>
 						      	<h4>Image Location</h4>
 						      	<%=rs.getString("imageLocation")%>
 						      </div>						    
@@ -211,8 +213,8 @@
 						</td>
 						
 						<!-- Modal for edit game -->
-						<div class="modal fade" id="editGame<%=rs.getInt("gameID")%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						  <div class="modal-dialog" role="document">
+						<div class="modal fade bs-example-modal-lg" id="editGame<%=rs.getInt("gameID")%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog modal-lg" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -235,7 +237,7 @@
 								                <input type="text" class="form-control" name="gameTitle" value="<%=rs.getString("title")%>" />
 								            </div>
 								
-								            <div class="col-xs-4 selectContainer">
+								            <div class="col-xs-2 selectContainer">
 								                <label class="control-label">Genre</label><br>
 								                <select class="form-control chooseGenre" name="genre" multiple="multiple">
 								                    <%
@@ -257,7 +259,22 @@
 											        	numberDisplayed: 2
 											        });
 											    });
-											</script>								            
+											</script>
+											<div class="col-xs-2 selectContainer">
+												<label class="control-label">Preowned</label><br>
+												<select class="form-control choosePreOwned" name="preOwned" >
+													<option value="Yes"<%=rs.getString("preOwned").equals("Yes") ? "selected" : "" %>>Yes</option>
+													<option value="No" <%=rs.getString("preOwned").equals("No") ? "selected" : "" %>>No</option>
+												</select>										
+											</div>
+											<!-- Script for calling the drop down -->
+											<script type="text/javascript">
+											    $(document).ready(function() {
+											        $('.choosePreOwned').multiselect({
+											        	nonSelectedText:'None',
+											        });
+											    });
+											</script>																			            
 								        </div>
 								    </div>
 								

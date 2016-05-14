@@ -17,7 +17,9 @@ String gameDescription = request.getParameter("gameDescription");
 String gamePrice = request.getParameter("gamePrice");
 String gameImageLocation = request.getParameter("gameImageLocation");
 String[] genre = request.getParameterValues("genre");
+String preOwned = request.getParameter("preOwned");
 System.out.println(genre);
+System.out.println(preOwned);
 
 
 	Class.forName("com.mysql.jdbc.Driver");
@@ -26,7 +28,7 @@ System.out.println(genre);
 
 	Connection conn =   DriverManager.getConnection(connURL);
 
-	PreparedStatement pstmt=conn.prepareStatement("UPDATE games SET title=?, company=?, releaseDate=?, description=?, price=?, imagelocation=? WHERE gameID=?");
+	PreparedStatement pstmt=conn.prepareStatement("UPDATE games SET title=?, company=?, releaseDate=?, description=?, price=?, imagelocation=?, preOwned=? WHERE gameID=?");
 
 	pstmt.setString(1, gameTitle);
 	pstmt.setString(2, gameCompany);
@@ -34,7 +36,9 @@ System.out.println(genre);
 	pstmt.setString(4, gameDescription);
 	pstmt.setString(5, gamePrice);
 	pstmt.setString(6, gameImageLocation);
-	pstmt.setString(7, gameID);
+	pstmt.setString(7, preOwned);
+	pstmt.setString(8, gameID);
+	
 
 	pstmt.executeUpdate();
 	

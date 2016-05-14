@@ -136,7 +136,7 @@
 						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
-						            <div class="col-xs-4 selectContainer">
+						            <div class="col-xs-2 selectContainer">
 						                <label class="control-label">Genre</label><br>
 						                <select id = "chooseGenre" class="form-control" name="genre" multiple="multiple">					
 					<%
@@ -170,10 +170,26 @@
 									        $('#chooseGenre').multiselect({
 									        	includeSelectAllOption: true,
 									        	nonSelectedText:'None',
-									        	numberDisplayed: 2
+									        	numberDisplayed: 1
 									        });
 									    });
-									</script>						            
+									</script>
+									
+									<div class="col-xs-2 selectContainer">
+										<label class="control-label">Preowned</label><br>
+										<select id = "choosePreOwned" class="form-control" name="preOwned" >
+											<option value="Yes">Yes</option>
+											<option value="No">No</option>
+										</select>										
+									</div>
+						            <!-- Script for calling the drop down -->
+									<script type="text/javascript">
+									    $(document).ready(function() {
+									        $('#choosePreOwned').multiselect({							        	
+									        	nonSelectedText:'None'									        	
+									        });
+									    });
+									</script>															            
 						        </div>
 						    </div>
 						
@@ -223,7 +239,7 @@
 						</div> 		
 						<h2>Add genre</h2>
 						<!-- Add Genre Form -->
-						<form id="gameForm" method="post" action="addGenre.jsp">
+						<form id="genreForm" method="post" action="addGenre.jsp">
 						    <div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-4">
