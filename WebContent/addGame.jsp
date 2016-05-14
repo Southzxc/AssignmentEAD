@@ -17,6 +17,7 @@
  String gamePrice = request.getParameter("gamePrice");
  String gameImageLocation = request.getParameter("gameImageLocation");
  String[] genre = request.getParameterValues("genre");
+ String preOwned = request.getParameter("preOwned");
  System.out.println(genre);
  try{
 	 Class.forName("com.mysql.jdbc.Driver");
@@ -25,7 +26,7 @@
 
 	 Connection conn =   DriverManager.getConnection(connURL);
 
-	 PreparedStatement pstmt=conn.prepareStatement("INSERT into games(title,company,releaseDate,description,price,imageLocation)  VALUES(?,?,?,?,?,?)");  
+	 PreparedStatement pstmt=conn.prepareStatement("INSERT into games(title,company,releaseDate,description,price,imageLocation,preOwned)  VALUES(?,?,?,?,?,?,?)");  
 
 	 pstmt.setString(1, gameTitle);
 	 pstmt.setString(2, gameCompany);
@@ -33,6 +34,7 @@
 	 pstmt.setString(4, gameDescription);
 	 pstmt.setString(5, gamePrice);
 	 pstmt.setString(6, gameImageLocation);
+	 pstmt.setString(7, preOwned);
 
 	 pstmt.executeUpdate();
 	pstmt=conn.prepareStatement("SELECT max(gameid) 'gameid' from games");
