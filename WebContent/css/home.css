@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 body{
 	font-family: 'Lato', sans-serif;
-	background-color:rgb(34,34,34);
+	background-color:white;
 }
 .navbar-searchbar {
     margin-right:16px;
@@ -132,4 +132,8 @@ background: #CCCCCC;
 	font-size: 200%;
 	padding-top: 2em;
 	padding-left: 2em;
+}
+
+#featured {
+	left: 15%;
 }

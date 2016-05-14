@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import = "java.sql.*, java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -118,44 +119,82 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="./image/Computer-Game-Wallpaper2.jpg" alt="...">
-      <div class="carousel-caption message">
-        <h1>Welcome to VAPOUR</h1>
-        <h3>Experience your best online game shopping here!</h3>
-      </div>
+SLIDE SHOW MAYBE
+
+<div id="featured" class="container col-lg-8">
+  <h2>Dynamic Tabs</h2>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
+    <li><a data-toggle="tab" href="#menu1">Newly Added</a></li>
+    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Popular</h3>
+      <%	Class.forName("com.mysql.jdbc.Driver");
+
+ 	 		String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
+
+  			Connection conn =   DriverManager.getConnection(connURL);
+
+ 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT title, price, description, imageLocation from games,games_genre where games.gameID=games_genre.gameID and genreID=41");
+
+ 		 	ResultSet rs=pstmt.executeQuery();
+
+ 		 	%>
+ 		 	<%while(rs.next()) { %>
+ 		 	
+  				<div class="col-sm-6 col-md-4">
+   					 <div class="thumbnail">
+    					  <img src="<%=rs.getString("imageLocation") %>" alt="...">
+     					 <div class="caption">
+     					    <h3><%=rs.getString("title") %></h3>
+      						<p><%=rs.getString("description") %></p>
+     					    <p>$<%=rs.getDouble("price") %></p>
+      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="#" class="btn btn-default" role="button">View</a></p>
+    				     </div>
+ 				     </div>
+ 				 </div>
+			<%} %>
+			
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Newly Added</h3>
+       <%	
+ 		 	PreparedStatement newGame=conn.prepareStatement("SELECT title, price, description, imageLocation from games ORDER BY gameID desc LIMIT 9");
+
+ 		 	ResultSet game=newGame.executeQuery();
+
+ 		 	%>
+ 		 	<%while(game.next()) { %>
+ 		 	
+  				<div class="col-sm-6 col-md-4">
+   					 <div class="thumbnail">
+    					  <img src="<%=game.getString("imageLocation") %>" alt="...">
+     					 <div class="caption">
+     					    <h3><%=game.getString("title") %></h3>
+      						<p><%=game.getString("description") %></p>
+     					    <p>$<%=game.getDouble("price") %></p>
+      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="#" class="btn btn-default" role="button">View</a></p>
+    				     </div>
+ 				     </div>
+ 				 </div>
+			<%} %> 
+    </div>
+    
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
     </div>
   </div>
 </div>
 
-<p id="headtags">POPULAR:</p>
-
-<div class="gamesrow">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="./image/cod.jpg" alt="COD">
-      <div class="caption">
-        <h3>Call of Duty: Black OPs</h3>
-        <p>The biggest first-person action series of all time and the follow-up to critically acclaimed Call of Duty®: Modern Warfare 2 returns with Call of Duty®: Black Ops.</p>
-        <p><a href="#" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-default" role="button">Buy Now</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-	<%
-		out.println("some");
-	%>
 </body>
 </html>
