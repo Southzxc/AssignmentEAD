@@ -267,13 +267,6 @@
 													<option value="No" <%=rs.getString("preOwned").equals("No") ? "selected" : "" %>>No</option>
 												</select>										
 											</div>
-											<%
-											if(rs.getString("preOwned").equals("Yes")){
-												System.out.println("Yes");
-											}else{
-												System.out.println("No");
-											}
-											%>
 											<!-- Script for calling the drop down -->
 											<script type="text/javascript">
 											    $(document).ready(function() {
