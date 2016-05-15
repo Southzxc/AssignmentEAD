@@ -240,8 +240,10 @@
 
                     <hr>
                     
-                    <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment");
+                    <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment where gameID=?");
                       
+                      pstmt.setString(1, gameID);
+                    
                       ResultSet displayComment=pstmt.executeQuery();
                       
                       while(displayComment.next()) {%>
