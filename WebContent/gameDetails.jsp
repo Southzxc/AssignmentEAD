@@ -7,6 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery-1.12.3.min.js"></script>
+<!--JQUERY PLUGIN FOR STARS RATING -->
+<link rel="stylesheet" href="css/jquery.rating.css"> 
+<script src="js/jquery.rating.pack.js"></script> 
+
 <link href='https://fonts.googleapis.com/css?family=Lato'
 	rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -29,6 +33,8 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen"href="css/home.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />
+
 <title>Vapour Store</title>
 </head>
 <body>
@@ -165,12 +171,12 @@
                         %>
                         <p>
                        <% while(displayGenre.next()){ %>
-                        <%=displayGenre.getString("genreName") %>
+                        <%=displayGenre.getString("genreName") %>, 
                         <% } %>
                         </p>
                         <p><%=rs.getString("description") %></p>
                     </div>
-                               
+                            
                     <div class="ratings">
                         <p class="pull-right">3 reviews</p>
                         <p>
@@ -184,56 +190,76 @@
                     </div>
                 </div>
 
+				
+				<%if(rs.getString("preOwned").equals("No")){ %>
                 <div class="well">
+					<div class="col-lg-10 col-lg-offset-1">
+						<!-- Add game form -->
+						<h2>Reviews & Comments</h2>
+						<form id="gameForm" method="post" action="addComment.jsp?gameID=<%=rs.getInt("gameID")%>">				    			    
+						    						    
+						    <div class="form-group">
+						        <div class="row">
+						            <div class="col-xs-6 ">
+						                <label class="control-label">Commenter Name:</label>
+						                <input type="text" class="form-control" name="commentName" />
+						            </div>				            
+						        </div>
+						    </div>
+							
+							<div class="form-group">
+						        <div class="row">
+						            <div class="col-xs-4 ">
+						                <input type="radio" name="rating" value="1" class="star">
+           								<input type="radio" name="rating" value="2" class="star">
+          								<input type="radio" name="rating" value="3" class="star">
+          								<input type="radio" name="rating" value="4" class="star">
+           								<input type="radio" name="rating" value="5" class="star">
+						            </div>				            
+						        </div>
+						    </div>
+							
+            				
+						    <div class="form-group">
+						    	<div class="row">
+						    	<div class="col-xs-8">
+						        <label class="control-label">Comments:</label>
+						        <textarea class="form-control" name="comment" rows="8"></textarea>
+						        </div>
+						        </div>
+						    </div>
+						
+								<div class="text-right">
+                   			     <button type="submit" class="btn btn-success">Leave a Review</button>
+                   			     
+                   			 </div>
+						</form>
 
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
                     </div>
 
+
                     <hr>
+                    
+                    <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment");
+                      
+                      ResultSet displayComment=pstmt.executeQuery();
+                      
+                      while(displayComment.next()) {%>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                            <span class="pull-right"><%=displayComment.getDate("date") %></span>
+                            <p>Name: <%=displayComment.getString("name") %></p><p>Rating: <%=displayComment.getInt("rating") %>/5</p>
+                            <p>Comment: <%=displayComment.getString("comment") %></p>
                         </div>
                     </div>
 
                     <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
+					<%}
+                      } else
+                    	  out.println("No Comments");
+                      		%>
+                    
 
                 </div>
 

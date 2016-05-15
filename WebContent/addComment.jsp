@@ -9,6 +9,7 @@
 </head>
 <body>
 <%
+	String gameID=request.getParameter("gameID");
 	String commentName = request.getParameter("commentName");
 	String rating = request.getParameter("rating");
 	String comment = request.getParameter("comment");
@@ -21,20 +22,30 @@
 
 	 Connection conn =   DriverManager.getConnection(connURL);
 	 
-	 PreparedStatement pstmt=conn.prepareStatement("INSERT into comment(name,rating,date,comment)  VALUES(?,?,now(),?)");  
+	 PreparedStatement pstmt=conn.prepareStatement("INSERT into comment(gameID, name,rating,date,comment)  VALUES(?,?,?,now(),?)");  
 
-	 pstmt.setString(1, commentName);
-	 pstmt.setString(2, rating);
-	 pstmt.setString(3, comment);
+	 pstmt.setString(1, gameID);
+	 pstmt.setString(2, commentName);
+	 pstmt.setString(3, rating);
+	 pstmt.setString(4, comment);
 
 
 	 pstmt.executeUpdate();
 	
-	conn.close();
+	 
+	 /* wanted make it go back to previous page */
+	 /* PreparedStatement select=conn.prepareStatement("select * from games where gameID=?");
+	 
+	 select.setString(1, gameID);
+	 
+	 ResultSet rs=select.executeQuery(); */
 	
+	 %><%-- response.sendRedirect("gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>"); --%><%
  }catch(Exception e){
 	 out.println(e); //remember to change to error message when submitting
  }
-%>
+ %>
+
+
 </body>
 </html>
