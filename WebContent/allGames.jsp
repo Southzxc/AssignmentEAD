@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import = "java.sql.*, java.util.*" %>
+    pageEncoding="ISO-8859-1"%>
+<%@ page import = "java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,10 +30,11 @@
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen"
 	href="css/home.css" />
-<title>Vapour Store</title>
+<title>Insert title here</title>
 </head>
+
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -50,9 +51,6 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav sliding-u-l-r ">
-        <li class="dropdown">
-          <a href="allGames.jsp" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games</a>
-        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Platforms<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -74,9 +72,7 @@
             <li><a href="#">Discount</a></li>
           </ul>
         </li>
-        
       </ul>			
-      
 			<form class="navbar-form navbar-right navbar-searchbar" role="search" action="displaySearch.jsp">
 				<div class="form-group">
 					<input type="text" class="form-control" name="search" placeholder="Search">
@@ -124,83 +120,80 @@
 	</div>
 	<!-- /.container-fluid --> 
 	</nav>
+	
+		<%
+			String search = request.getParameter("search");
+															 
+			Class.forName("com.mysql.jdbc.Driver");
+	
+			String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
+	
+			Connection conn =   DriverManager.getConnection(connURL);
+	
+			PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games");
+															
+			ResultSet rs=pstmt.executeQuery();	
 
+		%>
+		
+		<!-- Page Content -->
+    <div class="container">
 
-SLIDE SHOW MAYBE
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">All Games</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+		<%while(rs.next()){ %>
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3><%=rs.getString("title") %></h3>
+                <%
+                String gameID = rs.getString("gameID");
+                pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
+                pstmt.setString(1, gameID); 
+                ResultSet displayGenre = pstmt.executeQuery();
+                %>                
+                <h4>
+                <%
+                while(displayGenre.next()){%>
+                	<span class="label label-info"><%=displayGenre.getString("genreName") %></span>
+                <%}
+                %>
+                </h4>
+                <p><%=rs.getString("description") %></p>
+                <a class="btn btn-primary" href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>">View Game <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
 
-<div class="container col-lg-8 col-lg-offset-2">
-  <h2>Dynamic Tabs</h2>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
-    <li><a data-toggle="tab" href="#menu1">Newly Added</a></li>
-    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+        <hr>
+        <%} %>	
+<nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
   </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Popular</h3>
-      <%	Class.forName("com.mysql.jdbc.Driver");
-
- 	 		String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
-
-  			Connection conn =   DriverManager.getConnection(connURL);
-
- 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
-
- 		 	ResultSet rs=pstmt.executeQuery();
-
- 		 	%>
- 		 	<%while(rs.next()) { %>
- 		 	
-  				<div class="col-sm-6 col-md-4">
-   					 <div class="thumbnail">
-    					  <img src="<%=rs.getString("imageLocation") %>" alt="...">
-     					 <div class="caption">
-     					    <h3><%=rs.getString("title") %></h3>
-      						<p><%=rs.getString("description") %></p>
-     					    <p>$<%=rs.getDouble("price") %></p>
-      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
-    				     </div>
- 				     </div>
- 				 </div>
-			<%} rs.close();%>
-			
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Newly Added</h3>
-       <%	
- 		 	PreparedStatement newGame=conn.prepareStatement("SELECT gameID, title, price, description, imageLocation from games ORDER BY gameID desc LIMIT 9");
-
- 		 	ResultSet game=newGame.executeQuery();
-
- 		 	%>
- 		 	<%while(game.next()) { %>
- 		 	
-  				<div class="col-sm-6 col-md-4">
-   					 <div class="thumbnail">
-    					  <img src="<%=game.getString("imageLocation") %>" alt="...">
-     					 <div class="caption">
-     					    <h3><%=game.getString("title") %></h3>
-      						<p><%=game.getString("description") %></p>
-     					    <p>$<%=game.getDouble("price") %></p>
-      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
-    				     </div>
- 				     </div>
- 				 </div>
-			<%} %> 
-    </div>
-    
-    <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-  </div>
-</div>
-
+</nav>
 </body>
 </html>
