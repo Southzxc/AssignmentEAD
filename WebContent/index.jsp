@@ -117,7 +117,8 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid --> </nav>
+	<!-- /.container-fluid --> 
+	</nav>
 
 
 SLIDE SHOW MAYBE

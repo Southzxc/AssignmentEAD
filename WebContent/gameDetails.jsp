@@ -28,11 +28,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
-
+<link type="text/css" rel="stylesheet" media="screen"href="css/home.css" />
 <title>Vapour Store</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-border ">
+	<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -116,8 +116,8 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid --> </nav>
-
+	<!-- /.container-fluid --> 
+	</nav>
     <!-- Page Content -->
     <div class="container">
 
@@ -143,29 +143,34 @@
 
   			Connection conn =   DriverManager.getConnection(connURL);
 
- 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT title, company, releaseDate, description, price, imageLocation, preOwned, genreName from games g, games_genre gg, genre gr where g.gameID=gg.gameID AND gg.genreID=gr.genreID AND g.gameID=?");
+ 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games where gameID = ?");
 
  		 	pstmt.setString(1,gameID);
  		 	
  		 	ResultSet rs=pstmt.executeQuery();
-
+			
+ 		 	rs.next();
  		 	%>
- 		 	<%while(rs.next()) { %>
  		 	
                 <div class="thumbnail">
                     <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right">$<%=rs.getDouble("price") %></h4>
-                        <h4><%=rs.getString("title") %>
-                        </h4>
+                        <h4><%=rs.getString("title") %></h4>
                         <p><%=rs.getString("company") %></p>
-                        <%-- <p><%=rs.getString("genreName") %></p> --%>
+                        <%
+                        pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
+                        pstmt.setString(1, gameID); 
+                        ResultSet displayGenre = pstmt.executeQuery();
+                        %>
+                        <p>
+                       <% while(displayGenre.next()){ %>
+                        <%=displayGenre.getString("genreName") %>
+                        <% } %>
+                        </p>
                         <p><%=rs.getString("description") %></p>
                     </div>
-                    
-                    <%} %>
-                    
-                    
+                               
                     <div class="ratings">
                         <p class="pull-right">3 reviews</p>
                         <p>
@@ -255,12 +260,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 

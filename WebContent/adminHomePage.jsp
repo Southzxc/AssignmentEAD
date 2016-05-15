@@ -39,7 +39,7 @@
 <link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />	
 <title>Administrator Page</title>
 </head>
-<body>
+<body class="adminBody">
 <div id="wrapper">
 
         <!-- Navigation -->
@@ -52,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SP Games Store Admin</a>
+                <a class="navbar-brand" href="adminHomePage.jsp">SP Games Store Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
