@@ -123,7 +123,7 @@
 
 SLIDE SHOW MAYBE
 
-<div id="featured" class="container col-lg-8">
+<div class="container">
   <h2>Dynamic Tabs</h2>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
