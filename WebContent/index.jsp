@@ -141,7 +141,7 @@ SLIDE SHOW MAYBE
 
   			Connection conn =   DriverManager.getConnection(connURL);
 
- 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT games.gameID, title, price, description, imageLocation from games,games_genre where games.gameID=games_genre.gameID and genreID=41");
+ 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
 
  		 	ResultSet rs=pstmt.executeQuery();
 

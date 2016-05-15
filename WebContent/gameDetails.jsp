@@ -163,18 +163,19 @@
                     <div class="caption-full">
                         <h4 class="pull-right">$<%=rs.getDouble("price") %></h4>
                         <h4><%=rs.getString("title") %></h4>
-                        <p><%=rs.getString("company") %></p>
+                        <p>Company: <%=rs.getString("company") %></p>
                         <%
                         pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
                         pstmt.setString(1, gameID); 
                         ResultSet displayGenre = pstmt.executeQuery();
                         %>
                         <p>
+                        Genre<br>
                        <% while(displayGenre.next()){ %>
-                        <%=displayGenre.getString("genreName") %>, 
+                        <span class="label label-info"><%=displayGenre.getString("genreName") %></span>   
                         <% } %>
                         </p>
-                        <p><%=rs.getString("description") %></p>
+                        <p>Description<br><%=rs.getString("description") %></p>
                     </div>
                             
                     <div class="ratings">

@@ -156,7 +156,19 @@
             </div>
             <div class="col-md-5">
                 <h3><%=rs.getString("title") %></h3>
-                <h4>Subheading</h4>
+                <%
+                String gameID = rs.getString("gameID");
+                pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
+                pstmt.setString(1, gameID); 
+                ResultSet displayGenre = pstmt.executeQuery();
+                %>                
+                <h4>
+                <%
+                while(displayGenre.next()){%>
+                	<span class="label label-info"><%=displayGenre.getString("genreName") %></span>
+                <%}
+                %>
+                </h4>
                 <p><%=rs.getString("description") %></p>
                 <a class="btn btn-primary" href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>">View Game <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
