@@ -77,7 +77,7 @@
           </ul>
         </li>
       </ul>			
-			<form class="navbar-form navbar-right navbar-searchbar" role="search">
+			<form class="navbar-form navbar-right navbar-searchbar" role="search" action="displaySearch.jsp">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search">
 				</div>
