@@ -171,13 +171,13 @@
                 pstmt.setString(1, gameID); 
                 ResultSet displayGenre = pstmt.executeQuery();
                 %>                
-                <h4>
+                <h5>
                 <%
                 while(displayGenre.next()){%>
                 	<span class="label label-info"><%=displayGenre.getString("genreName") %></span>
                 <%}
                 %>
-                </h4>
+                </h5>
                 <p><%=rs.getString("description") %></p>
                 <a class="btn btn-primary" href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>">View Game <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
