@@ -129,11 +129,20 @@
 	
 	Connection conn =   DriverManager.getConnection(connURL);
 	
-	PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games where title like ?");
+	PreparedStatement pstmt=conn.prepareStatement("SELECT Distinct * FROM games ga, genre ge, games_genre gg where ga.gameID=gg.gameID and ge.genreID=gg.genreID AND genreName like ?");
 	
 	pstmt.setString(1, "%" + search + "%");
-															
-	ResultSet rs=pstmt.executeQuery();	
+	
+	ResultSet rs=pstmt.executeQuery();
+	
+ 	if(rs.next()==false){
+ 		pstmt = conn.prepareStatement("SELECT distinct * FROM games where title like ?");
+ 		
+ 		pstmt.setString(1, "%" + search + "%");
+ 		
+ 		rs=pstmt.executeQuery();
+ 		System.out.println(rs);
+	} 
 
 	%>
     <!-- Page Content -->
