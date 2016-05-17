@@ -123,10 +123,10 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="glyphicon glyphicon-dashboard"></i><a href="adminHomePage.jsp">Dashboard</a>
+                                <i class="glyphicon glyphicon-dashboard"></i><a href="adminHomePage.jsp"> Dashboard</a>
                             </li>
                             <li class="active">
-                            	<i class="glyphicon glyphicon-plus"></i> Edit Games/Genre
+                            	<i class="glyphicon glyphicon-edit"></i> Edit Games
                             </li>
                         </ol>
                     </div>
@@ -201,7 +201,7 @@
 											        $('.chooseGenre').multiselect({
 											        	includeSelectAllOption: true,
 											        	nonSelectedText:'None',
-											        	numberDisplayed: 2
+											        	numberDisplayed: 1
 											        });
 											    });
 											</script>
