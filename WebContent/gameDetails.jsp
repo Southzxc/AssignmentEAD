@@ -191,9 +191,9 @@
                     </div>
                 </div>
 
-				
+				<div>
 				<%if(rs.getString("preOwned").equals("No")){ %>
-                <div class="well">
+                <div class="well container-fluid">
 					<div class="col-lg-10 col-lg-offset-1">
 						<!-- Add game form -->
 						<h2>Reviews & Comments</h2>
@@ -238,8 +238,6 @@
 
                     </div>
 
-
-                    <hr>
                     
                     <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment where gameID=?");
                       

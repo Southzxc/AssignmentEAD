@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Lato'
 	rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
@@ -30,8 +31,13 @@
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" media="screen"
 	href="css/home.css" />
+	<link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />
+
+
 <title>Insert title here</title>
 </head>
+
+
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
@@ -120,72 +126,79 @@
 	<!-- /.container-fluid --> 
 	</nav>
 	
-	<%
-	String search = request.getParameter("search");
-													 
-	Class.forName("com.mysql.jdbc.Driver");
-	
-	String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
-	
-	Connection conn =   DriverManager.getConnection(connURL);
-	
-	PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM games where title like ?");
-		
-	pstmt.setString(1, "%" + search + "%");
-	
-	ResultSet rs=pstmt.executeQuery();
-	
- 	if(!rs.isBeforeFirst()){
- 		 		
- 		pstmt=conn.prepareStatement("SELECT * FROM games where gameID IN (select gameID from games_genre where genreID IN (select genreID from genre where genreName like ?) group by gameID)");
- 		
- 		pstmt.setString(1, "%" + search + "%");
- 		
- 		rs=pstmt.executeQuery();
- 		
-	} 
+	<div class="col-lg-10 col-lg-offset-1">
+						<!-- Add game form -->
+						<h2>Search game</h2>
+						<form id="gameForm" method="post" action="advanceSearchResult.jsp">
+						    <div class="form-group">
+						        <div class="row">
+						            <div class="col-xs-4 ">
+						                <label class="control-label">Title</label>
+						                <input type="text" class="form-control" name="gameTitle" />
+						            </div>
+						            <div class="col-xs-2 selectContainer">
+						                <label class="control-label">Genre</label><br>
+						                <select id = "chooseGenre" class="form-control" name="genre" multiple="multiple">					
+					<%
+						try{
+							Class.forName("com.mysql.jdbc.Driver");
 
-	%>
-    <!-- Page Content -->
-    <div class="container">
+							String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
 
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Search Results <small><a href="advanceSearch.jsp">Advance Search</a></small>
-                </h1>
-            </div>
-        </div>
-        <!-- /.row -->
-		<%while(rs.next()){ %>
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3><%=rs.getString("title") %></h3>
-                <%
-                String gameID = rs.getString("gameID");
-                pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
-                pstmt.setString(1, gameID); 
-                ResultSet displayGenre = pstmt.executeQuery();
-                %>                
-                <h5>
-                <%
-                while(displayGenre.next()){%>
-                	<span class="label label-info"><%=displayGenre.getString("genreName") %></span>
-                <%}
-                %>
-                </h5>
-                <p><%=rs.getString("description") %></p>
-                <a class="btn btn-primary" href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>">View Game <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
+							Connection conn =   DriverManager.getConnection(connURL);
 
-        <hr>
-        <%} %>	
+							PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM genre");
+							
+							ResultSet rs=pstmt.executeQuery();
+							
+							while(rs.next()){ 
+					%>						
+						                    <option value="<%=rs.getInt("genreID")%>"><%=rs.getString("genreName")%></option>						                    						               							
+					<%		}
+					%>		
+						                </select>
+						            </div>											
+					<%	}catch(Exception e){
+						out.println(e);
+					}
+					
+					%>	
+
+						            <!-- Script for calling the drop down -->
+									<script type="text/javascript">
+									    $(document).ready(function() {
+									        $('#chooseGenre').multiselect({
+									        	includeSelectAllOption: true,
+									        	nonSelectedText:'None',
+									        	numberDisplayed: 1
+									        });
+									    });
+									</script>
+									
+									
+									<div class="col-xs-2 selectContainer">
+									<label class="control-label">Preowned</label><br>
+										<input type="radio" name="preOwned" value="Yes" checked>Yes
+										<input type="radio" name="preOwned" value="No">No
+									</div>											            
+						        </div>
+						    </div>
+						
+			
+
+						
+						    <button type="submit" class="btn btn-default">Search</button>
+						</form>
+						
+						<!-- PAGE SEPARATOR -->
+						<div class="container-liquid" >
+						    <div class="row">
+						        <div class="col-xs-12"><hr></div>
+						        <hr>
+						    </div>
+						</div> 
+
+						
+                    </div>
 </body>
 </html>

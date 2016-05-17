@@ -132,7 +132,7 @@
 						<form id="gameForm" method="post" action="addGame.jsp">
 						    <div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-8 ">
+						            <div class="col-xs-6 ">
 						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>

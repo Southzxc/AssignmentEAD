@@ -121,7 +121,10 @@
 	</nav>
 	
 	<%
-	String search = request.getParameter("search");
+	String gameTitle = request.getParameter("gameTitle");
+	String[] genre=request.getParameterValues("genre");
+	String preOwned=request.getParameter("preOwned");
+													 
 													 
 	Class.forName("com.mysql.jdbc.Driver");
 	
@@ -129,21 +132,16 @@
 	
 	Connection conn =   DriverManager.getConnection(connURL);
 	
-	PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM games where title like ?");
-		
-	pstmt.setString(1, "%" + search + "%");
+	PreparedStatement pstmt = conn.prepareStatement("SELECT * from games g, genre gr, games_genre gg where title like ? and preOwned = ? and genreName = ? and g.gameID=gg.gameID and gg.genreID=gr.genreID");
 	
+		
+	pstmt.setString(1, "%" + gameTitle + "%");
+	pstmt.setString(2, preOwned);
+	pstmt.setString(3, "%"+genre+"%");
+
 	ResultSet rs=pstmt.executeQuery();
 	
- 	if(!rs.isBeforeFirst()){
- 		 		
- 		pstmt=conn.prepareStatement("SELECT * FROM games where gameID IN (select gameID from games_genre where genreID IN (select genreID from genre where genreName like ?) group by gameID)");
- 		
- 		pstmt.setString(1, "%" + search + "%");
- 		
- 		rs=pstmt.executeQuery();
- 		
-	} 
+
 
 	%>
     <!-- Page Content -->
