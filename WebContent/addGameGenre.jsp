@@ -132,7 +132,7 @@
 						<form id="gameForm" method="post" action="addGame.jsp">
 						    <div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-6 ">
+						            <div class="col-xs-7 ">
 						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
@@ -175,21 +175,7 @@
 									    });
 									</script>
 									
-									<div class="col-xs-2 selectContainer">
-										<label class="control-label">Preowned</label><br>
-										<select id = "choosePreOwned" class="form-control" name="preOwned" >
-											<option value="Yes">Yes</option>
-											<option value="No">No</option>
-										</select>										
-									</div>
-						            <!-- Script for calling the drop down -->
-									<script type="text/javascript">
-									    $(document).ready(function() {
-									        $('#choosePreOwned').multiselect({							        	
-									        	nonSelectedText:'None'									        	
-									        });
-									    });
-									</script>															            
+																								            
 						        </div>
 						    </div>
 						
@@ -214,10 +200,25 @@
 						
 							<div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-12">
+						            <div class="col-xs-7">
 						                <label class="control-label">Image Location</label>
 						                <input type="text" class="form-control" name="gameImageLocation" />
 						            </div>
+						            <div class="col-xs-2 selectContainer">
+										<label class="control-label">Preowned</label><br>
+										<select id = "choosePreOwned" class="form-control" name="preOwned" >
+											<option value="Yes">Yes</option>
+											<option value="No">No</option>
+										</select>										
+									</div>
+						            <!-- Script for calling the drop down -->
+									<script type="text/javascript">
+									    $(document).ready(function() {
+									        $('#choosePreOwned').multiselect({							        	
+									        	nonSelectedText:'None'									        	
+									        });
+									    });
+									</script>
 						        </div>
 						    </div>
 						    

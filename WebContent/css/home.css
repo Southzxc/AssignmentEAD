@@ -128,6 +128,10 @@ footer {
 }
 
 @media(max-width:768px){
+	.adminBody{
+		padding-top:70px;
+	}
+	
     #login-dp{
         background-color: inherit;
         color: #fff;
@@ -149,4 +153,7 @@ footer {
 	font-size: 200%;
 	padding-top: 2em;
 	padding-left: 2em;
+}
+.dropdown-menu {
+	min-width: 130px;
 }
