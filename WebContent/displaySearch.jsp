@@ -7,6 +7,7 @@
 <%@include file="header.html" %>
 <title>SP Games Store</title>
 </head>
+
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
@@ -25,6 +26,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav sliding-u-l-r ">
+      	<li><a href="allGames.jsp" role="button">Games</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Platforms<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -161,6 +163,7 @@
         <!-- /.row -->
 
         <hr>
-        <%} %>	
+        <%} %>
+<%@include file="footer.html" %>	
 </body>
 </html>

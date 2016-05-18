@@ -29,20 +29,10 @@
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Admin <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-off"></i> Log Out</a>
+                            <a href="index.jsp"><i class="glyphicon glyphicon-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -55,28 +45,7 @@
                     </li>
                     <li>
                         <a href="addGameGenre.jsp"><i class="glyphicon glyphicon-plus"></i> Add Games/Genre</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                   
+                    </li>                  
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -183,114 +152,7 @@
 						<button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" data-toggle="modal" data-target="#deleteGame<%=rs.getInt("gameID")%>"></button>
 						</td>
 						
-						<%-- <!-- Modal for edit game -->
-						<div class="modal fade bs-example-modal-lg" id="editGame<%=rs.getInt("gameID")%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						  <div class="modal-dialog modal-lg" role="document">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Edit game info</h4>
-						      </div>
-						      <div class="modal-body">
-						        <form action="updateGameInfo.jsp" method="post">
-						        	<div class="form-group">
-								        <div class="row">
-								            <div class="col-xs-2">
-								                <label class="control-label">ID</label>
-								                <input type="text" class="form-control" name="gameID" value="<%=rs.getInt("gameID")%>" readonly/>
-								            </div>
-								        </div>
-								    </div>					
-								    <div class="form-group">
-								        <div class="row">
-								            <div class="col-xs-8 ">
-								                <label class="control-label">Title</label>
-								                <input type="text" class="form-control" name="gameTitle" value="<%=rs.getString("title")%>" />
-								            </div>
-								
-								            <div class="col-xs-2 selectContainer">
-								                <label class="control-label">Genre</label><br>
-								                <select class="form-control chooseGenre" name="genre" multiple="multiple">
-								                    <%
-								                    pstmt = conn.prepareStatement("SELECT * FROM genre");
-													ResultSet updateGenre = pstmt.executeQuery();
-													
-													while(updateGenre.next()){
-								                    %>
-								                    <option value="<%=updateGenre.getInt("genreID")%>" <%=a1.contains(updateGenre.getInt("genreID")) ? "selected" : "" %>><%=updateGenre.getString("genreName") %></option>
-								                    <% } %>								                    
-								                </select>
-								            </div>
-								            <!-- Script for calling the drop down -->
-											<script type="text/javascript">
-											    $(document).ready(function() {
-											        $('.chooseGenre').multiselect({
-											        	includeSelectAllOption: true,
-											        	nonSelectedText:'None',
-											        	numberDisplayed: 2
-											        });
-											    });
-											</script>
-											<div class="col-xs-2 selectContainer">
-												<label class="control-label">Preowned</label><br>
-												<select class="form-control choosePreOwned" name="preOwned" >
-													<option value="Yes"<%=rs.getString("preOwned").equals("Yes") ? "selected" : "" %>>Yes</option>
-													<option value="No" <%=rs.getString("preOwned").equals("No") ? "selected" : "" %>>No</option>
-												</select>										
-											</div>
-											<!-- Script for calling the drop down -->
-											<script type="text/javascript">
-											    $(document).ready(function() {
-											        $('.choosePreOwned').multiselect({
-											        	nonSelectedText:'None',
-											        });
-											    });
-											</script>																			            
-								        </div>
-								    </div>
-								
-								    <div class="form-group">
-								        <div class="row">
-								            <div class="col-xs-4">
-								                <label class="control-label">Company</label>
-								                <input type="text" class="form-control" name="gameCompany" value="<%=rs.getString("company")%>" />
-								            </div>
-								
-								            <div class="col-xs-4">
-								                <label class="control-label">Release Date</label>
-								                <input type="text" class="form-control" name="gameReleaseDate" value="<%=rs.getString("releaseDate")%>" />
-								            </div>
-								
-								            <div class="col-xs-4">
-								                <label class="control-label">Price</label>
-								                <input type="text" class="form-control" name="gamePrice" value="<%=rs.getDouble("price")%>" />
-								            </div>
-								        </div>
-								    </div>
-								
-									<div class="form-group">
-								        <div class="row">
-								            <div class="col-xs-12">
-								                <label class="control-label">Image Location</label>
-								                <input type="text" class="form-control" name="gameImageLocation" value="<%=rs.getString("imageLocation") %>"/>
-								            </div>
-								        </div>
-								    </div>
-								    
-								    <div class="form-group">
-								        <label class="control-label">Description</label>
-								        <textarea class="form-control" name="gameDescription" rows="6"><%=rs.getString("description")%></textarea>
-								    </div>
-								    <button type="submit" class="btn btn-default">Save changes</button>
-								    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						        </form>
-						        <!-- End of form -->
-						      </div>
-						      <!-- End of modal body -->
-						    </div>
-						  </div>
-						</div> --%>
-						<!-- End of modal for edit game -->						
+						
 						
 						<!-- Modal for delete game -->
 						<div class="modal fade bs-example-modal-sm" id="deleteGame<%=rs.getInt("gameID") %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">

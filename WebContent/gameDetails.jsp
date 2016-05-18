@@ -5,13 +5,12 @@
 <html>
 <head>
 <%@include file="header.html" %>
-
 <!--jquery plugin and css for stars rating -->
-<link rel="stylesheet" href="css/jquery.rating.css"> 
 <script src="js/jquery.rating.pack.js"></script> 
-
+<link rel="stylesheet" href="css/jquery.rating.css"> 
 <title>SP Games Store</title>
 </head>
+
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
@@ -30,6 +29,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav sliding-u-l-r ">
+      	<li><a href="allGames.jsp" role="button">Games</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Platforms<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -227,22 +227,8 @@
 </div>
     <!-- /.container -->
 
-    <div class="container">
 
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
-
-    </div>
-    <!-- /.container -->
-
+<%@include file="footer.html" %>
 </body>
 
 </html>

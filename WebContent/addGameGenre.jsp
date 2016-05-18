@@ -4,35 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="js/jquery-1.12.3.min.js"></script>
-<!-- JQUERY PLUGIN FOR DROPDOWN -->
+<%@include file="header.html" %>
 <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
-<link href='https://fonts.googleapis.com/css?family=Lato'
-	rel='stylesheet' type='text/css'>
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous">
-
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
-	crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-	crossorigin="anonymous"></script>
-<link type="text/css" rel="stylesheet" media="screen" href="css/home.css" />
 <link type="text/css" rel="stylesheet" media="screen" href="css/sb-admin.css" />
 <link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />
-
 <title>Administrator Page</title>
 </head>
 <body class="adminBody">
@@ -54,20 +29,10 @@
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Admin <b class="caret"></b></a>
+                    <ul class="dropdown-menu">                     
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-off"></i> Log Out</a>
+                            <a href="index.jsp"><i class="glyphicon glyphicon-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -80,26 +45,6 @@
                     </li>
                     <li class="active">
                         <a href="addGameGenre.jsp"><i class="glyphicon glyphicon-plus"></i> Add Games/Genre</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>
                 </ul>
             </div>
@@ -132,7 +77,7 @@
 						<form id="gameForm" method="post" action="addGame.jsp">
 						    <div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-7 ">
+						            <div class="col-xs-8 ">
 						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
@@ -200,7 +145,7 @@
 						
 							<div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-7">
+						            <div class="col-xs-8">
 						                <label class="control-label">Image Location</label>
 						                <input type="text" class="form-control" name="gameImageLocation" />
 						            </div>

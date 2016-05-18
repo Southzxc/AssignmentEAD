@@ -18,8 +18,6 @@ String gamePrice = request.getParameter("gamePrice");
 String gameImageLocation = request.getParameter("gameImageLocation");
 String[] genre = request.getParameterValues("genre");
 String preOwned = request.getParameter("preOwned");
-System.out.println(genre);
-System.out.println(preOwned);
 
 
 	Class.forName("com.mysql.jdbc.Driver");
@@ -47,16 +45,12 @@ System.out.println(preOwned);
 	pstmt.setString(1, gameID);
 	
 	pstmt.executeUpdate();
-	if(genre == null){
-		System.out.println("There is nothing");
-	}else{
 		for(String g: genre){
 			pstmt = conn.prepareStatement("INSERT INTO games_genre VALUES (?,?)");
 			pstmt.setString(1, gameID);
 			pstmt.setString(2, g);
 			pstmt.executeUpdate();
 		}		
-	}
 	
 	
 	conn.close();
