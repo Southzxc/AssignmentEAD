@@ -5,7 +5,7 @@
 <html>
 <head>
 <%@include file="header.html" %>
-<title>Insert title here</title>
+<title>SP Games Store</title>
 </head>
 
 <body>
