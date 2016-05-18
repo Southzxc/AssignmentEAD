@@ -1,41 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import = "java.sql.*, java.util.*" %>
+<%@ page import = "java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="js/jquery-1.12.3.min.js"></script>
-<!--JQUERY PLUGIN FOR STARS RATING -->
+<%@include file="header.html" %>
+
+<!--jquery plugin and css for stars rating -->
 <link rel="stylesheet" href="css/jquery.rating.css"> 
 <script src="js/jquery.rating.pack.js"></script> 
 
-<link href='https://fonts.googleapis.com/css?family=Lato'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous">
-
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
-	crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-	crossorigin="anonymous"></script>
-<link type="text/css" rel="stylesheet" media="screen"href="css/home.css" />
-<link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />
-
-<title>Vapour Store</title>
+<title>SP Games Store</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
@@ -129,16 +104,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
+            <div class="col-md-10 col-md-offset-1">
             
       <%	
       		String gameID=request.getParameter("gameID");
@@ -176,19 +142,7 @@
                         <% } %>
                         </p>
                         <p>Description<br><%=rs.getString("description") %></p>
-                    </div>
-                            
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
+                    </div>                         
                 </div>
 
 				<div>
@@ -201,7 +155,7 @@
 						    						    
 						    <div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-6 ">
+						            <div class="col-xs-10 ">
 						                <label class="control-label">Commenter Name:</label>
 						                <input type="text" class="form-control" name="commentName" />
 						            </div>				            
@@ -210,7 +164,7 @@
 							
 							<div class="form-group">
 						        <div class="row">
-						            <div class="col-xs-4 ">
+						            <div class="col-xs-8 ">
 						                <input type="radio" name="rating" value="1" class="star">
            								<input type="radio" name="rating" value="2" class="star">
           								<input type="radio" name="rating" value="3" class="star">
@@ -223,7 +177,7 @@
             				
 						    <div class="form-group">
 						    	<div class="row">
-						    	<div class="col-xs-8">
+						    	<div class="col-xs-10">
 						        <label class="control-label">Comments:</label>
 						        <textarea class="form-control" name="comment" rows="8"></textarea>
 						        </div>
@@ -269,7 +223,8 @@
         </div>
 
     </div>
-
+    
+</div>
     <!-- /.container -->
 
     <div class="container">

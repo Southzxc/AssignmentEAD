@@ -29,8 +29,9 @@ try{
 	out.println(e); //remember to change to error message when submitting
 }
 
+response.setHeader("Refresh", "2;url=adminHomePage.jsp");
 
 %>
-GENRE ADDED
+GENRE ADDED redirecting in 2 seconds
 </body>
 </html>

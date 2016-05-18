@@ -54,9 +54,11 @@
  }catch(Exception e){
 	 out.println(e); //remember to change to error message when submitting
  }
-
+ 
+ response.setHeader("Refresh", "2;url=adminHomePage.jsp");
 
 %>
-ADDED A GAME
+GAME ADDED redirecting in 2 seconds
+
 </body>
 </html>
