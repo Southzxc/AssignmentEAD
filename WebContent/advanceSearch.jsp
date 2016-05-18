@@ -138,7 +138,7 @@
 						            </div>
 						            <div class="col-xs-2 selectContainer">
 						                <label class="control-label">Genre</label><br>
-						                <select id = "chooseGenre" class="form-control" name="genre" multiple="multiple">					
+						                <select id = "chooseGenre" class="form-control" name="genre" >					
 					<%
 						try{
 							Class.forName("com.mysql.jdbc.Driver");

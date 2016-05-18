@@ -122,7 +122,7 @@
 	
 	<%
 	String gameTitle = request.getParameter("gameTitle");
-	String[] genre=request.getParameterValues("genre");
+	String genre=request.getParameter("genre");
 	String preOwned=request.getParameter("preOwned");
 													 
 													 
@@ -132,12 +132,14 @@
 	
 	Connection conn =   DriverManager.getConnection(connURL);
 	
-	PreparedStatement pstmt = conn.prepareStatement("SELECT * from games g, genre gr, games_genre gg where title like ? and preOwned = ? and genreName = ? and g.gameID=gg.gameID and gg.genreID=gr.genreID");
+	PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM games where title like ? and preOwned = ? and gameID IN (select gameID from games_genre where genreID IN (select genreID from genre where genreID = ?) group by gameID)");
+	
+	/* PreparedStatement pstmt = conn.prepareStatement("SELECT * from games g, genre gr, games_genre gg where title like ? and preOwned = ? and genreName = ? and g.gameID=gg.gameID and gg.genreID=gr.genreID"); */
 	
 		
 	pstmt.setString(1, "%" + gameTitle + "%");
 	pstmt.setString(2, preOwned);
-	pstmt.setString(3, "%"+genre+"%");
+	pstmt.setString(3, genre);
 
 	ResultSet rs=pstmt.executeQuery();
 	
@@ -185,5 +187,6 @@
 
         <hr>
         <%} %>	
+        </div>
 </body>
 </html>
