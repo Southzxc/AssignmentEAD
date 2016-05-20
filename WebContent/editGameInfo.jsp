@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import = "java.sql.*, java.util.*" %>
+<%@ page import = "java.sql.*, java.util.*,db.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -79,11 +79,7 @@
 
 		String gameID = request.getParameter("gameID");
 	
-		Class.forName("com.mysql.jdbc.Driver");
-
-		String connURL ="jdbc:mysql://188.166.238.151/mkd?user=root&password=iloveeadxoxo"; 
-
-		Connection conn =   DriverManager.getConnection(connURL);
+        Connection conn=DBConnection.getConnection();
 		
 		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM games where gameID = ?");
 		
