@@ -23,7 +23,7 @@
 						                <label class="control-label">Title</label>
 						                <input type="text" class="form-control" name="gameTitle" />
 						            </div>
-						            <div class="col-xs-2 selectContainer">
+						            <div class="as col-xs-2 selectContainer">
 						                <label class="control-label">Genre</label><br>
 						                <select id = "chooseGenre" class="form-control" name="genre" >					
 					<%
@@ -59,7 +59,7 @@
 									</script>
 									
 									
-									<div class="col-xs-2 selectContainer">
+									<div class="as col-xs-2 selectContainer">
 									<label class="control-label">Preowned</label><br>
 										<input type="radio" name="preOwned" value="Yes" checked>Yes
 										<input type="radio" name="preOwned" value="No">No
@@ -73,13 +73,7 @@
 						    <button type="submit" class="btn btn-default">Search</button>
 						</form>
 						
-						<!-- PAGE SEPARATOR -->
-						<div class="container-liquid" >
-						    <div class="row">
-						        <div class="col-xs-12"><hr></div>
-						        <hr>
-						    </div>
-						</div> 
+
 
 						
                     </div>

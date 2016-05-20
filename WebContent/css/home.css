@@ -127,6 +127,10 @@ footer {
 }
 
 @media(max-width:768px){
+	.as {
+		width:30%;
+	}
+	
 	.adminBody{
 		padding-top:70px;
 	}
