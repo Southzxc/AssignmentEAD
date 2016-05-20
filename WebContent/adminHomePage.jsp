@@ -106,7 +106,7 @@
 						<td><%=rs.getString("title") %></td>
 						<td><%=rs.getString("company") %></td>
 						<td><%=rs.getDate("releaseDate") %></td>
-						<td><%=rs.getDouble("price") %></td>
+						<td><%out.println(String.format("%.2f", rs.getDouble("price"))); %></td>
 						
 						<!-- Modal button for more info -->
 						<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#description<%=rs.getInt("gameID")%>">More information</button></td>

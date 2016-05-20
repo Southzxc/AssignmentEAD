@@ -38,7 +38,7 @@ SLIDE SHOW MAYBE
      					 <div class="caption">
      					    <h3><%=rs.getString("title") %></h3>
       						<p><%=rs.getString("description") %></p>
-     					    <p>$<%=rs.getDouble("price") %></p>
+     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
       					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
     				     </div>
  				     </div>
