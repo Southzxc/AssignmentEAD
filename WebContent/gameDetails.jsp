@@ -41,21 +41,23 @@
                 <div class="thumbnail">
                     <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
                     <div class="caption-full">
-                        <h4 class="pull-right">$<%=rs.getDouble("price") %></h4>
-                        <h4><%=rs.getString("title") %></h4>
-                        <p>Company: <%=rs.getString("company") %></p>
-                        <button type="submit" class="btn btn-success pull-right">BUY</button>                        <%
+                        <h3 class="pull-right">$<%=rs.getDouble("price") %></h3>
+                        <h3><%=rs.getString("title") %><small class="gDTitleSide"><%=rs.getString("preowned").equals("Yes") ? "Pre-owned" : "Brand new!" %></small></h3>
+                        <button type="submit" class="btn btn-success pull-right">BUY</button> 
+                        <b>Company</b> <p><%=rs.getString("company") %></p>
+                                               <%
                         pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
                         pstmt.setString(1, gameID); 
                         ResultSet displayGenre = pstmt.executeQuery();
                         %>
+                        
+                        <b>Genre</b>
                         <p>
-                        Genre<br>
                        <% while(displayGenre.next()){ %>
                         <span class="label label-info"><%=displayGenre.getString("genreName") %></span>   
                         <% } %>
                         </p>
-                        <p>Description<br><%=rs.getString("description") %></p>
+                        <b>Description</b><p><%=rs.getString("description") %></p>
                     </div>                         
                 </div>
 
@@ -126,7 +128,7 @@
                     <hr>
 					<%}
                       } else
-                    	  out.println("No Comments");
+                    	  out.println("Comments unavailable");
                       		%>
                     
 

@@ -107,6 +107,9 @@ background: #CCCCCC;
     width: 100%;
 }
  */
+ .gDTitleSide{
+ padding-left:8px;
+ }
 .ratings {
     padding-right: 10px;
     padding-left: 10px;
