@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -122,15 +123,19 @@
  		 	ResultSet rs=pstmt.executeQuery();
 			
  		 	rs.next();
+ 		 	
+ 		 	java.util.Formatter formatter = new java.util.Formatter();
+ 		 	formatter.format("%.2f", price);
+ 		 	
  		 	%>
  		 	
                 <div class="thumbnail">
                     <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
                     <div class="caption-full">
-                        <h4 class="pull-right">$<%=rs.getDouble("price") %></h4>
+                        <h4 class="pull-right">$<%=formatter.format("%.2f",rs.getDouble("price")) %></h4>
                         <h4><%=rs.getString("title") %></h4>
                         <p>Company: <%=rs.getString("company") %></p>
-                        <%
+                        <button type="submit" class="btn btn-success pull-right">BUY</button>                        <%
                         pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
                         pstmt.setString(1, gameID); 
                         ResultSet displayGenre = pstmt.executeQuery();
