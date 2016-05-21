@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<%@include file="navbar.html" %>
+	<%@include file="navbar.jsp" %>
 	
 	<%
 	String gameTitle = request.getParameter("gameTitle");

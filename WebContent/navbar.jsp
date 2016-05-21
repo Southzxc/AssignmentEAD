@@ -15,16 +15,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav sliding-u-l-r ">
-        <li><a href="allGames.jsp" role="button">Games</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Platforms<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">PC</a></li>
-            <li><a href="#">XBOX</a></li>
-            <li><a href="#">NINTENDO</a></li>
-            <li><a href="#">WII U</a></li>
-          </ul>
-        </li>
+        <li><a href="allGames.jsp" role="button">All Games</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
           <ul class="dropdown-menu">

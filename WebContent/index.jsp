@@ -8,7 +8,7 @@
 <title>SP Games Store</title>
 </head>
 <body>
-	<%@include file="navbar.html" %>
+	<%@include file="navbar.jsp" %>
 
 
 SLIDE SHOW MAYBE

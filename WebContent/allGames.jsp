@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<%@include file="navbar.html" %>
+	<%@include file="navbar.jsp" %>
 	
 		<%
 			String search = request.getParameter("search");
