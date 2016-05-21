@@ -14,11 +14,11 @@
 		<%
 			String search = request.getParameter("search");
 															 
-			Connection conn=DBConnection.getConnection();
+			conn=DBConnection.getConnection();
 	
-			PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games");
+			pstmt=conn.prepareStatement("SELECT * FROM games");
 															
-			ResultSet rs=pstmt.executeQuery();	
+			rs=pstmt.executeQuery();	
 
 		%>
 		
@@ -52,6 +52,7 @@
                 while(displayGenre.next()){%>
                 	<span class="label label-info"><%=displayGenre.getString("genreName") %></span>
                 <%}
+                displayGenre.close();
                 %>
                 </h5>
                 <p><%=rs.getString("description") %></p>
@@ -61,26 +62,9 @@
         <!-- /.row -->
 
         <hr>
-        <%} %>	
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+        <%}
+		  rs.close();
+		  %>	
 <%@include file="footer.html" %>
 </body>
 </html>

@@ -17,16 +17,16 @@
 	String preOwned=request.getParameter("preOwned");
 													 
 													 
-	Connection conn=DBConnection.getConnection();
+	conn=DBConnection.getConnection();
 	
-	PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM games where title like ? and preOwned = ? and gameID IN (select gameID from games_genre where genreID IN (select genreID from genre where genreID = ?) group by gameID)");
+	pstmt = conn.prepareStatement("SELECT * FROM games where title like ? and preOwned = ? and gameID IN (select gameID from games_genre where genreID IN (select genreID from genre where genreID = ?) group by gameID)");
 	
 		
 	pstmt.setString(1, "%" + gameTitle + "%");
 	pstmt.setString(2, preOwned);
 	pstmt.setString(3, genre);
 
-	ResultSet rs=pstmt.executeQuery();
+	rs=pstmt.executeQuery();
 	
 
 
@@ -61,7 +61,8 @@
                 <%
                 while(displayGenre.next()){%>
                 	<span class="label label-info"><%=displayGenre.getString("genreName") %></span>
-                <%}
+                <%} 
+                displayGenre.close();
                 %>
                 </h5>
                 <p><%=rs.getString("description") %></p>
@@ -71,7 +72,8 @@
         <!-- /.row -->
 
         <hr>
-        <%} %>	
+        <%} 
+		rs.close(); %>	
         </div>
         <%@include file="footer.html" %>
 </body>

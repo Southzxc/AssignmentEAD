@@ -14,13 +14,13 @@
 	<%
 	String search = request.getParameter("search");
 													 
-	Connection conn=DBConnection.getConnection();
+	conn=DBConnection.getConnection();
 	
-	PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM games where title like ?");
+	pstmt = conn.prepareStatement("SELECT * FROM games where title like ?");
 		
 	pstmt.setString(1, "%" + search + "%");
 	
-	ResultSet rs=pstmt.executeQuery();
+	rs=pstmt.executeQuery();
 	
  	if(!rs.isBeforeFirst()){
  		 		
@@ -73,7 +73,9 @@
         <!-- /.row -->
 
         <hr>
-        <%} %>
+        <%}
+		  rs.close();
+		%>
 <%@include file="footer.html" %>	
 </body>
 </html>

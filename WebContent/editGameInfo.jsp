@@ -85,10 +85,7 @@
 		
 		pstmt.setString(1, gameID);
 		
-		ResultSet rs = pstmt.executeQuery();
-						
-
-		
+		ResultSet rs = pstmt.executeQuery();		
 		
 %>
 
@@ -200,9 +197,7 @@
 								    <a href="adminHomePage.jsp" type="button" class="btn btn-default" data-dismiss="modal">Close</a>
 						        </form>
 						        <!-- End of form -->					
-
-
-			
+								<%conn.close();%>		
 	</div>
 
 		

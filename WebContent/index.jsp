@@ -9,12 +9,11 @@
 </head>
 <body>
 	<%@include file="navbar.jsp" %>
-
-
+	
 SLIDE SHOW MAYBE
 
 <div class="container col-lg-8 col-lg-offset-2">
-  <h2>SP Games Store</h2>
+  <h2>Welcome to SP Games Store!</h2>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
     <li><a data-toggle="tab" href="#menu1">Newly Added</a></li>
@@ -23,11 +22,11 @@ SLIDE SHOW MAYBE
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <h3>Popular</h3>
-      <%	Connection conn=DBConnection.getConnection();
+      <%	conn=DBConnection.getConnection();
 
- 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
+ 		 	pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
 
- 		 	ResultSet rs=pstmt.executeQuery();
+ 		 	rs=pstmt.executeQuery();
 
  		 	%>
  		 	<%while(rs.next()) { %>
@@ -43,7 +42,8 @@ SLIDE SHOW MAYBE
     				     </div>
  				     </div>
  				 </div>
-			<%} rs.close();%>
+			<%} 
+ 		 	rs.close();%>
 			
     </div>
     <div id="menu1" class="tab-pane fade">
@@ -69,7 +69,8 @@ SLIDE SHOW MAYBE
  				 </div>
  				 
  				 
-			<%} %> 
+			<%} 
+			  game.close();%> 
 			
 			<script>
 			function equalHeight(group) {    

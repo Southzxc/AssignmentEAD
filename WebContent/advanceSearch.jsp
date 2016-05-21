@@ -28,16 +28,17 @@
 						                <select id = "chooseGenre" class="form-control" name="genre" >					
 					<%
 						try{
-							Connection conn=DBConnection.getConnection();
+							conn=DBConnection.getConnection();
 
-							PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM genre");
+							pstmt=conn.prepareStatement("SELECT * FROM genre");
 							
-							ResultSet rs=pstmt.executeQuery();
+							rs=pstmt.executeQuery();
 							
 							while(rs.next()){ 
 					%>						
 						                    <option value="<%=rs.getInt("genreID")%>"><%=rs.getString("genreName")%></option>						                    						               							
-					<%		}
+					<%		} 
+							rs.close();
 					%>		
 						                </select>
 						            </div>											

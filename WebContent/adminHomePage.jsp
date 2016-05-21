@@ -121,13 +121,12 @@
 						      </div>
 						      <div class="modal-body">						      						      							      	
 						      	<h4>Genre</h4>
-						      	<%
-						      	/* ArrayList<Integer> a1 = new ArrayList<Integer>(); */
-						      	while(genreName.next()){
-						      		/* a1.add(genreName.getInt("genreID")); */
+						      	<%						      	
+						      	while(genreName.next()){						      		
 						      		%>
 						      		<%=genreName.getString("genreName") %>
-						      	<%}
+						      	<%} 
+						      	genreName.close();
 						      	
 						      	%>
 						      	<h4>Description</h4>

@@ -24,13 +24,13 @@
       <%	
       		String gameID=request.getParameter("gameID");
       	
-			Connection conn=DBConnection.getConnection();
+			conn=DBConnection.getConnection();
 
- 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games where gameID = ?");
+ 		 	pstmt=conn.prepareStatement("SELECT * FROM games where gameID = ?");
 
  		 	pstmt.setString(1,gameID);
  		 	
- 		 	ResultSet rs=pstmt.executeQuery();
+ 		 	rs=pstmt.executeQuery();
 			
  		 	rs.next();
  		 	
@@ -55,7 +55,8 @@
                         <p>
                        <% while(displayGenre.next()){ %>
                         <span class="label label-info"><%=displayGenre.getString("genreName") %></span>   
-                        <% } %>
+                        <% }
+                       	   displayGenre.close();%>
                         </p>
                         <b>Description</b><p><%=rs.getString("description") %></p>
                     </div>                         
@@ -126,9 +127,13 @@
                     </div>
 
                     <hr>
-					<%}
-                      } else
+					<%} 
+                      displayComment.close();
+                      } else{
                     	  out.println("Comments unavailable");
+                      } 
+					  rs.close();
+                    	  
                       		%>
                     
 

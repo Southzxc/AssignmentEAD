@@ -11,7 +11,13 @@
 			</button>
 			<a class="navbar-brand" href="index.jsp">SP Games Store</a>
 		</div>
+		<%
+			Connection conn=DBConnection.getConnection();
 
+ 		 	PreparedStatement pstmt=conn.prepareStatement("SELECT genreName FROM genre");
+
+ 		 	ResultSet rs=pstmt.executeQuery();
+		%>
 	<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav sliding-u-l-r ">
@@ -19,13 +25,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Casual</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Popular Tags</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Discount</a></li>
+          <% while(rs.next()){ %>
+            <li><a href="displaySearch.jsp?search=<%=rs.getString("genreName")%>"><%=rs.getString("genreName")%></a></li>
+          <% } %>
           </ul>
         </li>
         

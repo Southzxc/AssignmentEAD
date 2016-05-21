@@ -96,12 +96,13 @@
 					%>						
 						                    <option value="<%=rs.getInt("genreID")%>"><%=rs.getString("genreName")%></option>						                    						               							
 					<%		}
+							rs.close();
 					%>		
 						                </select>
 						            </div>											
 					<%	}catch(Exception e){
 						out.println(e);
-					}
+					}	
 					
 					%>	
 
