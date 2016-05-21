@@ -33,7 +33,7 @@ SLIDE SHOW MAYBE
  		 	
   				<div class="col-sm-6 col-md-4">
    					 <div class="thumbnail">
-    					  <img src="<%=rs.getString("imageLocation") %>" alt="...">
+    					  <img src="<%=rs.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
      					 <div class="caption">
      					    <h3><%=rs.getString("title") %></h3>
       						<p><%=rs.getString("description") %></p>
@@ -58,7 +58,7 @@ SLIDE SHOW MAYBE
  		 	
   				<div class="col-sm-6 col-md-4">
    					 <div class="thumbnail">
-    					  <img src="<%=game.getString("imageLocation") %>" alt="...">
+    					  <img src="<%=game.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
      					 <div class="caption">
      					    <h3><%=game.getString("title") %></h3>
       						<p><%=game.getString("description") %></p>
@@ -72,7 +72,7 @@ SLIDE SHOW MAYBE
 			<%} 
 			  game.close();%> 
 			
-			<script>
+			<!-- <script>
 			function equalHeight(group) {    
 			    var tallest = 0;    
 			    group.each(function() {       
@@ -87,7 +87,8 @@ SLIDE SHOW MAYBE
 			$(document).ready(function() {   
 			    equalHeight($(".thumbnail")); 
 			});
-			</script>
+			</script> -->
+			
     </div>
   </div>
 </div>

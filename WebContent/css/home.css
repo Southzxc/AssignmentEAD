@@ -118,6 +118,7 @@ background: #CCCCCC;
 
 .thumbnail {
     padding: 0;
+    height: 500px;
 }
 
 .thumbnail .caption-full {
