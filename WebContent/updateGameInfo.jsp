@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Administrator Page</title>
 </head>
 <body>
 <%
@@ -19,7 +19,7 @@ String gameImageLocation = request.getParameter("gameImageLocation");
 String[] genre = request.getParameterValues("genre");
 String preOwned = request.getParameter("preOwned");
 
-
+try{
 	Connection conn=DBConnection.getConnection();
 
 	PreparedStatement pstmt=conn.prepareStatement("UPDATE games SET title=?, company=?, releaseDate=?, description=?, price=?, imagelocation=?, preOwned=? WHERE gameID=?");
@@ -52,7 +52,9 @@ String preOwned = request.getParameter("preOwned");
 	conn.close();
 
 	response.sendRedirect("adminHomePage.jsp");
-
+}catch(Exception e){
+	out.println(e);
+}
 
 %>
 </body>

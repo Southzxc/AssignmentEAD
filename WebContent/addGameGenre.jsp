@@ -85,7 +85,6 @@
 						                <label class="control-label">Genre</label><br>
 						                <select id = "chooseGenre" class="form-control" name="genre" multiple="multiple">					
 					<%
-						try{
 							Connection conn=DBConnection.getConnection();
 
 							PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM genre");
@@ -99,12 +98,7 @@
 							rs.close();
 					%>		
 						                </select>
-						            </div>											
-					<%	}catch(Exception e){
-						out.println(e);
-					}	
-					
-					%>	
+						            </div>												
 
 						            <!-- Script for calling the drop down -->
 									<script type="text/javascript">
