@@ -16,7 +16,7 @@
 	<div class="col-lg-10 col-lg-offset-1">
 						<!-- Add game form -->
 						<h2>Search game</h2>
-						<form id="gameForm" method="post" action="advanceSearchResult.jsp">
+						<form id="advSearchForm" method="post" action="advanceSearchResult.jsp">
 						    <div class="form-group">
 						        <div class="row">
 						            <div class="col-xs-4 ">

@@ -124,7 +124,9 @@ background: #CCCCCC;
     padding: 9px;
     color: #333;
 }
-
+#advSearchForm{
+	padding-bottom: 10px;
+}
 footer {
     margin: 50px 0;
 }
