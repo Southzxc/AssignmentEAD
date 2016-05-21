@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Administrator Page</title>
 </head>
 <body>
 
@@ -48,7 +48,7 @@
 	}
 	conn.close();
  }catch(Exception e){
-	 out.println(e); //remember to change to error message when submitting
+	 out.println(e);
  }
  
  response.setHeader("Refresh", "2;url=adminHomePage.jsp");

@@ -27,7 +27,6 @@
 						                <label class="control-label">Genre</label><br>
 						                <select id = "chooseGenre" class="form-control" name="genre" >					
 					<%
-						try{
 							conn=DBConnection.getConnection();
 
 							pstmt=conn.prepareStatement("SELECT * FROM genre");
@@ -41,12 +40,7 @@
 							rs.close();
 					%>		
 						                </select>
-						            </div>											
-					<%	}catch(Exception e){
-						out.println(e);
-					}
-					
-					%>	
+						            </div>												
 
 						            <!-- Script for calling the drop down -->
 									<script type="text/javascript">

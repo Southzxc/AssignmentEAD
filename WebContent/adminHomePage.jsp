@@ -69,7 +69,7 @@
                     </div>
                     
 <%
-	try{
+
 		Connection conn=DBConnection.getConnection();
 
 		PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM games ORDER BY title ASC");
@@ -267,13 +267,7 @@
 		</div>
 	</div>
 	<!-- GENRE TABLE END -->
-<%			rs.close();
-		}catch(Exception e){
-			out.println(e);//remember to change when submitting code 
-		}
-		
-	
-	%>	
+<%			rs.close();%>	
 					
 				</div>
 				<!-- /.row -->

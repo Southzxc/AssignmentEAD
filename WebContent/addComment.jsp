@@ -32,7 +32,7 @@
 	 response.sendRedirect("gameDetails.jsp?gameID=" + gameID);
 	 
  }catch(Exception e){
-	 out.println(e); //remember to change to error message when submitting
+	 out.println(e);
  }
  %>
 
