@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
+                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
                 </a>
             </div>
             <div class="col-md-5">

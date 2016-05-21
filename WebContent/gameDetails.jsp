@@ -39,7 +39,7 @@
  		 	%>
  		 	
                 <div class="thumbnail">
-                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="">
+                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
                     <div class="caption-full">
                         <h3 class="pull-right">$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></h3>
                         <h3><%=rs.getString("title") %><small class="gDTitleSide"><%=rs.getString("preowned").equals("Yes") ? "Pre-owned" : "Brand new!" %></small></h3>
