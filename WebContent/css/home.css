@@ -166,3 +166,7 @@ footer {
 .dropdown-menu {
 	min-width: 130px;
 }
+
+.item {
+	height:31.5em;
+}
