@@ -28,15 +28,8 @@
 
 	 pstmt.executeUpdate();
 	
+	 response.sendRedirect("gameDetails.jsp?gameID=" + gameID);
 	 
-	 /* wanted make it go back to previous page */
-	 /* PreparedStatement select=conn.prepareStatement("select * from games where gameID=?");
-	 
-	 select.setString(1, gameID);
-	 
-	 ResultSet rs=select.executeQuery(); */
-	
-	 %><%-- response.sendRedirect("gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>"); --%><%
  }catch(Exception e){
 	 out.println(e); //remember to change to error message when submitting
  }
