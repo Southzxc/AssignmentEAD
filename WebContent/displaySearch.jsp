@@ -8,6 +8,7 @@
 <title>SP Games Store</title>
 </head>
 
+<!-- Page to display search result -->
 <body>
 	<%@include file="navbar.jsp" %>
 	
@@ -44,6 +45,8 @@
             </div>
         </div>
         <!-- /.row -->
+        
+        <!-- Search result -->
 		<%while(rs.next()){ %>
         <div class="row">
             <div class="col-md-7">

@@ -8,7 +8,7 @@
 <title>Administrator Page</title>
 </head>
 <body>
-
+<!-- JSP + SQL for inserting games -->
 <%
  String gameTitle = request.getParameter("gameTitle");
  String gameCompany = request.getParameter("gameCompany");

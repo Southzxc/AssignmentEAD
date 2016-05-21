@@ -12,6 +12,7 @@
 <title>SP Games Store</title>
 </head>
 
+<!-- Page to display specific details on the game -->
 <body>
 	<%@include file="navbar.jsp" %>
     <!-- Page Content -->
@@ -63,10 +64,13 @@
                 </div>
 
 				<div>
+				
+				<!-- Show comment section only when game is not preowned -->
 				<%if(rs.getString("preOwned").equals("No")){ %>
                 <div class="well container-fluid">
 					<div class="col-lg-10 col-lg-offset-1">
-						<!-- Add game form -->
+					
+						<!-- Add comment form -->
 						<h2>Reviews & Comments</h2>
 						<form id="gameForm" method="post" action="addComment.jsp?gameID=<%=rs.getInt("gameID")%>">				    			    
 						    						    
@@ -118,6 +122,7 @@
                       
                       while(displayComment.next()) {%>
 
+					<!-- Displaying available comments -->
                     <div class="row">
                         <div class="col-md-12">
                             <span class="pull-right"><%=displayComment.getDate("date") %></span>

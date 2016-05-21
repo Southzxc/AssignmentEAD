@@ -7,7 +7,7 @@
 <%@include file="header.html" %>
 <title>SP Games Store</title>
 </head>
-
+<!-- Page to display all the games -->
 <body>
 	<%@include file="navbar.jsp" %>
 	
@@ -32,6 +32,8 @@
             </div>
         </div>
         <!-- /.row -->
+        
+        <!-- displaying game information -->
 		<%while(rs.next()){ %>
         <div class="row">
             <div class="col-md-7">

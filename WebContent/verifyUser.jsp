@@ -9,6 +9,7 @@
 </head>
 <body>
 <%
+/* JSP + SQL statements to verify login */
 
 String username = request.getParameter("username");
 String userpwd = request.getParameter("userpwd");

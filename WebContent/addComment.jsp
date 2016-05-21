@@ -8,6 +8,8 @@
 <title>SP Games Store</title>
 </head>
 <body>
+
+<!-- JSP + SQL statement for inserting comments -->
 <%
 	String gameID=request.getParameter("gameID");
 	String commentName = request.getParameter("commentName");

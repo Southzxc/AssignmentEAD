@@ -55,6 +55,7 @@
             <!-- /.navbar-collapse -->
         </nav>
 
+<!-- Page to edit game information -->
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -132,6 +133,7 @@
 								                    <% } %>								                    
 								                </select>
 								            </div>
+								            
 								            <!-- Script for calling the drop down -->
 											<script type="text/javascript">
 											    $(document).ready(function() {

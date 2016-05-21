@@ -8,6 +8,7 @@
 <title>Administrator Page</title>
 </head>
 <body>
+<!-- JSP + SQL statements for deleting genre -->
 <%
 String genreID = request.getParameter("genreID");
 

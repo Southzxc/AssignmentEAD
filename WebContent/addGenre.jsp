@@ -8,6 +8,8 @@
 <title>Administrator Page</title>
 </head>
 <body>
+
+<!-- JSP + SQL for inserting genre -->
 <%
 String genre = request.getParameter("genre");
 

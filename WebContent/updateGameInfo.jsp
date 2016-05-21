@@ -8,6 +8,8 @@
 <title>Administrator Page</title>
 </head>
 <body>
+
+<!-- JSP + SQL statements to update game information -->
 <%
 String gameID = request.getParameter("gameID");
 String gameTitle = request.getParameter("gameTitle");

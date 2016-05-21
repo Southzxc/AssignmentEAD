@@ -8,6 +8,7 @@
 <title>SP Games Store</title>
 </head>
 
+<!-- JSP + SQL statement for advance search -->
 <body>
 	<%@include file="navbar.jsp" %>
 	

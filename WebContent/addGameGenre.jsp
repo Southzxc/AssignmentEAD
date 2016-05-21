@@ -10,6 +10,7 @@
 <link type="text/css" rel="stylesheet" media="screen" href="css/bootstrap-multiselect.css" />
 <title>Administrator Page</title>
 </head>
+
 <body class="adminBody">
 <div id="wrapper">
 

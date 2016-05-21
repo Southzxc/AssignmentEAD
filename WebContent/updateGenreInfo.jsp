@@ -9,6 +9,8 @@
 </head>
 <body>
 <%
+/* JSP + SQL statements to update genre information */
+
 String genreID = request.getParameter("genreID");
 String genre = request.getParameter("genre");
 

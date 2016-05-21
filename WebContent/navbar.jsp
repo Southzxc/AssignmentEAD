@@ -1,3 +1,5 @@
+<!-- Navbar for user pages -->
+
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-border ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
