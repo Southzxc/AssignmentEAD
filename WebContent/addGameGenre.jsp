@@ -129,8 +129,8 @@
 						            </div>
 						
 						            <div class="col-xs-4">
-						                <label class="control-label">Release Date</label>
-						                <input type="text" class="form-control" name="gameReleaseDate" />
+						                <label class="control-label">Release Date (YYYY/MM/DD)</label>
+						                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="gameReleaseDate" />
 						            </div>
 						
 						            <div class="col-xs-4">

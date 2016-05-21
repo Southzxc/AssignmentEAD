@@ -9,10 +9,9 @@
 </head>
 <body>
 	<%@include file="navbar.jsp" %>
-	
-SLIDE SHOW MAYBE
 
 <div class="container col-lg-8 col-lg-offset-2">
+SLIDE SHOW HERE
   <h2>Welcome to SP Games Store!</h2>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
@@ -22,7 +21,8 @@ SLIDE SHOW MAYBE
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <h3>Popular</h3>
-      <%	conn=DBConnection.getConnection();
+      <%	
+      		conn=DBConnection.getConnection();
 
  		 	pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
 
