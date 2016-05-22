@@ -79,6 +79,7 @@
         <%}
 		  rs.close();
 		%>
+	</div>
 <%@include file="footer.html" %>	
 </body>
 </html>

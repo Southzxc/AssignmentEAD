@@ -12,7 +12,7 @@
 </head>
 
 <body class="adminBody">
-<div id="wrapper">
+	<div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top navbar-border" role="navigation">
@@ -196,11 +196,11 @@
             </div>
             <!-- /.container-fluid -->
 
-            </div>    
-           	<!-- /#page-wrapper -->
+        </div>    
+      	<!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+	</div>
+	<!-- /#wrapper -->
   
 </body>
 </html>

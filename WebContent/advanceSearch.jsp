@@ -55,25 +55,18 @@
 							});
 						 </script>
 									
-								<!-- PreOwn select -->	
-									<div class="as col-xs-2 selectContainer">
-										<label class="control-label">Preowned</label><br>
-											<input type="radio" name="preOwned" value="Yes" checked>Yes
-											<input type="radio" name="preOwned" value="No">No
-									</div>											            
-						        </div>
-						    </div>
-						
-			
-
-						
-						    <button type="submit" class="btn btn-default">Search</button>
-						</form>
-						
-
-
-						
-                    </div>
-           <%@include file="footer.html" %>
+						<!-- PreOwn select -->	
+						<div class="as col-xs-2 selectContainer">
+							<label class="control-label">Preowned</label><br>
+							<input type="radio" name="preOwned" value="Yes" checked>Yes
+							<input type="radio" name="preOwned" value="No">No
+						</div>											            
+					</div>
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>			
+   	</div>
+   	
+    <%@include file="footer.html" %>
 </body>
 </html>

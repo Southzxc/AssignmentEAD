@@ -67,92 +67,89 @@
 				
 				<!-- Show comment section only when game is not preowned -->
 				<%if(rs.getString("preOwned").equals("No")){ %>
-                <div class="well container-fluid">
-					<div class="col-lg-10 col-lg-offset-1">
-					
-						<!-- Add comment form -->
-						<h2>Reviews & Comments</h2>
-						<form id="gameForm" method="post" action="addComment.jsp?gameID=<%=rs.getInt("gameID")%>">				    			    
-						    						    
-						    <div class="form-group">
-						        <div class="row">
-						            <div class="col-xs-10 ">
-						                <label class="control-label">Commenter Name:</label>
-						                <input type="text" class="form-control" name="commentName" />
-						            </div>				            
-						        </div>
-						    </div>
-							
-							<div class="form-group">
-						        <div class="row">
-						            <div class="col-xs-8 ">
-						                <input type="radio" name="rating" value="1" class="star">
-           								<input type="radio" name="rating" value="2" class="star">
-          								<input type="radio" name="rating" value="3" class="star">
-          								<input type="radio" name="rating" value="4" class="star">
-           								<input type="radio" name="rating" value="5" class="star">
-						            </div>				            
-						        </div>
-						    </div>
-							
-            				
-						    <div class="form-group">
-						    	<div class="row">
-						    	<div class="col-xs-10">
-						        <label class="control-label">Comments:</label>
-						        <textarea class="form-control" name="comment" rows="8"></textarea>
-						        </div>
-						        </div>
-						    </div>
+	                <div class="well container-fluid">
+						<div class="col-lg-10 col-lg-offset-1">
 						
-								<div class="text-right">
-                   			     <button type="submit" class="btn btn-success">Leave a Review</button>
-                   			     
-                   			 </div>
-						</form>
+							<!-- Add comment form -->
+							<h2>Reviews & Comments</h2>
+							<form id="gameForm" method="post" action="addComment.jsp?gameID=<%=rs.getInt("gameID")%>">				    			    
+							    						    
+							    <div class="form-group">
+							        <div class="row">
+							            <div class="col-xs-10 ">
+							                <label class="control-label">Commenter Name:</label>
+							                <input type="text" class="form-control" name="commentName" />
+							            </div>				            
+							        </div>
+							    </div>
+								
+								<div class="form-group">
+							        <div class="row">
+							            <div class="col-xs-8 ">
+							                <input type="radio" name="rating" value="1" class="star">
+	           								<input type="radio" name="rating" value="2" class="star">
+	          								<input type="radio" name="rating" value="3" class="star">
+	          								<input type="radio" name="rating" value="4" class="star">
+	           								<input type="radio" name="rating" value="5" class="star">
+							            </div>				            
+							        </div>
+							    </div>
+								
+	            				
+							    <div class="form-group">
+							    	<div class="row">
+							    	<div class="col-xs-10">
+							        <label class="control-label">Comments:</label>
+							        <textarea class="form-control" name="comment" rows="8"></textarea>
+							        </div>
+							        </div>
+							    </div>
+							
+									<div class="text-right">
+	                   			     <button type="submit" class="btn btn-success">Leave a Review</button>
+	                   			     
+	                   			 </div>
+							</form>
+	
+	                    </div>
+	
+	                    
+	                    <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment where gameID=?");
+	                      
+	                      pstmt.setString(1, gameID);
+	                    
+	                      ResultSet displayComment=pstmt.executeQuery();
+	                      
+	                      while(displayComment.next()) {%>
+	
+						<!-- Displaying available comments -->
+	                    <div class="row">
+	                        <div class="col-md-12">
+	                            <span class="pull-right"><%=displayComment.getDate("date") %></span>
+	                            <p>Name: <%=displayComment.getString("name") %></p><p>Rating: <%=displayComment.getInt("rating") %>/5</p>
+	                            <p>Comment: <%=displayComment.getString("comment") %></p>
+	                        </div>
+	                    </div>
+	
+	                    <hr>
+						<%} 
+	                      displayComment.close();
+	                      } else{
+	                    	  out.println("Comments unavailable");
+	                      } 
+						  rs.close();	                    	  
+	                      		%>
 
-                    </div>
+                	</div>
 
-                    
-                    <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment where gameID=?");
-                      
-                      pstmt.setString(1, gameID);
-                    
-                      ResultSet displayComment=pstmt.executeQuery();
-                      
-                      while(displayComment.next()) {%>
+            	</div>
 
-					<!-- Displaying available comments -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="pull-right"><%=displayComment.getDate("date") %></span>
-                            <p>Name: <%=displayComment.getString("name") %></p><p>Rating: <%=displayComment.getInt("rating") %>/5</p>
-                            <p>Comment: <%=displayComment.getString("comment") %></p>
-                        </div>
-                    </div>
+        	</div>
 
-                    <hr>
-					<%} 
-                      displayComment.close();
-                      } else{
-                    	  out.println("Comments unavailable");
-                      } 
-					  rs.close();
-                    	  
-                      		%>
-                    
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    
-</div>
-    <!-- /.container -->
-
+    	</div>
+    	<!-- /.row -->
+	</div>
+	<!-- /.container -->
 
 <%@include file="footer.html" %>
 </body>

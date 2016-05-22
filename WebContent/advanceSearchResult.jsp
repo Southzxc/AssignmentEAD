@@ -69,13 +69,13 @@
                 <p><%=rs.getString("description") %></p>
                 <a class="btn btn-primary" href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>">View Game <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
-        </div>
+    	</div>
         <!-- /.row -->
 
         <hr>
         <%} 
 		rs.close(); %>	
-        </div>
+    </div>
         <%@include file="footer.html" %>
 </body>
 </html>

@@ -90,8 +90,8 @@
 		
 %>
 
-	<div class="col-lg-10 col-lg-offset-1">
-		<h2>Games</h2>
+					<div class="col-lg-10 col-lg-offset-1">
+						<h2>Games</h2>
 
 <%		rs.next();
 	pstmt = conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
@@ -200,9 +200,7 @@
 						        </form>
 						        <!-- End of form -->					
 								<%conn.close();%>		
-	</div>
-
-		
+					</div>
 					
 				</div>
 				<!-- /.row -->

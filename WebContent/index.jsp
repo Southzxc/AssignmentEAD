@@ -66,72 +66,72 @@
 
 	
   <h2>Welcome to SP Games Store!</h2>
-  <!-- Dynamic tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
-    <li><a data-toggle="tab" href="#menu1">Newly Added</a></li>
-  </ul>
-  
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Popular</h3>
-      <%	
-      		conn=DBConnection.getConnection();
-
- 		 	pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
-
- 		 	rs=pstmt.executeQuery();
-
- 		 	%>
- 		 	<!-- Display game information for popular -->
- 		 	<%while(rs.next()) { %>
- 		 	
-  				<div class="col-sm-6 col-md-4">
-   					 <div class="thumbnail">
-    					  <img src="<%=rs.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
-     					 <div class="caption">
-     					    <h3><%=rs.getString("title") %></h3>
-      						<p><%=rs.getString("description") %></p>
-     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
-      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
-    				     </div>
- 				     </div>
- 				 </div>
-			<%} 
- 		 	rs.close();%>
-			
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Newly Added</h3>
-       <%	
- 		 	PreparedStatement newGame=conn.prepareStatement("SELECT gameID, title, price, description, imageLocation from games ORDER BY gameID desc LIMIT 9");
-
- 		 	ResultSet game=newGame.executeQuery();
-
- 		 	%>
- 		 	<%while(game.next()) { %>
- 		 		
- 		 		<!-- Display game info for newly added -->
-  				<div class="col-sm-6 col-md-4">
-   					 <div class="thumbnail">
-    					  <img src="<%=game.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
-     					 <div class="caption">
-     					    <h3><%=game.getString("title") %></h3>
-      						<p><%=game.getString("description") %></p>
-     					    <p>$<%out.println(String.format("%.2f", game.getDouble("price"))); %></p>
-      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
-    				     </div>
- 				     </div>
- 				 </div>
- 				 
- 				 
-			<%} 
-			  game.close();%> 
-
-    </div>
-  </div>
-  <!-- End of dynamic tabs -->
-</div>
+	  <!-- Dynamic tabs -->
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#home">Popular</a></li>
+	    <li><a data-toggle="tab" href="#menu1">Newly Added</a></li>
+	  </ul>
+	  
+	  <div class="tab-content">
+	    <div id="home" class="tab-pane fade in active">
+	      <h3>Popular</h3>
+	      <%	
+	      		conn=DBConnection.getConnection();
+	
+	 		 	pstmt=conn.prepareStatement("SELECT g.gameID, title, price, description, imageLocation from games g,games_genre gg where g.gameID=gg.gameID and genreID=41");
+	
+	 		 	rs=pstmt.executeQuery();
+	
+	 		 	%>
+	 		 	<!-- Display game information for popular -->
+	 		 	<%while(rs.next()) { %>
+	 		 	
+	  				<div class="col-sm-6 col-md-4">
+	   					 <div class="thumbnail">
+	    					  <img src="<%=rs.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
+	     					 <div class="caption">
+	     					    <h3><%=rs.getString("title") %></h3>
+	      						<p><%=rs.getString("description") %></p>
+	     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
+	      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
+	    				     </div>
+	 				     </div>
+	 				 </div>
+				<%} 
+	 		 	rs.close();%>
+				
+	    </div>
+	    <div id="menu1" class="tab-pane fade">
+	      <h3>Newly Added</h3>
+	       <%	
+	 		 	PreparedStatement newGame=conn.prepareStatement("SELECT gameID, title, price, description, imageLocation from games ORDER BY gameID desc LIMIT 9");
+	
+	 		 	ResultSet game=newGame.executeQuery();
+	
+	 		 	%>
+	 		 	<%while(game.next()) { %>
+	 		 		
+	 		 		<!-- Display game info for newly added -->
+	  				<div class="col-sm-6 col-md-4">
+	   					 <div class="thumbnail">
+	    					  <img src="<%=game.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
+	     					 <div class="caption">
+	     					    <h3><%=game.getString("title") %></h3>
+	      						<p><%=game.getString("description") %></p>
+	     					    <p>$<%out.println(String.format("%.2f", game.getDouble("price"))); %></p>
+	      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
+	    				     </div>
+	 				     </div>
+	 				 </div>
+	 				 
+	 				 
+				<%} 
+				  game.close();%> 
+	
+	    </div>
+	  </div>
+	  <!-- End of dynamic tabs -->
+	</div>
 <%@include file="footer.html" %>
 </body>
 </html>
