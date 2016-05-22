@@ -11,7 +11,7 @@
 <title>Administrator Page</title>
 </head>
 <body class="adminBody">
-<div id="wrapper">
+	<div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top navbar-border" role="navigation">
@@ -55,7 +55,7 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-<!-- Page to edit game information -->
+		<!-- Page to edit game information -->
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -208,8 +208,8 @@
             <!-- /.container-fluid -->
         </div>    
         <!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
+	</div>
+	<!-- /#wrapper -->
          
 </body>
 </html>
