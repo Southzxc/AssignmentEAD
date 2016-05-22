@@ -18,7 +18,6 @@
  String gameImageLocation = request.getParameter("gameImageLocation");
  String[] genre = request.getParameterValues("genre");
  String preOwned = request.getParameter("preOwned");
- System.out.println(genre);
  try{
 	 Connection conn=DBConnection.getConnection();
 

@@ -133,6 +133,9 @@ footer {
 }
 
 @media(max-width:768px){
+	.navbar-text {
+		padding-left:10px;
+	}
 	.as {
 		width:30%;
 	}
