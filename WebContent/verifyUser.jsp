@@ -28,11 +28,10 @@ try{
 		response.sendRedirect("adminHomePage.jsp");
 	}
 		
-	response.setHeader("Refresh", "2;url=index.jsp");
+	response.sendRedirect("index.jsp");
 }catch(Exception e){
 	out.println(e);
 }
 %>
-Wrong Username or Password, redirecting back to homepage in 2 seconds
 </body>
 </html>
