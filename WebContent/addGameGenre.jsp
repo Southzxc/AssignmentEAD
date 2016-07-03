@@ -1,3 +1,8 @@
+<%
+	if(session.getAttribute("admin") == null){
+		response.sendRedirect("unauthorised.jsp");
+	}else{
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import = "java.sql.*,db.*" %>
@@ -33,7 +38,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Admin <b class="caret"></b></a>
                     <ul class="dropdown-menu">                     
                         <li>
-                            <a href="index.jsp"><i class="glyphicon glyphicon-off"></i> Log Out</a>
+                            <a href="logout.jsp"><i class="glyphicon glyphicon-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -204,3 +209,4 @@
   
 </body>
 </html>
+<%}%>

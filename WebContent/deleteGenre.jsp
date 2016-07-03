@@ -1,3 +1,8 @@
+<%
+	if(session.getAttribute("admin") == null){
+		response.sendRedirect("unauthorised.jsp");
+	}else{
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*, db.*" %>
@@ -31,3 +36,4 @@ try{
 %>
 </body>
 </html>
+<%}%>

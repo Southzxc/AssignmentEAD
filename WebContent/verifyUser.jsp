@@ -16,16 +16,25 @@ String userpwd = request.getParameter("userpwd");
 try{
 	Connection conn=DBConnection.getConnection();
 	
-	PreparedStatement pstmt=conn.prepareStatement("SELECT username, userpwd FROM users WHERE username = ? and userpwd = ?");
+	PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM users WHERE username = ? and userpwd = ?");
 			
 	pstmt.setString(1, username);
 			
 	pstmt.setString(2, userpwd);
 			
-	ResultSet rs=pstmt.executeQuery();
+	ResultSet rs=pstmt.executeQuery();	
 			
 	while(rs.next()){
-		response.sendRedirect("adminHomePage.jsp");
+		int isAdmin = rs.getInt(4);
+		if(isAdmin == 1){
+			session.setAttribute("admin", username);
+			response.sendRedirect("adminHomePage.jsp");
+		}
+		else{
+			session.setAttribute("user", username);
+			response.sendRedirect("index.jsp");			
+		}
+		
 	}
 		
 	response.setHeader("Refresh","2;url=index.jsp");
