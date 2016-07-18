@@ -126,11 +126,13 @@
 					lastname: "Please enter your lastname",
 					password: {
 						required: "Please provide a password",
-						minlength: "Your password must be at least 5 characters long"
+						minlength: "Your password must be at least 8 characters long",
+						maxlength: "Your password must be shorter than 16 characters"
 					},
 					confirm_password: {
 						required: "Please provide a password",
-						minlength: "Your password must be at least 5 characters long",
+						minlength: "Your password must be at least 8 characters long",
+						maxlength: "Your password must be shorter than 16 characters",
 						equalTo: "Please enter the same password as above"
 					},
 					address:"Please enter your mailing address",
