@@ -41,8 +41,8 @@
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
-			<ul class="nav navbar-nav navbar-right sliding-u-l-r">
-				<li><p class="navbar-text">Already have an account?</li>
+			<ul class="nav navbar-nav navbar-right sliding-u-l-r">				
+				<li><a href="register.jsp"><b>Register</b></a></li>				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
 					<ul id="login-dp" class="dropdown-menu">
@@ -68,9 +68,6 @@
 												 </label>
 											</div>
 									 </form>
-								</div>
-								<div class="bottom text-center">
-									New here ? <a href="#"><b>Join Us</b></a>
 								</div>
 						 	</div>
 						</li>
