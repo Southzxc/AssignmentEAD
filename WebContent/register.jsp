@@ -9,6 +9,7 @@
 	<title>Registration</title>
 </head>
 <body>
+
 	<%@include file="navbar.jsp" %>
 	<div class="container">
 		<div class="row">
