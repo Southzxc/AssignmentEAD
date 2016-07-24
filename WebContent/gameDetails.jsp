@@ -14,6 +14,146 @@
 
 <!-- Page to display specific details on the game -->
 <body>
+<%if(session.getAttribute("user")!=null) { %>
+<%@include file="loginNavbar.jsp" %>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+            
+      <%	
+      		String gameID=request.getParameter("gameID");
+      	
+			conn=DBConnection.getConnection();
+
+ 		 	pstmt=conn.prepareStatement("SELECT * FROM games where gameID = ?");
+
+ 		 	pstmt.setString(1,gameID);
+ 		 	
+ 		 	rs=pstmt.executeQuery();
+			
+ 		 	rs.next();
+ 		 	
+ 		 	
+ 		 	
+ 		 	%>
+ 		 	
+                <div class="thumbnail">
+                    <img class="img-responsive" src="<%=rs.getString("imageLocation") %>" alt="Image not available" onError="this.src='http://placehold.it/460x215?text=Image+not+available';">
+                    <div class="caption-full">
+                        <h3 class="pull-right">$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></h3>
+                        <h3><%=rs.getString("title") %><small class="gDTitleSide"><%=rs.getString("preowned").equals("Yes") ? "Pre-owned" : "Brand new!" %></small></h3>
+                        <button type="submit" class="btn btn-success pull-right">BUY</button> 
+                        <b>Company</b> <p><%=rs.getString("company") %></p>
+                                               <%
+                        pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
+                        pstmt.setString(1, gameID); 
+                        ResultSet displayGenre = pstmt.executeQuery();
+                        %>
+                        
+                        <b>Genre</b>
+                        <p>
+                       <% while(displayGenre.next()){ %>
+                        <span class="label label-info"><%=displayGenre.getString("genreName") %></span>   
+                        <% }
+                       	   displayGenre.close();%>
+                        </p>
+                        <b>Description</b><p><%=rs.getString("description") %></p>
+                    </div>                         
+                </div>
+
+				<div>
+				
+				<!-- Show comment section only when game is not preowned -->
+				<%if(rs.getString("preOwned").equals("No")){ %>
+	                <div class="well container-fluid">
+						<div class="col-lg-10 col-lg-offset-1">
+						
+							<!-- Add comment form -->
+							<h2>Reviews & Comments</h2>
+							<form id="gameForm" method="post" action="addComment.jsp?gameID=<%=rs.getInt("gameID")%>">				    			    
+							    						    
+							    <div class="form-group">
+							        <div class="row">
+							            <div class="col-xs-10 ">
+							                <label class="control-label">Commenter Name:</label>
+							                <input type="text" class="form-control" name="commentName" />
+							            </div>				            
+							        </div>
+							    </div>
+								
+								<div class="form-group">
+							        <div class="row">
+							            <div class="col-xs-8 ">
+							                <input type="radio" name="rating" value="1" class="star">
+	           								<input type="radio" name="rating" value="2" class="star">
+	          								<input type="radio" name="rating" value="3" class="star">
+	          								<input type="radio" name="rating" value="4" class="star">
+	           								<input type="radio" name="rating" value="5" class="star">
+							            </div>				            
+							        </div>
+							    </div>
+								
+	            				
+							    <div class="form-group">
+							    	<div class="row">
+							    	<div class="col-xs-10">
+							        <label class="control-label">Comments:</label>
+							        <textarea class="form-control" name="comment" rows="8"></textarea>
+							        </div>
+							        </div>
+							    </div>
+							
+									<div class="text-right">
+	                   			     <button type="submit" class="btn btn-success">Leave a Review</button>
+	                   			     
+	                   			 </div>
+							</form>
+	
+	                    </div>
+	
+	                    
+	                    <%pstmt=conn.prepareStatement("SELECT name, date, comment, rating from comment where gameID=?");
+	                      
+	                      pstmt.setString(1, gameID);
+	                    
+	                      ResultSet displayComment=pstmt.executeQuery();
+	                      
+	                      while(displayComment.next()) {%>
+	
+						<!-- Displaying available comments -->
+	                    <div class="row">
+	                        <div class="col-md-12">
+	                            <span class="pull-right"><%=displayComment.getDate("date") %></span>
+	                            <p>Name: <%=displayComment.getString("name") %></p><p>Rating: <%=displayComment.getInt("rating") %>/5</p>
+	                            <p>Comment: <%=displayComment.getString("comment") %></p>
+	                        </div>
+	                    </div>
+	
+	                    <hr>
+						<%} 
+	                      displayComment.close();
+	                      } else{
+	                    	  out.println("Comments unavailable");
+	                      } 
+						  rs.close();	                    	  
+	                      		%>
+
+                	</div>
+
+            	</div>
+
+        	</div>
+
+    	</div>
+    	<!-- /.row -->
+	</div>
+	<!-- /.container -->
+
+<%@include file="footer.html" %>
+<%} else { %>
 	<%@include file="navbar.jsp" %>
     <!-- Page Content -->
     <div class="container">
@@ -152,6 +292,7 @@
 	<!-- /.container -->
 
 <%@include file="footer.html" %>
+<%} %>
 </body>
 
 </html>
