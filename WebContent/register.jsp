@@ -85,6 +85,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		jQuery.validator.addMethod("alphanumeric", function(value, element) {
+		  return this.optional(element) || /[a-zA-Z0-9([;\\\?{})?]{8,16}/.test(value);
+		}, "Please provide a password that has numbers and alphabets that is at least 8 characters long");
+	
 		$.validator.setDefaults( {
 			submitHandler: function () {
 				alert( "submitted!" );
@@ -98,13 +102,12 @@
 					lastname: "required",					
 					password: {
 						required: true,
-						minlength: 8,
-						maxlength: 16
+						alphanumeric: true,
+						
 					},
 					confirm_password: {
 						required: true,
-						minlength: 8,
-						maxlength: 16,
+						alphanumeric:true,
 						equalTo: "#password"
 					},
 					address: {
@@ -127,13 +130,11 @@
 					lastname: "Please enter your lastname",
 					password: {
 						required: "Please provide a password",
-						minlength: "Your password must be at least 8 characters long",
-						maxlength: "Your password must be shorter than 16 characters"
+						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
 					},
 					confirm_password: {
 						required: "Please provide a password",
-						minlength: "Your password must be at least 8 characters long",
-						maxlength: "Your password must be shorter than 16 characters",
+						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
 						equalTo: "Please enter the same password as above"
 					},
 					address:"Please enter your mailing address",
