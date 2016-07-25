@@ -13,6 +13,13 @@
 
 String username = request.getParameter("username");
 String userpwd = request.getParameter("userpwd");
+String rmbMe=request.getParameter("rememberMe");
+
+boolean rememberMe=false;
+if(rmbMe!=null){
+	rememberMe=true;
+}
+
 try{
 	Connection conn=DBConnection.getConnection();
 	
@@ -31,8 +38,19 @@ try{
 			response.sendRedirect("adminHomePage.jsp");
 		}
 		else{
-			session.setAttribute("user", username);
-			response.sendRedirect("index.jsp");			
+
+			/* if(rememberMe){
+				Cookie c1=new Cookie("cookieloginUser",username);
+				Cookie c2=new Cookie("cookieLoginPassword",userpwd);
+				c1.setMaxAge(60*60*24);
+				c2.setMaxAge(60*60*24); 
+				response.addCookie(c1);
+				response.addCookie(c2);
+			
+			} */
+				session.setAttribute("user", username); 
+				response.sendRedirect("index.jsp");	
+			
 		}
 		
 	}
