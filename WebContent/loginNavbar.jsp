@@ -14,6 +14,8 @@
 			<a class="navbar-brand" href="index.jsp">SP Games Store</a>
 		</div>
 		<%
+		/* request.getCookies(); */
+		
 			Connection conn=DBConnection.getConnection();
 
  		 	PreparedStatement pstmt=conn.prepareStatement("SELECT genreName FROM genre");
@@ -29,7 +31,7 @@
           <ul class="dropdown-menu">
           <% while(rs.next()){ %>
             <li><a href="displaySearch.jsp?search=<%=rs.getString("genreName")%>"><%=rs.getString("genreName")%></a></li>
-          <% } %>
+          <% } conn.close();%>
           </ul>
         </li>
         

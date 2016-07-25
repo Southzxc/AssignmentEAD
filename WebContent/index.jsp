@@ -7,8 +7,19 @@
 	<title>SP Games Store</title>
 </head>
 <body>
+<%-- <%Cookie[] cookies=request.getCookies();
+		String name="", pass="";
+		%> --%>
 	<%
-	if(session.getAttribute("user")!=null){
+	if(session.getAttribute("user")!=null/* cookies!=null */){
+		/* for (Cookie cookie : cookies) {
+		       if (cookie.getName().equals("c1")) {
+		           name=cookie.getValue();
+		       }
+		       if(cookie.getName().equals("c2")){
+		           pass=cookie.getValue();
+		       }
+		    } */
 		%>
 		<%@include file="loginNavbar.jsp" %>
 		
