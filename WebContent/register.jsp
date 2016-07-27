@@ -18,7 +18,7 @@
 					<h3 class="panel-title">Registration Form</h3>
 				</div>
 				<div class="panel-body">
-					<form id="signupForm" method="post" class="form-horizontal" action="">
+					<form id="signupForm" method="post" class="form-horizontal" action="CheckRegDetails">
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="firstname">First name</label>
 							<div class="col-sm-5">
@@ -86,14 +86,14 @@
 	</div>
 	<script type="text/javascript">
 		jQuery.validator.addMethod("alphanumeric", function(value, element) {
-		  return this.optional(element) || /[a-zA-Z0-9([;\\\?{})?]{8,16}/.test(value);
+		  return this.optional(element) || /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d])|(?=.*\d))|(?=.*[A-Z])(?=.*\d)).{8,16}$/.test(value);
 		}, "Please provide a password that has numbers and alphabets that is at least 8 characters long");
 	
-		$.validator.setDefaults( {
+		/* $.validator.setDefaults( {
 			submitHandler: function () {
 				alert( "submitted!" );
 			}
-		} );
+		} ); */
 
 		$( document ).ready( function () {
 			$( "#signupForm" ).validate( {
