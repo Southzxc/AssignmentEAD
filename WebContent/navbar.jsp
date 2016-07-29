@@ -52,7 +52,7 @@
 									 <form class="form" role="form" method="post" action="verifyUser.jsp" accept-charset="UTF-8" id="login-nav">
 											<div class="form-group">
 												 <!-- <label class="sr-only" for="exampleInputUser2">Email address</label> -->
-												 <input type="text" class="form-control" id="exampleInputUser2" name="username" placeholder="Username" required>
+												 <input type="email" class="form-control" id="exampleInputUser2" name="email" placeholder="Email" required>
 											</div>
 											<div class="form-group">
 												 <!-- <label class="sr-only" for="exampleInputPassword2">Password</label> -->
