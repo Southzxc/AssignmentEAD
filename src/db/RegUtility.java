@@ -1,10 +1,12 @@
 package db;
 
+import java.sql.PreparedStatement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.sql.*;
 
 public class RegUtility {	
-	public boolean chkRegDetails(String firstName, String lastName, String address, String email, String contact, String password){
+	public boolean chkRegDetails(String username, String address, String email, String contact, String password){
 		
 		//regex for checking contact
 		Pattern pcontact = Pattern.compile("^[\\d+]{8}$");
@@ -28,7 +30,7 @@ public class RegUtility {
 		 * if it does not match, it will return false
 		 * Finally, the else statement will return true if there are no errors with the input given
 		 */
-		if(firstName.equals("") || lastName.equals("") || address.equals("") || email.equals("") || contact.equals("") || password.equals("")){
+		if(username.equals("") || address.equals("") || email.equals("") || contact.equals("") || password.equals("")){
 			return false;
 		}else if(mcontact.matches() == false){
 			return false;
@@ -42,5 +44,23 @@ public class RegUtility {
 		}
 		
 		
+	}
+	
+	public void addRegDetails(String username, String address, String email, String contact, String password){
+		int isAdmin = 0;
+		try{
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (username, userpwd, address, email, contact, isAdmin) VALUES (?, ?, ?, ?, ?, ?)");
+			pstmt.setString(1, username);
+			pstmt.setString(2, password);
+			pstmt.setString(3, address);
+			pstmt.setString(4, email);
+			pstmt.setString(5, contact);
+			pstmt.setInt(6, isAdmin);
+			pstmt.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}		
 	}
 }

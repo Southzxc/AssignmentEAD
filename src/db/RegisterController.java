@@ -34,17 +34,17 @@ public class RegisterController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
+		String username = request.getParameter("username");
 		String address = request.getParameter("address");
 		String email = request.getParameter("email");
 		String contact = request.getParameter("contact");
 		String password = request.getParameter("password");
 		
 		PrintWriter out = response.getWriter();
-		RegUtility chkInput = new RegUtility();
-		if(chkInput.chkRegDetails(firstName, lastName, address, email, contact, password) == true){
-			out.println("correct!");
+		RegUtility RegUtility = new RegUtility();
+		if(RegUtility.chkRegDetails(username, address, email, contact, password) == true){
+			RegUtility.addRegDetails(username, address, email, contact, password);
+			response.sendRedirect("registered.jsp");
 		} else{
 			out.println("wrong!");
 		}

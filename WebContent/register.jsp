@@ -20,18 +20,12 @@
 				<div class="panel-body">
 					<form id="signupForm" method="post" class="form-horizontal" action="RegisterController">
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="firstname">First name</label>
+							<label class="col-sm-4 control-label" for="username">Username</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="firstname" name="firstName" placeholder="First name" />
+								<input type="text" class="form-control" id="username" name="username" placeholder="User name" />
 							</div>
 						</div>
 		
-						<div class="form-group">
-							<label class="col-sm-4 control-label" for="lastname">Last name</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control" id="lastname" name="lastName" placeholder="Last name" />
-							</div>
-						</div>
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="address">Address</label>
 							<div class="col-sm-5">
@@ -98,8 +92,7 @@
 		$( document ).ready( function () {
 			$( "#signupForm" ).validate( {
 				rules: {
-					firstName: "required",
-					lastName: "required",					
+					username: "required",					
 					password: {
 						required: true,
 						alphanumeric: true,
@@ -126,8 +119,7 @@
 					agree: "required"
 				},
 				messages: {
-					firstName: "Please enter your firstname",
-					lastName: "Please enter your lastname",
+					username: "Please enter your username",
 					password: {
 						required: "Please provide a password",
 						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
