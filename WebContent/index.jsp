@@ -107,7 +107,7 @@
 	     					    <h3><%=rs.getString("title") %></h3>
 	      						<p><%=rs.getString("description") %></p>
 	     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
-	      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
+	      					    <p><form action="addToCart"><input type="hidden" name="id" value=<%=rs.getInt("gameID") %>><input type="submit" value="Buy Now" class="btn btn-primary" role="button"></form> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
 	    				     </div>
 	 				     </div>
 	 				 </div>
@@ -133,7 +133,7 @@
 	     					    <h3><%=game.getString("title") %></h3>
 	      						<p><%=game.getString("description") %></p>
 	     					    <p>$<%out.println(String.format("%.2f", game.getDouble("price"))); %></p>
-	      					    <p><a href="#" class="btn btn-primary" role="button">Buy Now</a> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
+	      					    <p><form action="addToCart"><a href="#" class="btn btn-primary" role="button" hidden="<%=game.getInt("gameID")%>">Buy Now</a></form> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
 	    				     </div>
 	 				     </div>
 	 				 </div>

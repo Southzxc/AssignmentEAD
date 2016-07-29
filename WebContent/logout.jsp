@@ -8,13 +8,13 @@
 </head>
 <body>
 <%
-Cookie[] cookies = request.getCookies();
+/* Cookie[] cookies = request.getCookies();
 for (Cookie cookie : cookies) {
 cookie.setMaxAge(0);
 cookie.setValue(null);
 cookie.setPath("/");
 response.addCookie(cookie);
-}
+} */
 
 session.invalidate();
 response.sendRedirect("index.jsp");
