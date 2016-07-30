@@ -16,9 +16,10 @@
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	 	<strong>Error:</strong> <%=session.getAttribute("errorMsg") %>
 	</div>
-	<%}
+	
+	<%
 	session.removeAttribute("errorMsg");
-	%>	
+	}%>	
 	<!-- Home page carousel -->
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		 <!-- Indicators -->

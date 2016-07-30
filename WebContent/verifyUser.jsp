@@ -31,7 +31,7 @@ try{
 			
 	ResultSet rs=pstmt.executeQuery();	
 			
-	while(rs.next()){
+	if(rs.next()){
 		String usernamedb = rs.getString(2);
 		String userpwddb = rs.getString(3);
 		String addressdb = rs.getString(4);
@@ -61,14 +61,14 @@ try{
 				UserModel.setContact(contactdb);
 				session.setAttribute("userDetails", UserModel);
 				session.setAttribute("username", usernamedb);
-				response.sendRedirect("index.jsp");	
-			
+				response.sendRedirect("index.jsp");				
 		}
 		
+	}else{
+		session.setAttribute("errorMsg", "Wrong Email or Password");
+		response.sendRedirect("index.jsp");
 	}
-		
-	session.setAttribute("errorMsg", "Wrong Email or Password");
-	response.sendRedirect("index.jsp");
+	rs.close();
 }catch(Exception e){
 	out.println(e);
 }

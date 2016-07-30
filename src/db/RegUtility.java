@@ -34,6 +34,8 @@ public class RegUtility {
 			if(rs.next()){
 				emailFound = true;
 			}
+			conn.close();
+			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
