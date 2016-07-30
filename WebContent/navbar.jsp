@@ -41,6 +41,7 @@
 				</div>
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
+			<%if(session.getAttribute("user")==null){ %>
 			<ul class="nav navbar-nav navbar-right sliding-u-l-r">				
 				<li><a href="register.jsp"><b>Register</b></a></li>				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -74,6 +75,18 @@
 					</ul>
 				</li>
 			</ul>
+			<%}else{ %>
+			<ul class="nav navbar-nav navbar-right sliding-u-l-r">								
+				<li class="dropdown">
+     			     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome <%= session.getAttribute("user") %><span class="caret"></span></a>
+       			   <ul class="dropdown-menu">
+        			    <li><a href="#">Update Profile</a></li>
+        			    <li><a href="cart.jsp">Shopping Cart</a></li>
+        			    <li><a href="logout.jsp">Logout</a></li>
+        			</ul>
+       			 </li>
+			</ul>
+			<%} %>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
