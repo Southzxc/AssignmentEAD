@@ -11,7 +11,7 @@
 <%
 /* JSP + SQL statements to verify login abc*/
 
-String username = request.getParameter("username");
+String email = request.getParameter("email");
 String userpwd = request.getParameter("userpwd");
 String rmbMe=request.getParameter("rememberMe");
 
@@ -23,16 +23,17 @@ if(rmbMe!=null){
 try{
 	Connection conn=DBConnection.getConnection();
 	
-	PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM users WHERE username = ? and userpwd = ?");
+	PreparedStatement pstmt=conn.prepareStatement("SELECT * FROM users WHERE email = ? and userpwd = ?");
 			
-	pstmt.setString(1, username);
+	pstmt.setString(1, email);
 			
 	pstmt.setString(2, userpwd);
 			
 	ResultSet rs=pstmt.executeQuery();	
 			
 	while(rs.next()){
-		int isAdmin = rs.getInt(4);
+		String username = rs.getString(2);
+		int isAdmin = rs.getInt(7);
 		if(isAdmin == 1){
 			session.setAttribute("admin", username);
 			response.sendRedirect("adminHomePage.jsp");
@@ -60,6 +61,6 @@ try{
 	out.println(e);
 }
 %>
-Wrong Username or Password, redirecting back to homepage in 2 seconds
+Wrong Email or Password, redirecting back to homepage in 2 seconds
 </body>
 </html>
