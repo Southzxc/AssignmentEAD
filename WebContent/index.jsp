@@ -8,10 +8,17 @@
 </head>
 <body>
 
-		<%@include file="navbar.jsp" %>
+	<%@include file="navbar.jsp" %>
 		
-		<div class="container col-lg-8 col-lg-offset-2">
-	
+	<div class="container col-lg-8 col-lg-offset-2">
+	<%if(session.getAttribute("errorMsg") != null){ %>
+	<div class="alert alert-danger">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	 	<strong>Error:</strong> <%=session.getAttribute("errorMsg") %>
+	</div>
+	<%}
+	session.removeAttribute("errorMsg");
+	%>	
 	<!-- Home page carousel -->
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		 <!-- Indicators -->

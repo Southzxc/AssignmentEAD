@@ -32,10 +32,14 @@ try{
 	ResultSet rs=pstmt.executeQuery();	
 			
 	while(rs.next()){
-		String username = rs.getString(2);
+		String usernamedb = rs.getString(2);
+		String userpwddb = rs.getString(3);
+		String addressdb = rs.getString(4);
+		String emaildb = rs.getString(5);
+		String contactdb = rs.getString(6);
 		int isAdmin = rs.getInt(7);
 		if(isAdmin == 1){
-			session.setAttribute("admin", username);
+			session.setAttribute("admin", usernamedb);
 			response.sendRedirect("adminHomePage.jsp");
 		}
 		else{
@@ -49,18 +53,25 @@ try{
 				response.addCookie(c2);
 			
 			} */
-				session.setAttribute("user", username); 
+				UserModel UserModel = new UserModel();
+				UserModel.setUsername(usernamedb);
+				UserModel.setPassword(userpwddb);
+				UserModel.setAddress(addressdb);
+				UserModel.setEmail(emaildb);
+				UserModel.setContact(contactdb);
+				session.setAttribute("userDetails", UserModel);
+				session.setAttribute("username", usernamedb);
 				response.sendRedirect("index.jsp");	
 			
 		}
 		
 	}
 		
-	response.setHeader("Refresh","2;url=index.jsp");
+	session.setAttribute("errorMsg", "Wrong Email or Password");
+	response.sendRedirect("index.jsp");
 }catch(Exception e){
 	out.println(e);
 }
 %>
-Wrong Email or Password, redirecting back to homepage in 2 seconds
 </body>
 </html>

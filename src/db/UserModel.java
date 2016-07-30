@@ -1,6 +1,6 @@
 package db;
 
-public class RegisterModel {
+public class UserModel {
 	private String username;
 	private String address;
 	private String email;
@@ -37,6 +37,4 @@ public class RegisterModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }
