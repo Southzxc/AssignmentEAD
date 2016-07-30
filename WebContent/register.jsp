@@ -12,7 +12,16 @@
 	<%@include file="navbar.jsp" %>
 	<div class="container">
 		<div class="row">
-			<div class="panel panel-default">
+		<%if(session.getAttribute("errorMsg") != null){ %>
+			<div class="alert alert-danger">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Error:</strong> <%= session.getAttribute("errorMsg") %>
+			</div>
+		<%
+		session.removeAttribute("errorMsg");
+		}%>
+					
+			<div class="panel panel-default">			
 				<div class="panel-heading">
 					<h3 class="panel-title">Registration Form</h3>
 				</div>

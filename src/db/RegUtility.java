@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import java.sql.*;
 
 public class RegUtility {	
-	public boolean chkRegDetails(String username, String address, String email, String contact, String password){
+	public int chkRegDetails(String username, String address, String email, String contact, String password){
 		
 		//regex for checking contact
 		Pattern pcontact = Pattern.compile("^[\\d+]{8}$");
@@ -24,23 +24,40 @@ public class RegUtility {
 		Pattern ppassword = Pattern.compile("^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d])|(?=.*\\d))|(?=.*[A-Z])(?=.*\\d)).{8,16}$");
 		Matcher mpassword = ppassword.matcher(password);
 		
+		//check if email is found in the sql server
+		boolean emailFound = false;
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("SELECT email FROM users where email = ?");
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()){
+				emailFound = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		/* The first if statement check if there is the input is empty, if it is empty, it will return false
-		 * The second if check if contact has 8 digits in it, if it does not match, it will return false
-		 * The third  if check if password matches the requirement of alphanumeric characters with a minimum length of 8 characters,
+		 * The second if statement check if contact has 8 digits in it, if it does not match, it will return false
+		 * The third  if statement check if password matches the requirement of alphanumeric characters with a minimum length of 8 characters,
 		 * if it does not match, it will return false
+		 * The fourth if statement check if email is found. if email is found, it will return false
 		 * Finally, the else statement will return true if there are no errors with the input given
 		 */
-		if(username.equals("") || address.equals("") || email.equals("") || contact.equals("") || password.equals("")){
-			return false;
+		if(username.isEmpty() || address.isEmpty() || email.isEmpty() || contact.isEmpty() || password.isEmpty()){
+			return 1;
 		}else if(mcontact.matches() == false){
-			return false;
+			return 2;
 		}else if(countsymbol != 1 || !email.contains(".")){
-			return false;
+			return 3;
 		}else if(mpassword.matches() == false){
-			return false;
+			return 4;
+		}else if(emailFound == true){
+			return 5;
 		}
 		else{
-			return true;
+			return 0;
 		}
 		
 		
@@ -58,7 +75,7 @@ public class RegUtility {
 			pstmt.setString(5, contact);
 			pstmt.setInt(6, isAdmin);
 			pstmt.executeUpdate();
-			
+			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}		

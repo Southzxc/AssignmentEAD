@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 /**
  * Servlet implementation class RegisterController
@@ -42,11 +43,26 @@ public class RegisterController extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		RegUtility RegUtility = new RegUtility();
-		if(RegUtility.chkRegDetails(username, address, email, contact, password) == true){
+		int chkRegDetails = RegUtility.chkRegDetails(username, address, email, contact, password);
+		HttpSession session = request.getSession();		
+		if(chkRegDetails == 1){
+			session.setAttribute("errorMsg", "Please fill in all the blanks");
+			response.sendRedirect("register.jsp");
+		} else if(chkRegDetails == 2){
+			session.setAttribute("errorMsg", "Please enter a 8-digit contact number");
+			response.sendRedirect("register.jsp");
+		} else if(chkRegDetails == 3){
+			session.setAttribute("errorMsg", "Please enter a valid email address");
+			response.sendRedirect("register.jsp");
+		} else if(chkRegDetails == 4){
+			session.setAttribute("errorMsg", "Please provide a password with numbers and alphabets that is at least 8 characters long");
+			response.sendRedirect("register.jsp");
+		} else if(chkRegDetails == 5){
+			session.setAttribute("errorMsg", "This email has already been used, please use another email to register");
+			response.sendRedirect("register.jsp");
+		} else{
 			RegUtility.addRegDetails(username, address, email, contact, password);
 			response.sendRedirect("registered.jsp");
-		} else{
-			out.println("wrong!");
 		}
 	}
 
