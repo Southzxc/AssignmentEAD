@@ -33,8 +33,13 @@ public class addToCart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int gameID = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String company = request.getParameter("company");
+		double price = Double.parseDouble(request.getParameter("price"));
+		String imageLocation=request.getParameter("imageLocation");
+		String preOwned=request.getParameter("preOwned");
 		
+		shoppingCart sc = new shoppingCart();
 		
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
@@ -43,9 +48,8 @@ public class addToCart extends HttpServlet {
 			resultsList=new ArrayList<shoppingCart>();
 		}
 		
-		cartManager db = new cartManager();
-		
-		resultsList = db.addPurchase(gameID);
+		sc.setshoppingCart(title, company, price, imageLocation, preOwned);
+		resultsList.add(sc);
 				
 		session.setAttribute("results", resultsList);
 		

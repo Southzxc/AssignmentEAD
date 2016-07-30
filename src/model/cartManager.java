@@ -7,7 +7,7 @@ import controller.addToCart;
 
 public class cartManager {
 	
-	public ArrayList<shoppingCart> addPurchase(int gamePurchase) {
+	/*public ArrayList<shoppingCart> addPurchase(int gamePurchase) {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -41,5 +41,5 @@ public class cartManager {
 			System.out.println(err);
 			return null;
 		}
-	}
+	}*/
 }
