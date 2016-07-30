@@ -19,7 +19,7 @@
 		       }
 		    } */
 		%>
-		<%@include file="loginNavbar.jsp" %>
+		<%@include file="navbar.jsp" %>
 		
 		<div class="container">
     <div class="row">
@@ -35,11 +35,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                <%for (shoppingCart shops:resultsList) {%>
+                <%
+                if(resultsList == null){%>
+                	<p>There are no items in Cart</p>
+                <%}
+                for (shoppingCart shops:resultsList) {%>
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src=<%=shops.getImageLocation() %> style="width: 72px; height: 72px;"> </a>
+                             <img class="media-object" src=<%=shops.getImageLocation() %> > 
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#"><%=shops.getTitle() %></a></h4>
                                 <h5 class="media-heading"> by <a href="#"><%=shops.getCompany() %></a></h5>
@@ -68,7 +72,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
+                        <td><h5>GST</h5></td>
                         <td class="text-right"><h5><strong>$6.94</strong></h5></td>
                     </tr>
                     <tr>
