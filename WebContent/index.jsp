@@ -95,11 +95,11 @@
 	      						<p><%=rs.getString("description") %></p>
 	     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
 	      					    <p><form action="addToCart">
-	      					    <input type="hidden" name="title" value=<%=rs.getString("title") %>>
-	      					    <input type="hidden" name="company" value=<%=rs.getString("company") %>>
-	      					    <input type="hidden" name="price" value=<%=rs.getDouble("price") %>>
-	      					    <input type="hidden" name="imageLocation" value=<%=rs.getString("imageLocation") %>>
-	      					    <input type="hidden" name="preOwned" value=<%=rs.getString("preOwned") %>>
+	      					    <input type="hidden" name="title" value="<%=rs.getString("title") %>">
+	      					    <input type="hidden" name="company" value="<%=rs.getString("company") %>">
+	      					    <input type="hidden" name="price" value="<%=rs.getDouble("price") %>">
+	      					    <input type="hidden" name="imageLocation" value="<%=rs.getString("imageLocation") %>">
+	      					    <input type="hidden" name="preOwned" value="<%=rs.getString("preOwned") %>">
 	      					    <input type="submit" value="Buy Now" class="btn btn-primary" role="button"></form> <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
 	    				     </div>
 	 				     </div>
