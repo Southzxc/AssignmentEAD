@@ -21,8 +21,9 @@ public class ProfileUtility {
 		}
 		//check if email is found in the sql server
 		boolean emailFound = false;
-		
-		if(emaildb != email){
+		System.out.println(emaildb);
+		System.out.println(email);
+		if(!emaildb.equals(email)){
 			try {
 				Connection conn = DBConnection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement("SELECT email FROM users where email = ?");
@@ -30,6 +31,7 @@ public class ProfileUtility {
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()){
 					emailFound = true;
+					System.out.println(emailFound);
 				}
 				conn.close();
 				rs.close();
@@ -37,7 +39,7 @@ public class ProfileUtility {
 				e.printStackTrace();
 			}			
 		}
-
+		System.out.println(emailFound + "1");
 		
 		/* The first if statement check if there is the input is empty, if it is empty, it will return false
 		 * The second if statement check if contact has 8 digits in it, if it does not match, it will return false
@@ -62,7 +64,15 @@ public class ProfileUtility {
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET username = ?, address = ?, email = ?, contact = ? where userID = ?");
-			pstmt.setString(1, userID);
+			pstmt.setString(1, username);
+			pstmt.setString(2, address);
+			pstmt.setString(3, email);
+			pstmt.setString(4, contact);
+			pstmt.setString(5, userID);
+			
+			pstmt.executeUpdate();
+			
+			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

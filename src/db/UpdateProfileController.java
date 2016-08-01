@@ -40,19 +40,28 @@ public class UpdateProfileController extends HttpServlet {
 		String contact = request.getParameter("contact");
 		
 		ProfileUtility ProfileUtility = new ProfileUtility();
-		
 		int chkProfileDetails = ProfileUtility.chkProfileDetails(emaildb, username, address, email, contact);
-		
 		if(chkProfileDetails == 1){
 			session.setAttribute("errorMsg", "Please fill in all the blanks");
+			response.sendRedirect("updateProfile.jsp");
 		}else if(chkProfileDetails == 2){
 			session.setAttribute("errorMsg", "Please enter a 8-digit contact number");
+			response.sendRedirect("updateProfile.jsp");
 		}else if(chkProfileDetails == 3){
 			session.setAttribute("errorMsg", "Please enter a valid email address");
+			response.sendRedirect("updateProfile.jsp");
 		}else if(chkProfileDetails == 4){
 			session.setAttribute("errorMsg", "This email has already been used, please use another email");
+			response.sendRedirect("updateProfile.jsp");
 		}else{
 			ProfileUtility.updtProfileDetails(userIDdb, username, address, email, contact);
+			userDetails.setUsername(username);
+			userDetails.setAddress(address);
+			userDetails.setEmail(email);
+			userDetails.setContact(contact);
+			session.setAttribute("success", "Profile updated.");
+			response.sendRedirect("updateProfile.jsp");
+			
 		}
 	}
 

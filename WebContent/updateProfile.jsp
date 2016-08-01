@@ -15,6 +15,23 @@ if(session.getAttribute("userDetails") == null){
 	<%@include file="navbar.jsp" %>
 	<%UserModel userDetails = (UserModel)session.getAttribute("userDetails"); %>
 	<div class="container">
+		<%if(session.getAttribute("success") != null){%>
+			<div class="alert alert-success">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Success!</strong> <%=session.getAttribute("success") %>
+			</div>			
+		<%}
+		session.removeAttribute("success");
+		%>
+		
+		<%if(session.getAttribute("errorMsg") != null){%> 
+			<div class="alert alert-danger">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Error:</strong> <%=session.getAttribute("errorMsg") %>
+			</div>			
+		<%}
+		session.removeAttribute("errorMsg");
+		%>
 		<h1 class="page-header">
 			Update your profile
 		</h1>
