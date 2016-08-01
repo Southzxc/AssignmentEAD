@@ -109,6 +109,7 @@
 	      					    <input type="hidden" name="price" value="<%=rs.getDouble("price") %>">
 	      					    <input type="hidden" name="imageLocation" value="<%=rs.getString("imageLocation") %>">
 	      					    <input type="hidden" name="preOwned" value="<%=rs.getString("preOwned") %>">
+	      					    <input type="hidden" name="quantity" value="1">
 	      					    <input type="submit" value="Buy Now" class="btn btn-primary" role="button"></form>
 	      					    <%} else { %>
 	      					    <p><a href="#" class="btn btn-primary" role="button" hidden="<%=rs.getInt("gameID")%>">Buy Now</a><%} %>
