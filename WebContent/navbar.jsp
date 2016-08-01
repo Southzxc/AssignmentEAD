@@ -29,7 +29,7 @@
           <ul class="dropdown-menu">
           <% while(rs.next()){ %>
             <li><a href="displaySearch.jsp?search=<%=rs.getString("genreName")%>"><%=rs.getString("genreName")%></a></li>
-          <% } %>
+          <% }conn.close(); %>
           </ul>
         </li>
         

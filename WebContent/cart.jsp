@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-	if(session.getAttribute("user")!=null/* cookies!=null */){
+	if(session.getAttribute("userDetails")!=null/* cookies!=null */){
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		/* for (Cookie cookie : cookies) {
 		       if (cookie.getName().equals("c1")) {
@@ -36,9 +36,8 @@
                 </thead>
                 <tbody>
                 <%
-                if(resultsList == null){%>
-                	<p>There are no items in Cart</p>
-                <%}
+			if(resultsList==null){
+			} else {
                 for (shoppingCart shops:resultsList) {%>
                     <tr>
                         <td class="col-sm-8 col-md-6">
@@ -56,7 +55,7 @@
                         <td class="col-sm-1 col-md-1 text-center"><strong><%=shops.getPrice() %></strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
                     </tr>
@@ -85,11 +84,13 @@
                     <tr>
                         <td>   </td>
                         <td>   </td>
-                        <td>   </td>
-                        <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        <td><button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove All
                         </button></td>
+                        <td>
+                        <a href="index.jsp"><button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </button></a></td>
                         <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
@@ -100,6 +101,7 @@
         </div>
     </div>
 </div>
-<%} %>
+<%}
+	}%>
 </body>
 </html>
