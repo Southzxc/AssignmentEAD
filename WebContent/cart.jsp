@@ -38,7 +38,10 @@
                 <%
 			if(resultsList==null){
 			} else {
-                for (shoppingCart shops:resultsList) {%>
+				int scgid = -1;
+                for (shoppingCart shops:resultsList) {
+                scgid++;
+                %>
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
@@ -50,14 +53,27 @@
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                        <form action="updateCart">
+                        <input type="hidden" name="scgid" value="<%=scgid %>">
+                        <input type="hidden" name="title" value="<%=shops.getTitle() %>">
+	      			    <input type="hidden" name="company" value="<%=shops.getCompany() %>">
+	      				<input type="hidden" name="price" value="<%=shops.getPrice() %>">
+	      				<input type="hidden" name="imageLocation" value="<%=shops.getImageLocation() %>">
+	      				<input type="hidden" name="preOwned" value="<%=shops.getPreOwned() %>">
+                        <input type="number" min="1" class="form-control" name="number" value="<%=shops.getQuantity()%>">
+                        <button type="submit" class="btn btn-default">
+                            Update
+                        </button></form>
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong><%=shops.getPrice() %></strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
                         <td class="col-sm-1 col-md-1">
+                        <form action ="removeFromCart">
+                        <input type="hidden" name="scgid" value="<%=scgid %>"/>
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </button></form>
+                        </td>
                     </tr>
                     <%} %>
                     <tr>

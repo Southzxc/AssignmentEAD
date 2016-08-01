@@ -1,7 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.util.*;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.cartManager;
 import model.shoppingCart;
 
 /**
- * Servlet implementation class addToCart
+ * Servlet implementation class updateCart
  */
-@WebServlet("/addToCart")
-public class addToCart extends HttpServlet {
+@WebServlet("/updateCart")
+public class updateCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addToCart() {
+    public updateCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,28 +34,20 @@ public class addToCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		int scgid = Integer.parseInt(request.getParameter("scgid"));
 		String title = request.getParameter("title");
 		String company = request.getParameter("company");
 		double price = Double.parseDouble(request.getParameter("price"));
 		String imageLocation=request.getParameter("imageLocation");
 		String preOwned=request.getParameter("preOwned");
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		
-		shoppingCart sc = new shoppingCart();
-		sc.setshoppingCart(title, company, price, imageLocation, preOwned, quantity);
+		int number = Integer.parseInt(request.getParameter("number"));
 		
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
-		if(resultsList==null) {
-			resultsList=new ArrayList<shoppingCart>();
-		}
+		PrintWriter out = response.getWriter();
+		resultsList.remove(scgid);
 		
-		resultsList.add(sc);
-		
-		session.setAttribute("results", resultsList);
-		
-		response.sendRedirect("cart.jsp");
 	}
 
 	/**
