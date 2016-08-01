@@ -32,6 +32,7 @@ try{
 	ResultSet rs=pstmt.executeQuery();	
 			
 	if(rs.next()){
+		String userIDdb = rs.getString(1);
 		String usernamedb = rs.getString(2);
 		String userpwddb = rs.getString(3);
 		String addressdb = rs.getString(4);
@@ -54,6 +55,7 @@ try{
 			
 			} */
 				UserModel UserModel = new UserModel();
+				UserModel.setUserID(userIDdb);
 				UserModel.setUsername(usernamedb);
 				UserModel.setPassword(userpwddb);
 				UserModel.setAddress(addressdb);

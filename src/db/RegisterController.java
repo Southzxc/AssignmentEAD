@@ -41,7 +41,6 @@ public class RegisterController extends HttpServlet {
 		String contact = request.getParameter("contact");
 		String password = request.getParameter("password");
 		
-		PrintWriter out = response.getWriter();
 		RegUtility RegUtility = new RegUtility();
 		int chkRegDetails = RegUtility.chkRegDetails(username, address, email, contact, password);
 		HttpSession session = request.getSession();		

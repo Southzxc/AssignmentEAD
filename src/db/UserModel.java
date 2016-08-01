@@ -1,12 +1,19 @@
 package db;
 
 public class UserModel {
+	private String userID;
 	private String username;
 	private String address;
 	private String email;
 	private String contact;
 	private String password;
 	
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
 	public String getUsername() {
 		return username;
 	}
