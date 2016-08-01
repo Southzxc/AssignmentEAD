@@ -77,4 +77,37 @@ public class ProfileUtility {
 			e.printStackTrace();
 		}
 	}
+	
+	public int chkPasswordDetails(String passworddb, String password, String npassword, String cfpassword){
+		
+		//regex for checking if password contains at least alphanumeric characters with minimum length of 8 characters 
+		Pattern ppassword = Pattern.compile("^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d])|(?=.*\\d))|(?=.*[A-Z])(?=.*\\d)).{8,16}$");
+		Matcher mpassword = ppassword.matcher(cfpassword);
+		
+		if(password.isEmpty() || npassword.isEmpty() || cfpassword.isEmpty()){
+			return 1;
+		}else if(!password.equals(passworddb)){
+			return 2;
+		}else if(!npassword.equals(cfpassword)){
+			return 3;
+		}else if(mpassword.matches() == false){
+			return 4;
+		}else{
+			return 0;
+		}		
+	}
+	
+	public void updtPasswordDetails(String userID, String cfpassword){
+		try{
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET userpwd = ? where userID = ?");
+			pstmt.setString(1, cfpassword);
+			pstmt.setString(2, userID);
+			
+			pstmt.executeUpdate();
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }

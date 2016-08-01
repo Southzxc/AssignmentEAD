@@ -79,19 +79,19 @@ if(session.getAttribute("userDetails") == null){
 					  	<div class="form-group">
 							<label class="col-sm-2 control-label" for="password">Current password</label>
 							<div class="col-sm-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="password"/>
+								<input type="password" class="form-control" id="password" name="password" placeholder="Current password"/>
 							</div>						
 						</div>
 					  	<div class="form-group">
-							<label class="col-sm-2 control-label" for="password">New password</label>
+							<label class="col-sm-2 control-label" for="npassword">New password</label>
 							<div class="col-sm-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="password"/>
+								<input type="password" class="form-control" id="npassword" name="npassword" placeholder="New password"/>
 							</div>					
 						</div>
 					  	<div class="form-group">
 							<label class="col-sm-2 control-label" for="password">Confirm password</label>
 							<div class="col-sm-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="password"/>
+								<input type="password" class="form-control" id="cfpassword" name="cfpassword" placeholder="Confirm password"/>
 							</div>						
 						</div>
 						<div class="form-group">
