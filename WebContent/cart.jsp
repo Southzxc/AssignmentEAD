@@ -36,10 +36,13 @@
                 </thead>
                 <tbody>
                 <%
-			if(resultsList==null){
-			} else {
+			if(resultsList!=null){
+				double total=0;
+				double subtotal=0;
 				int scgid = -1;
                 for (shoppingCart shops:resultsList) {
+                	total = shops.getPrice()*shops.getQuantity();
+                	subtotal = subtotal+total;
                 scgid++;
                 %>
                     <tr>
@@ -55,6 +58,7 @@
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         <form action="updateCart">
                         <input type="hidden" name="scgid" value="<%=scgid %>">
+                        <input type="hidden" name="gameID" value="<%=shops.getGameID() %>">
                         <input type="hidden" name="title" value="<%=shops.getTitle() %>">
 	      			    <input type="hidden" name="company" value="<%=shops.getCompany() %>">
 	      				<input type="hidden" name="price" value="<%=shops.getPrice() %>">
@@ -65,8 +69,8 @@
                             Update
                         </button></form>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong><%=shops.getPrice() %></strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$<%=String.format("%.2f", shops.getPrice()) %></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$<%=String.format("%.2f", total)%></strong></td>
                         <td class="col-sm-1 col-md-1">
                         <form action ="removeFromCart">
                         <input type="hidden" name="scgid" value="<%=scgid %>"/>
@@ -76,26 +80,13 @@
                         </td>
                     </tr>
                     <%} %>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>GST</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
-                    </tr>
+                    
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <td class="text-right"><h3><strong>$<%=String.format("%.2f", subtotal) %></strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>

@@ -34,6 +34,7 @@ public class addToCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		int gameID = Integer.parseInt(request.getParameter("gameID"));
 		String title = request.getParameter("title");
 		String company = request.getParameter("company");
 		double price = Double.parseDouble(request.getParameter("price"));
@@ -41,15 +42,24 @@ public class addToCart extends HttpServlet {
 		String preOwned=request.getParameter("preOwned");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
-		shoppingCart sc = new shoppingCart();
-		sc.setshoppingCart(title, company, price, imageLocation, preOwned, quantity);
-		
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
 		if(resultsList==null) {
 			resultsList=new ArrayList<shoppingCart>();
 		}
+		
+		for(shoppingCart shops:resultsList){
+			if(gameID==shops.getGameID()){
+				shops.setQuantity(shops.getQuantity()+1);
+				response.sendRedirect("cart.jsp");
+				return;
+			}
+		}
+		
+		shoppingCart sc = new shoppingCart();
+		sc.setshoppingCart(gameID,title, company, price, imageLocation, preOwned, quantity);
+		
 		
 		resultsList.add(sc);
 		

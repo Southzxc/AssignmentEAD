@@ -104,6 +104,7 @@
 	     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
 	     					    <%if(session.getAttribute("userDetails")!=null){ %>
 	      					    <form action="addToCart">
+	      					    <input type="hidden" name="gameID" value="<%=rs.getInt("gameID")%>">
 	      					    <input type="hidden" name="title" value="<%=rs.getString("title") %>">
 	      					    <input type="hidden" name="company" value="<%=rs.getString("company") %>">
 	      					    <input type="hidden" name="price" value="<%=rs.getDouble("price") %>">

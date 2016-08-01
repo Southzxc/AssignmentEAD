@@ -35,6 +35,7 @@ public class updateCart extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		int scgid = Integer.parseInt(request.getParameter("scgid"));
+		int gameID = Integer.parseInt(request.getParameter("gameID"));
 		String title = request.getParameter("title");
 		String company = request.getParameter("company");
 		double price = Double.parseDouble(request.getParameter("price"));
@@ -45,8 +46,14 @@ public class updateCart extends HttpServlet {
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
-		PrintWriter out = response.getWriter();
 		resultsList.remove(scgid);
+		
+		shoppingCart sc = new shoppingCart();
+		sc.setshoppingCart(gameID,title, company, price, imageLocation, preOwned, number);
+		
+		resultsList.add(sc);
+		
+		response.sendRedirect("cart.jsp");
 		
 	}
 

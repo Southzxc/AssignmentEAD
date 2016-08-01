@@ -11,8 +11,9 @@ public class shoppingCart {
 	private int quantity;
 
 	
-	public void setshoppingCart( String title, String company,double price,
+	public void setshoppingCart(int gameID, String title, String company,double price,
 			String imageLocation, String preOwned, int quantity) {
+		this.gameID = gameID;
 		this.title = title;
 		this.company = company;
 		this.imageLocation = imageLocation;
