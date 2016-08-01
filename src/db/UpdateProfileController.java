@@ -99,11 +99,6 @@ public class UpdateProfileController extends HttpServlet {
 			session.setAttribute("success", "Password updated.");
 			response.sendRedirect("updateProfile.jsp");
 		}
-		PrintWriter out = response.getWriter();
-		out.println(passworddb);
-		out.println(password);
-		out.println(npassword);
-		out.println(cfpassword);
 	}
 
 }
