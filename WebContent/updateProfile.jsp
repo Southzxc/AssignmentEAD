@@ -15,6 +15,23 @@ if(session.getAttribute("userDetails") == null){
 	<%@include file="navbar.jsp" %>
 	<%UserModel userDetails = (UserModel)session.getAttribute("userDetails"); %>
 	<div class="container">
+		<%if(session.getAttribute("success") != null){%>
+			<div class="alert alert-success">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Success!</strong> <%=session.getAttribute("success") %>
+			</div>			
+		<%}
+		session.removeAttribute("success");
+		%>
+		
+		<%if(session.getAttribute("errorMsg") != null){%> 
+			<div class="alert alert-danger">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Error:</strong> <%=session.getAttribute("errorMsg") %>
+			</div>			
+		<%}
+		session.removeAttribute("errorMsg");
+		%>
 		<h1 class="page-header">
 			Update your profile
 		</h1>
@@ -62,19 +79,19 @@ if(session.getAttribute("userDetails") == null){
 					  	<div class="form-group">
 							<label class="col-sm-2 control-label" for="password">Current password</label>
 							<div class="col-sm-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="password"/>
+								<input type="password" class="form-control" id="password" name="password" placeholder="Current password"/>
 							</div>						
 						</div>
 					  	<div class="form-group">
-							<label class="col-sm-2 control-label" for="password">New password</label>
+							<label class="col-sm-2 control-label" for="npassword">New password</label>
 							<div class="col-sm-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="password"/>
+								<input type="password" class="form-control" id="npassword" name="npassword" placeholder="New password"/>
 							</div>					
 						</div>
 					  	<div class="form-group">
 							<label class="col-sm-2 control-label" for="password">Confirm password</label>
 							<div class="col-sm-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="password"/>
+								<input type="password" class="form-control" id="cfpassword" name="cfpassword" placeholder="Confirm password"/>
 							</div>						
 						</div>
 						<div class="form-group">
