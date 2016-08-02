@@ -50,7 +50,10 @@
                     </li>
                     <li>
                         <a href="addGameGenre.jsp"><i class="glyphicon glyphicon-plus"></i> Add Games/Genre</a>
-                    </li>                  
+                    </li>
+                    <li>
+                        <a href="stockCheck.jsp"><i class="glyphicon glyphicon-check"></i> Check stock</a>
+                    </li>                   
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -94,6 +97,7 @@
 										<th>Title</th>
 										<th>Company</th>
 										<th>Release date</th>
+										<th>Quantity</th>
 										<th>Price</th>
 										<th>More information</th>
 										<th>Manage</th>
@@ -111,6 +115,7 @@
 										<td><%=rs.getString("title") %></td>
 										<td><%=rs.getString("company") %></td>
 										<td><%=rs.getDate("releaseDate") %></td>
+										<td><%=rs.getInt("quantity")%></td>
 										<td><%out.println(String.format("%.2f", rs.getDouble("price"))); %></td>
 										
 										<!-- Modal button for more info -->

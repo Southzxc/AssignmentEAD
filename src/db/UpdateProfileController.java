@@ -40,18 +40,9 @@ public class UpdateProfileController extends HttpServlet {
 		String contact = request.getParameter("contact");
 		
 		ProfileUtility ProfileUtility = new ProfileUtility();
-		int chkProfileDetails = ProfileUtility.chkProfileDetails(emaildb, username, address, email, contact);
-		if(chkProfileDetails == 1){
-			session.setAttribute("errorMsg", "Please fill in all the blanks");
-			response.sendRedirect("updateProfile.jsp");
-		}else if(chkProfileDetails == 2){
-			session.setAttribute("errorMsg", "Please enter a 8-digit contact number");
-			response.sendRedirect("updateProfile.jsp");
-		}else if(chkProfileDetails == 3){
-			session.setAttribute("errorMsg", "Please enter a valid email address");
-			response.sendRedirect("updateProfile.jsp");
-		}else if(chkProfileDetails == 4){
-			session.setAttribute("errorMsg", "This email has already been used, please use another email");
+		String chkProfileDetails = ProfileUtility.chkProfileDetails(emaildb, username, address, email, contact);
+		if(!chkProfileDetails.isEmpty()){
+			session.setAttribute("errorMsg", chkProfileDetails);
 			response.sendRedirect("updateProfile.jsp");
 		}else{
 			ProfileUtility.updtProfileDetails(userIDdb, username, address, email, contact);
@@ -79,19 +70,10 @@ public class UpdateProfileController extends HttpServlet {
 		String cfpassword = request.getParameter("cfpassword");
 		
 		ProfileUtility ProfileUtility = new ProfileUtility();
-		int chkPassword = ProfileUtility.chkPasswordDetails(passworddb, password, npassword, cfpassword);
+		String chkPassword = ProfileUtility.chkPasswordDetails(passworddb, password, npassword, cfpassword);
 		
-		if(chkPassword == 1){
-			session.setAttribute("errorMsg", "Please fill in all the blanks.");
-			response.sendRedirect("updateProfile.jsp");
-		}else if(chkPassword == 2){
-			session.setAttribute("errorMsg", "Wrong current password.");
-			response.sendRedirect("updateProfile.jsp");
-		}else if(chkPassword == 3){
-			session.setAttribute("errorMsg", "New password and confirm password does not match.");
-			response.sendRedirect("updateProfile.jsp");
-		}else if(chkPassword == 4){
-			session.setAttribute("errorMsg", "Please provide a password with numbers and alphabets that is at least 8 characters long");
+		if(!chkPassword.isEmpty()){
+			session.setAttribute("errorMsg", chkPassword);
 			response.sendRedirect("updateProfile.jsp");
 		}else{
 			ProfileUtility.updtPasswordDetails(userIDdb, cfpassword);

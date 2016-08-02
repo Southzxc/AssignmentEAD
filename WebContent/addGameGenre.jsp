@@ -52,6 +52,9 @@
                     <li class="active">
                         <a href="addGameGenre.jsp"><i class="glyphicon glyphicon-plus"></i> Add Games/Genre</a>
                     </li>
+                    <li>
+                        <a href="stockCheck.jsp"><i class="glyphicon glyphicon-check"></i> Check stock</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

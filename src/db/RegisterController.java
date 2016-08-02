@@ -42,26 +42,14 @@ public class RegisterController extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		RegUtility RegUtility = new RegUtility();
-		int chkRegDetails = RegUtility.chkRegDetails(username, address, email, contact, password);
+		String chkRegDetails = RegUtility.chkRegDetails(username, address, email, contact, password);
 		HttpSession session = request.getSession();		
-		if(chkRegDetails == 1){
-			session.setAttribute("errorMsg", "Please fill in all the blanks");
+		if(!chkRegDetails.isEmpty()){
+			session.setAttribute("errorMsg", chkRegDetails);
 			response.sendRedirect("register.jsp");
-		} else if(chkRegDetails == 2){
-			session.setAttribute("errorMsg", "Please enter a 8-digit contact number");
-			response.sendRedirect("register.jsp");
-		} else if(chkRegDetails == 3){
-			session.setAttribute("errorMsg", "Please enter a valid email address");
-			response.sendRedirect("register.jsp");
-		} else if(chkRegDetails == 4){
-			session.setAttribute("errorMsg", "Please provide a password with numbers and alphabets that is at least 8 characters long");
-			response.sendRedirect("register.jsp");
-		} else if(chkRegDetails == 5){
-			session.setAttribute("errorMsg", "This email has already been used, please use another email to register");
-			response.sendRedirect("register.jsp");
-		} else{
+		}else{
 			RegUtility.addRegDetails(username, address, email, contact, password);
-			response.sendRedirect("registered.jsp");
+			response.sendRedirect("registered.jsp");//TODO redirect to register.jsp and display success msg
 		}
 	}
 

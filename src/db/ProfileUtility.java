@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfileUtility {
-	public int chkProfileDetails(String emaildb, String username, String address, String email, String contact){
+	public String chkProfileDetails(String emaildb, String username, String address, String email, String contact){
 		//regex for checking contact
 		Pattern pcontact = Pattern.compile("^[\\d+]{8}$");
 		Matcher mcontact = pcontact.matcher(contact);
@@ -21,8 +21,6 @@ public class ProfileUtility {
 		}
 		//check if email is found in the sql server
 		boolean emailFound = false;
-		System.out.println(emaildb);
-		System.out.println(email);
 		if(!emaildb.equals(email)){
 			try {
 				Connection conn = DBConnection.getConnection();
@@ -31,7 +29,6 @@ public class ProfileUtility {
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()){
 					emailFound = true;
-					System.out.println(emailFound);
 				}
 				conn.close();
 				rs.close();
@@ -39,7 +36,6 @@ public class ProfileUtility {
 				e.printStackTrace();
 			}			
 		}
-		System.out.println(emailFound + "1");
 		
 		/* The first if statement check if there is the input is empty, if it is empty, it will return false
 		 * The second if statement check if contact has 8 digits in it, if it does not match, it will return false
@@ -47,16 +43,16 @@ public class ProfileUtility {
 		 * Finally, the else statement will return true if there are no errors with the input given
 		 */
 		if(username.isEmpty() || address.isEmpty() || email.isEmpty() || contact.isEmpty()){
-			return 1;
+			return "Please fill in all the blanks";
 		}else if(mcontact.matches() == false){
-			return 2;
+			return "Please enter a 8-digit contact number";
 		}else if(countsymbol != 1 || !email.contains(".")){
-			return 3;
+			return "Please enter a valid email address";
 		}else if(emailFound == true){
-			return 4;
+			return "This email has already been used, please use another email";
 		}
 		else{
-			return 0;
+			return "";
 		}
 	}
 	
@@ -78,22 +74,22 @@ public class ProfileUtility {
 		}
 	}
 	
-	public int chkPasswordDetails(String passworddb, String password, String npassword, String cfpassword){
+	public String chkPasswordDetails(String passworddb, String password, String npassword, String cfpassword){
 		
 		//regex for checking if password contains at least alphanumeric characters with minimum length of 8 characters 
 		Pattern ppassword = Pattern.compile("^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d])|(?=.*\\d))|(?=.*[A-Z])(?=.*\\d)).{8,16}$");
 		Matcher mpassword = ppassword.matcher(cfpassword);
 		
 		if(password.isEmpty() || npassword.isEmpty() || cfpassword.isEmpty()){
-			return 1;
+			return "Please fill in all the blanks.";
 		}else if(!password.equals(passworddb)){
-			return 2;
+			return "Wrong current password.";
 		}else if(!npassword.equals(cfpassword)){
-			return 3;
+			return "New password and confirm password does not match.";
 		}else if(mpassword.matches() == false){
-			return 4;
+			return "Please provide a password with numbers and alphabets that is at least 8 characters long";
 		}else{
-			return 0;
+			return "";
 		}		
 	}
 	
