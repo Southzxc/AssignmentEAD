@@ -1,6 +1,7 @@
 <%
 if(session.getAttribute("userDetails") == null){
-	response.sendRedirect("unauthorised.jsp");
+	session.setAttribute("errorMsg", "Please login to view the page");
+	response.sendRedirect("index.jsp");
 }else{
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
