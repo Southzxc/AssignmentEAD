@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import = "java.sql.*, java.util.*, db.*,controller.*, model.*" %> 
+<%@ page import = "java.sql.*, java.util.*, db.*" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -91,17 +91,17 @@
                     <tr>
                         <td>   </td>
                         <td>   </td>
-                        <td><button type="submit" class="btn btn-danger">
+                        <td><form action="deleteAll"><button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove All
-                        </button></td>
+                        </button></form></td>
                         <td>
                         <a href="index.jsp"><button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </button></a></td>
                         <td>
-                        <button type="button" class="btn btn-success">
+                        <a href="confirmPurchases.jsp"><button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        </button></a></td>
                     </tr>
                 </tbody>
             </table>

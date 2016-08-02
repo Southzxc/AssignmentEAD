@@ -1,7 +1,7 @@
-package controller;
+package db;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.cartManager;
-import model.shoppingCart;
+
 
 /**
- * Servlet implementation class addToCart
+ * Servlet implementation class deleteAll
  */
-@WebServlet("/addToCart")
-public class addToCart extends HttpServlet {
+@WebServlet("/deleteAll")
+public class deleteAll extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addToCart() {
+    public deleteAll() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,37 +32,10 @@ public class addToCart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		int gameID = Integer.parseInt(request.getParameter("gameID"));
-		String title = request.getParameter("title");
-		String company = request.getParameter("company");
-		double price = Double.parseDouble(request.getParameter("price"));
-		String imageLocation=request.getParameter("imageLocation");
-		String preOwned=request.getParameter("preOwned");
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
-		if(resultsList==null) {
-			resultsList=new ArrayList<shoppingCart>();
-		}
-		
-		for(shoppingCart shops:resultsList){
-			if(gameID==shops.getGameID()){
-				shops.setQuantity(shops.getQuantity()+1);
-				response.sendRedirect("cart.jsp");
-				return;
-			}
-		}
-		
-		shoppingCart sc = new shoppingCart();
-		sc.setshoppingCart(gameID,title, company, price, imageLocation, preOwned, quantity);
-		
-		
-		resultsList.add(sc);
-		
-		session.setAttribute("results", resultsList);
+		session.removeAttribute("results");
 		
 		response.sendRedirect("cart.jsp");
 	}
