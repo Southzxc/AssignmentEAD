@@ -60,19 +60,9 @@
 						</div>
 		
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="confirm_password">Confirm password</label>
+							<label class="col-sm-4 control-label" for="cfpassword">Confirm password</label>
 							<div class="col-sm-5">
-								<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm password" />
-							</div>
-						</div>
-		
-						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" id="agree" name="agree" value="agree" />Please agree to our policy
-									</label>
-								</div>
+								<input type="password" class="form-control" id="cfpassword" name="cfpassword" placeholder="Confirm password" />
 							</div>
 						</div>
 		
@@ -106,7 +96,7 @@
 						alphanumeric: true,
 						
 					},
-					confirm_password: {
+					cfpassword: {
 						required: true,
 						alphanumeric:true,
 						equalTo: "#password"
@@ -123,8 +113,7 @@
 						digits: true,
 						maxlength: 8,
 						minlength: 8
-					},
-					agree: "required"
+					}
 				},
 				messages: {
 					username: "Please enter your username",
@@ -132,15 +121,14 @@
 						required: "Please provide a password",
 						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
 					},
-					confirm_password: {
+					cfpassword: {
 						required: "Please provide a password",
 						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
 						equalTo: "Please enter the same password as above"
 					},
 					address:"Please enter your mailing address",
 					email: "Please enter a valid email address",
-					contact:"Please enter a 8 digit contact number",
-					agree: "Please accept our policy"
+					contact:"Please enter a 8 digit contact number"
 				},
 				errorElement: "em",
 				errorPlacement: function ( error, element ) {

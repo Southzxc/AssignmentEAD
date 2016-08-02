@@ -40,9 +40,10 @@ public class RegisterController extends HttpServlet {
 		String email = request.getParameter("email");
 		String contact = request.getParameter("contact");
 		String password = request.getParameter("password");
+		String cfpassword = request.getParameter("cfpassword");
 		
 		RegUtility RegUtility = new RegUtility();
-		String chkRegDetails = RegUtility.chkRegDetails(username, address, email, contact, password);
+		String chkRegDetails = RegUtility.chkRegDetails(username, address, email, contact, password, cfpassword);
 		HttpSession session = request.getSession();		
 		if(!chkRegDetails.isEmpty()){
 			session.setAttribute("errorMsg", chkRegDetails);

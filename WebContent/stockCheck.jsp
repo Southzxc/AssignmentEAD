@@ -74,6 +74,15 @@
                         </ol>
                     </div>
                     <!-- Content Starts here -->
+                    <div class="col-lg-12">
+	                	<form action="CheckStockController">
+	                		<div class="form-group">
+	                			<label for="stockCheck">Stock check</label>
+	                			<input type="number" class="form-control" id="stockCheck" name="stockCheck" placeholder="Check game stock">
+	                		</div>
+	                		<button type="submit" class="btn btn-default">Check</button>
+	                	</form>
+                	</div>
 				</div>
 				<!-- /.row -->
             </div>

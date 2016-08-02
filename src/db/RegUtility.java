@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import java.sql.*;
 
 public class RegUtility {	
-	public String chkRegDetails(String username, String address, String email, String contact, String password){
+	public String chkRegDetails(String username, String address, String email, String contact, String password, String cfpassword){
 		
 		//regex for checking contact
 		Pattern pcontact = Pattern.compile("^[\\d+]{8}$");
@@ -47,7 +47,7 @@ public class RegUtility {
 		 * The fourth if statement check if email is found. if email is found, it will return false
 		 * Finally, the else statement will return true if there are no errors with the input given
 		 */
-		if(username.isEmpty() || address.isEmpty() || email.isEmpty() || contact.isEmpty() || password.isEmpty()){
+		if(username.isEmpty() || address.isEmpty() || email.isEmpty() || contact.isEmpty() || password.isEmpty() || cfpassword.isEmpty()){
 			return "Please fill in all the blanks";
 		}else if(mcontact.matches() == false){
 			return "Please enter a 8-digit contact number";
@@ -55,9 +55,11 @@ public class RegUtility {
 			return "Please enter a valid email address";
 		}else if(mpassword.matches() == false){
 			return "Please provide a password with numbers and alphabets that is at least 8 characters long";
+		}else if(!password.equals(cfpassword)){
+			return "Password and confirm password does not match.";
 		}else if(emailFound == true){
 			return "This email has already been used, please use another email to register";
-		}//TODO chk confirm password also
+		}
 		else{
 			return "";
 		}
