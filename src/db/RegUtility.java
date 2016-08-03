@@ -5,6 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.sql.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 public class RegUtility {	
 	public String chkRegDetails(String username, String address, String email, String contact, String password, String cfpassword){
 		
@@ -67,16 +71,19 @@ public class RegUtility {
 		
 	}
 	
-	public void addRegDetails(String username, String address, String email, String contact, String password){
+	public void addRegDetails(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		UserModel UserModel = (UserModel)session.getAttribute("RegUserDetails");
+		session.getAttribute("RegUserDetails");
 		int isAdmin = 0;
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (username, userpwd, address, email, contact, isAdmin) VALUES (?, ?, ?, ?, ?, ?)");
-			pstmt.setString(1, username);
-			pstmt.setString(2, password);
-			pstmt.setString(3, address);
-			pstmt.setString(4, email);
-			pstmt.setString(5, contact);
+			pstmt.setString(1, UserModel.getUsername());
+			pstmt.setString(2, UserModel.getPassword());
+			pstmt.setString(3, UserModel.getAddress());
+			pstmt.setString(4, UserModel.getEmail());
+			pstmt.setString(5, UserModel.getContact());
 			pstmt.setInt(6, isAdmin);
 			pstmt.executeUpdate();
 			conn.close();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import = "java.sql.*, db.*"%>
+    pageEncoding="ISO-8859-1" import = "java.sql.*, db.*, java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,6 +82,35 @@
 	                		</div>
 	                		<button type="submit" class="btn btn-default">Check</button>
 	                	</form>
+                	
+                	<%if(session.getAttribute("gameDetails") != null){
+                		ArrayList<CheckStockModel> gameDetails = (ArrayList<CheckStockModel>)session.getAttribute("gameDetails");
+                	%>
+                	<div class="table-responsive col-lg-10 col-lg-offset-1">
+                		<table class="table table-hover">
+                			<thead>
+                				<tr>
+                					<th>Title</th>
+                					<th>Price</th>
+                					<th>Quantity</th>
+                				</tr>
+                			</thead>
+                		<%for(CheckStockModel showGameDetails:gameDetails){%>
+							<tbody>
+								<tr>
+									<td><%=showGameDetails.getTitle() %></td>
+									<td><% out.print(String.format("%.2f", showGameDetails.getPrice())); %></td>
+									<td><%=showGameDetails.getQuantity() %></td>
+								</tr>
+							</tbody>
+                	<%	}
+                	%>
+                		
+                	<%
+                	session.removeAttribute("gameDetails");
+                	} %>
+                		</table>
+                	</div>
                 	</div>
 				</div>
 				<!-- /.row -->
