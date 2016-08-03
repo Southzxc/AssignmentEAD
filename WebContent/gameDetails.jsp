@@ -44,6 +44,7 @@
                     <div class="caption-full">
                         <h3 class="pull-right">$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></h3>
                         <h3><%=rs.getString("title") %><small class="gDTitleSide"><%=rs.getString("preowned").equals("Yes") ? "Pre-owned" : "Brand new!" %></small></h3>
+                        <%if(session.getAttribute("userDetails")!=null){ %>
                         <form action="addToCart">
                         		<input type="hidden" name="gameID" value="<%=rs.getInt("gameID")%>">
 	      					    <input type="hidden" name="title" value="<%=rs.getString("title") %>">
@@ -54,6 +55,8 @@
 	      					    <input type="hidden" name="quantity" value="1">
 	      					    <input type="submit" value="BUY" class="btn btn-success pull-right" role="button">
 	      				</form>
+	      				<%} else { %>
+	      				<input type="submit" value="BUY" class="btn btn-success pull-right" role="button"><%} %>
                         <b>Company</b> <p><%=rs.getString("company") %></p>
                                                <%
                         pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");

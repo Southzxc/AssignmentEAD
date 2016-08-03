@@ -6,6 +6,33 @@ import java.util.*;
 
 public class cartManager {
 	
+	public String checkQuantity(int gameID, int quantity){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String connURL ="jdbc:mysql://13.67.63.213/mkd?user=root&password=iloveeadxoxo"; 
+
+			Connection conn =   DriverManager.getConnection(connURL);
+				
+			PreparedStatement pstmt=conn.prepareStatement("Select title, quantity from games where gameID = ?");
+			
+			pstmt.setInt(1, gameID);
+		
+			ResultSet rs = pstmt.executeQuery();
+		
+			System.out.println(quantity);
+			
+			if(rs.next()){
+				if(quantity > rs.getInt("quantity")){
+					return "There is only "+rs.getInt("quantity")+ (rs.getInt("quantity") ==1 ? " copy ":" copies ") +rs.getString("title")+" left.";
+				}
+			}conn.close();
+		}catch(Exception err) {
+			System.out.println(err);
+		}
+		return null;
+	}
+	
 	/*public ArrayList<shoppingCart> addPurchase(int gamePurchase) {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
