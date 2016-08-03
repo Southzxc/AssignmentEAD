@@ -25,11 +25,12 @@ String gamePrice = request.getParameter("gamePrice");
 String gameImageLocation = request.getParameter("gameImageLocation");
 String[] genre = request.getParameterValues("genre");
 String preOwned = request.getParameter("preOwned");
+String gameQuantity = request.getParameter("gameQuantity");
 
 try{
 	Connection conn=DBConnection.getConnection();
 
-	PreparedStatement pstmt=conn.prepareStatement("UPDATE games SET title=?, company=?, releaseDate=?, description=?, price=?, imagelocation=?, preOwned=? WHERE gameID=?");
+	PreparedStatement pstmt=conn.prepareStatement("UPDATE games SET title=?, company=?, releaseDate=?, description=?, price=?, imagelocation=?, preOwned=?, quantity=? WHERE gameID=?");
 
 	pstmt.setString(1, gameTitle);
 	pstmt.setString(2, gameCompany);
@@ -38,7 +39,8 @@ try{
 	pstmt.setString(5, gamePrice);
 	pstmt.setString(6, gameImageLocation);
 	pstmt.setString(7, preOwned);
-	pstmt.setString(8, gameID);
+	pstmt.setString(8, gameQuantity);
+	pstmt.setString(9, gameID);
 	
 
 	pstmt.executeUpdate();

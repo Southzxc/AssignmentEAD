@@ -57,7 +57,8 @@ public class RegisterController extends HttpServlet {
 			UserModel.setPassword(cfpassword);
 			session.setAttribute("RegUserDetails", UserModel);
 			RegUtility.addRegDetails(request, response);
-			response.sendRedirect("registered.jsp");//TODO redirect to register.jsp and display success msg
+			session.setAttribute("success", "Thank you for registering with us!");
+			response.sendRedirect("register.jsp");//TODO redirect to register.jsp and display success msg
 		}
 	}
 

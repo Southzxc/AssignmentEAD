@@ -20,6 +20,13 @@
 		<%
 		session.removeAttribute("errorMsg");
 		}%>
+		
+		<%if(session.getAttribute("success") != null){ %>
+			<div class="alert alert-success">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Registered!</strong> <%= session.getAttribute("success") %>
+			</div>
+		<%} %>
 					
 			<div class="panel panel-default">			
 				<div class="panel-heading">

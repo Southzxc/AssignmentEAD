@@ -1,7 +1,6 @@
 package db;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +31,6 @@ public class UpdateProfileController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();		
 		UserModel userDetails = (UserModel)session.getAttribute("userDetails");
-		String userIDdb = userDetails.getUserID();
 		String emaildb = userDetails.getEmail();
 		String username = request.getParameter("username");
 		String address = request.getParameter("address");
@@ -45,11 +43,11 @@ public class UpdateProfileController extends HttpServlet {
 			session.setAttribute("errorMsg", chkProfileDetails);
 			response.sendRedirect("updateProfile.jsp");
 		}else{
-			ProfileUtility.updtProfileDetails(userIDdb, username, address, email, contact);
 			userDetails.setUsername(username);
 			userDetails.setAddress(address);
 			userDetails.setEmail(email);
 			userDetails.setContact(contact);
+			ProfileUtility.updtProfileDetails(request, response);
 			session.setAttribute("success", "Profile updated.");
 			response.sendRedirect("updateProfile.jsp");
 			
@@ -76,8 +74,8 @@ public class UpdateProfileController extends HttpServlet {
 			session.setAttribute("errorMsg", chkPassword);
 			response.sendRedirect("updateProfile.jsp");
 		}else{
-			ProfileUtility.updtPasswordDetails(userIDdb, cfpassword);
 			userDetails.setPassword(cfpassword);
+			ProfileUtility.updtPasswordDetails(request, response);
 			session.setAttribute("success", "Password updated.");
 			response.sendRedirect("updateProfile.jsp");
 		}

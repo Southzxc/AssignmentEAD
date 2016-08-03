@@ -23,10 +23,11 @@
  String gameImageLocation = request.getParameter("gameImageLocation");
  String[] genre = request.getParameterValues("genre");
  String preOwned = request.getParameter("preOwned");
+ String gameQuantity = request.getParameter("gameQuantity");
  try{
 	 Connection conn=DBConnection.getConnection();
 
-	 PreparedStatement pstmt=conn.prepareStatement("INSERT into games(title,company,releaseDate,description,price,imageLocation,preOwned)  VALUES(?,?,?,?,?,?,?)");  
+	 PreparedStatement pstmt=conn.prepareStatement("INSERT into games(title,company,releaseDate,description,price,imageLocation,preOwned,quantity)  VALUES(?,?,?,?,?,?,?,?)");  
 
 	 pstmt.setString(1, gameTitle);
 	 pstmt.setString(2, gameCompany);
@@ -35,6 +36,7 @@
 	 pstmt.setString(5, gamePrice);
 	 pstmt.setString(6, gameImageLocation);
 	 pstmt.setString(7, preOwned);
+	 pstmt.setString(8, gameQuantity);
 
 	 pstmt.executeUpdate();
 	pstmt=conn.prepareStatement("SELECT max(gameid) 'gameid' from games");

@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 public class ProfileUtility {
 	public String chkProfileDetails(String emaildb, String username, String address, String email, String contact){
 		//regex for checking contact
@@ -56,15 +60,17 @@ public class ProfileUtility {
 		}
 	}
 	
-	public void updtProfileDetails(String userID, String username, String address, String email, String contact){
+	public void updtProfileDetails(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		UserModel UserDetails = (UserModel)session.getAttribute("userDetails");
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET username = ?, address = ?, email = ?, contact = ? where userID = ?");
-			pstmt.setString(1, username);
-			pstmt.setString(2, address);
-			pstmt.setString(3, email);
-			pstmt.setString(4, contact);
-			pstmt.setString(5, userID);
+			pstmt.setString(1, UserDetails.getUsername());
+			pstmt.setString(2, UserDetails.getAddress());
+			pstmt.setString(3, UserDetails.getEmail());
+			pstmt.setString(4, UserDetails.getContact());
+			pstmt.setString(5, UserDetails.getUserID());
 			
 			pstmt.executeUpdate();
 			
@@ -93,12 +99,14 @@ public class ProfileUtility {
 		}		
 	}
 	
-	public void updtPasswordDetails(String userID, String cfpassword){
+	public void updtPasswordDetails(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		UserModel UserDetails = (UserModel)session.getAttribute("userDetails");
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET userpwd = ? where userID = ?");
-			pstmt.setString(1, cfpassword);
-			pstmt.setString(2, userID);
+			pstmt.setString(1, UserDetails.getPassword());
+			pstmt.setString(2, UserDetails.getUserID());
 			
 			pstmt.executeUpdate();
 			conn.close();
