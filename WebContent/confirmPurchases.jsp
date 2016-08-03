@@ -3,54 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html> 
 <head>
+
 	<%@include file="header.html" %>   
 	<title>SP Games Store</title>
 </head>
 <body>
+<%if(session.getAttribute("userDetails")!=null) {
+ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");%>
 <%@include file="navbar.jsp" %>
 
-<script>$(document).ready(function () {
-	  var navListItems = $('div.setup-panel div a'),
-      allWells = $('.setup-content'),
-      allNextBtn = $('.nextBtn');
-
-allWells.hide();
-
-navListItems.click(function (e) {
-  e.preventDefault();
-  var $target = $($(this).attr('href')),
-          $item = $(this);
-
-  if (!$item.hasClass('disabled')) {
-      navListItems.removeClass('btn-primary').addClass('btn-default');
-      $item.addClass('btn-primary');
-      allWells.hide();
-      $target.show();
-      $target.find('input:eq(0)').focus();
-  }
-});
-
-allNextBtn.click(function(){
-  var curStep = $(this).closest(".setup-content"),
-      curStepBtn = curStep.attr("id"),
-      nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-      curInputs = curStep.find("input[type='text'],input[type='url']"),
-      isValid = true;
-
-  $(".form-group").removeClass("has-error");
-  for(var i=0; i<curInputs.length; i++){
-      if (!curInputs[i].validity.valid){
-          isValid = false;
-          $(curInputs[i]).closest(".form-group").addClass("has-error");
-      }
-  }
-
-  if (isValid)
-      nextStepWizard.removeAttr('disabled').trigger('click');
-});
-
-$('div.setup-panel div a.btn-primary').trigger('click');
-});</script>
+<script src="js/confirmPurchases.js"></script>
 <div class="container">
   
 <div class="stepwizard col-md-offset-3">
@@ -74,18 +36,22 @@ $('div.setup-panel div a.btn-primary').trigger('click');
     <div class="row setup-content" id="step-1">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
-          <h3> Step 1</h3>
+          <h3> Step 1: Detail Confirmation</h3>
           <div class="form-group">
-            <label class="control-label">First Name</label>
-            <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
+            <label class="control-label">Name:</label><br />
+            <%=session.getAttribute("username") %>
           </div>
           <div class="form-group">
-            <label class="control-label">Last Name</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+            <label class="control-label">Email:</label><br />
+            <%=session.getAttribute("email") %>
           </div>
           <div class="form-group">
-            <label class="control-label">Address</label>
-            <textarea required="required" class="form-control" placeholder="Enter your address" ></textarea>
+            <label class="control-label">Contact:</label><br />
+            <%=session.getAttribute("contact") %>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Address:</label><br />
+            <%=session.getAttribute("address") %>
           </div>
           <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
         </div>
@@ -94,14 +60,30 @@ $('div.setup-panel div a.btn-primary').trigger('click');
     <div class="row setup-content" id="step-2">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
-          <h3> Step 2</h3>
+          <h3> Step 2: Payment Details</h3>
+           <div class='col-xs-12 form-group required'>
+                <label class='control-label'>Name on Card</label>
+                <input required="required" class='form-control' size='4' type='text'>
+           </div>
           <div class="form-group">
-            <label class="control-label">Company Name</label>
-            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+            <div class='col-xs-12 form-group card required'>
+                <label class='control-label'>Card Number</label>
+                <input required="required" autocomplete='off' class='form-control card-number' size='20' type='text'>
+              </div>
           </div>
           <div class="form-group">
-            <label class="control-label">Company Address</label>
-            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
+            <div class='col-xs-4 form-group cvc required'>
+                <label class='control-label'>CVC</label>
+                <input required="required" autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+              </div>
+              <div class='col-xs-4 form-group expiration required'>
+                <label class='control-label'>Expiration</label>
+                <input required="required" class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+              </div>
+              <div class='col-xs-4 form-group expiration required'>
+                <label class='control-label'> </label>
+                <input required="required" class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+              </div>
           </div>
           <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
         </div>
@@ -110,13 +92,27 @@ $('div.setup-panel div a.btn-primary').trigger('click');
     <div class="row setup-content" id="step-3">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
-          <h3> Step 3</h3>
-          <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+          <h3> Step 3: Cart Summary</h3>
+          <label class="control-label">Game:</label><br />
+          <%
+          double total;
+          double subtotal=0;
+          for(shoppingCart shops: resultsList){
+          total = shops.getPrice()*shops.getQuantity();
+                	subtotal = subtotal+total;%>
+          		<%=shops.getQuantity() %> <%=shops.getTitle() %><br />
+          <%} %>
+          <br /><label class="control-label">Total:</label><br />
+          $<%=String.format("%.2f", subtotal) %>
         </div>
+        <button class="btn btn-success btn-lg pull-right" type="submit">Pay Now</button>
       </div>
     </div>
   </form>
   
 </div>
+<%} else {
+	response.sendRedirect("unauthorised.jsp");
+}%>
 </body>
 </html>
