@@ -49,7 +49,14 @@ public class RegisterController extends HttpServlet {
 			session.setAttribute("errorMsg", chkRegDetails);
 			response.sendRedirect("register.jsp");
 		}else{
-			RegUtility.addRegDetails(username, address, email, contact, password);
+			UserModel UserModel = new UserModel();
+			UserModel.setUsername(username);
+			UserModel.setAddress(address);
+			UserModel.setEmail(email);
+			UserModel.setContact(contact);
+			UserModel.setPassword(cfpassword);
+			session.setAttribute("RegUserDetails", UserModel);
+			RegUtility.addRegDetails(request, response);
 			response.sendRedirect("registered.jsp");//TODO redirect to register.jsp and display success msg
 		}
 	}
