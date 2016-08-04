@@ -33,6 +33,10 @@ if(session.getAttribute("userDetails") == null){
 		<%}
 		session.removeAttribute("errorMsg");
 		%>
+		<ol class="breadcrumb">
+			<li><a href="viewProfile.jsp">Profile page</a></li>
+			<li class="active">Update profile</li>
+		</ol>
 		<h1 class="page-header">
 			Update your profile
 		</h1>

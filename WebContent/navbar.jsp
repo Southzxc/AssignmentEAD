@@ -80,7 +80,7 @@
 				<li class="dropdown">
      			     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome <%= session.getAttribute("username") %><span class="caret"></span></a>
        			   <ul class="dropdown-menu">
-        			    <li><a href="updateProfile.jsp">Update Profile</a></li>
+        			    <li><a href="viewProfile.jsp">View Profile</a></li>
         			    <li><a href="cart.jsp">Shopping Cart</a></li>
         			    <li><a href="logout.jsp">Logout</a></li>
         			</ul>
