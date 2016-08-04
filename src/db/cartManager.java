@@ -71,8 +71,6 @@ public class cartManager {
 			Connection conn = DBConnection.getConnection();
 				
 			PreparedStatement pstmt=conn.prepareStatement("insert into transaction(userID, timestamp) values (?,?)",Statement.RETURN_GENERATED_KEYS);
-			System.out.println("asd");
-			System.out.println(userdetails.getUserID());
 				pstmt.setString(1, userdetails.getUserID());
 				pstmt.setString(2, timestamp);
 				
@@ -90,10 +88,17 @@ public class cartManager {
 				
 				pstmt.setInt(1, lasttransid);
 				pstmt.setInt(2, shops.getGameID());
-				pstmt.setInt(3, shops.getQuantity());
+				pstmt.setInt(3, shops.getUserquantity());
+				
+				pstmt.executeUpdate();
+				
+				pstmt = conn.prepareStatement("update games set quantity=quantity-? where gameID = ?");
+				pstmt.setInt(1, shops.getUserquantity());
+				pstmt.setInt(2, shops.getGameID());
 				
 				pstmt.executeUpdate();
 			}
+			
 			return true;
 		}catch(Exception err) {
 			err.printStackTrace();
@@ -101,42 +106,30 @@ public class cartManager {
 		}
 	}
 	
-	
-	
-	
-	/*public ArrayList<shoppingCart> addPurchase(int gamePurchase) {
+	public shoppingCart addPurchases(int gameID, int userquantity){
+		shoppingCart shoppingCart = new shoppingCart();
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-
-			String connURL ="jdbc:mysql://localhost/mkd?user=root&password=root"; 
-
-			Connection conn =   DriverManager.getConnection(connURL);
+			Connection conn = DBConnection.getConnection();
 			
-			ArrayList<shoppingCart> cartItem= new ArrayList<shoppingCart>();
+			PreparedStatement pstmt = conn.prepareStatement("select * from games where gameID = ?");
 			
-			PreparedStatement pstmt = conn.prepareStatement("select title, company, price, imageLocation, preOwned from games where gameID = ?");
-			
-			pstmt.setInt(1,gamePurchase);
+			pstmt.setInt(1,gameID);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				String title = rs.getString("title");
-				String company=rs.getString("company");
-				double price = rs.getDouble("price");
-				String imageLocation=rs.getString("imageLocation");
-				String preOwned=rs.getString("preOwned");
-				
-				shoppingCart shop = new shoppingCart();
-				shop.setshoppingCart(title, company, price, imageLocation, preOwned);
-				cartItem.add(shop);
+			if(rs.next()){
+				shoppingCart.setGameID(rs.getInt("gameID"));
+				shoppingCart.setCompany(rs.getString("company"));
+				shoppingCart.setImageLocation(rs.getString("imageLocation"));
+				shoppingCart.setPreOwned(rs.getString("preOwned"));
+				shoppingCart.setPrice(rs.getInt("price"));
+				shoppingCart.setTitle(rs.getString("title"));
+				shoppingCart.setQuantityDB(rs.getInt("quantity"));
+				shoppingCart.setUserquantity(userquantity);
 			}
-			
-			conn.close();
-			return cartItem;
-		}catch(Exception err) {
-			System.out.println(err);
-			return null;
+		} catch(Exception e){
+			e.printStackTrace();
 		}
-	}*/
+		return shoppingCart;
+	}
 }

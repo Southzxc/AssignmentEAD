@@ -97,9 +97,9 @@ ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribut
           double total;
           double subtotal=0;
           for(shoppingCart shops: resultsList){
-          total = shops.getPrice()*shops.getQuantity();
+          total = shops.getPrice()*shops.getUserquantity();
                 	subtotal = subtotal+total;%>
-          		<%=shops.getQuantity() %> <%=shops.getTitle() %><br />
+          		<%=shops.getUserquantity() %> <%=shops.getTitle() %><br />
           <%} %>
           <br /><label class="control-label">Total:</label><br />
           $<%=String.format("%.2f", subtotal) %>

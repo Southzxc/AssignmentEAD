@@ -39,12 +39,7 @@ public class addToCart extends HttpServlet {
 		}
 		
 		int gameID = Integer.parseInt(request.getParameter("gameID"));
-		String title = request.getParameter("title");
-		String company = request.getParameter("company");
-		double price = Double.parseDouble(request.getParameter("price"));
-		String imageLocation=request.getParameter("imageLocation");
-		String preOwned=request.getParameter("preOwned");
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		int userquantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
@@ -64,15 +59,15 @@ public class addToCart extends HttpServlet {
 		
 		for(shoppingCart shops:resultsList){
 			if(gameID==shops.getGameID()){
-				shops.setQuantity(shops.getQuantity()+1);
+				shops.setUserquantity(shops.getUserquantity()+1);
 				response.sendRedirect("cart.jsp");
 				return;
 			}
 		}
 		
 		shoppingCart sc = new shoppingCart();
-		sc.setshoppingCart(gameID,title, company, price, imageLocation, preOwned, quantity);
 		
+		sc = cm.addPurchases(gameID,userquantity);
 		
 		resultsList.add(sc);
 		
