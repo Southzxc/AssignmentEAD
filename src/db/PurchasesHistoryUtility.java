@@ -19,8 +19,6 @@ public class PurchasesHistoryUtility {
 				PurchasesHistoryModel.setPrice(rs.getDouble("price"));
 				PurchasesHistoryModel.setDate(rs.getString("timestamp"));
 				displayPDetails.add(PurchasesHistoryModel);
-				System.out.println(rs.getString("title"));
-				System.out.println(displayPDetails);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
