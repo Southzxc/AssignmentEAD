@@ -74,7 +74,6 @@ public class RegUtility {
 	public void addRegDetails(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
 		UserModel UserModel = (UserModel)session.getAttribute("RegUserDetails");
-		session.getAttribute("RegUserDetails");
 		int isAdmin = 0;
 		try{
 			Connection conn = DBConnection.getConnection();
