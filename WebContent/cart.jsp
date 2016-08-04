@@ -52,7 +52,7 @@
 				int scgid = -1;
 				
                 for (shoppingCart shops:resultsList) {
-                	total = shops.getPrice()*shops.getQuantity();
+                	total = shops.getPrice()*shops.getUserquantity();
                 	subtotal = subtotal+total;
                 scgid++;
                 %>
@@ -64,18 +64,14 @@
                                 <h4 class="media-heading"><%=shops.getTitle() %></h4>
                                 <h5 class="media-heading"> by <%=shops.getCompany() %></h5>
                                 <span>Pre-Owned: </span><span class="text-success"><strong><%=shops.getPreOwned() %></strong></span><br />
+                            	<span>Stock: </span><span class="text-success"><stong><%=shops.getQuantityDB() %></stong></span>
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         <form action="updateCart">
                         <input type="hidden" name="scgid" value="<%=scgid %>">
                         <input type="hidden" name="gameID" value="<%=shops.getGameID() %>">
-                        <input type="hidden" name="title" value="<%=shops.getTitle() %>">
-	      			    <input type="hidden" name="company" value="<%=shops.getCompany() %>">
-	      				<input type="hidden" name="price" value="<%=shops.getPrice() %>">
-	      				<input type="hidden" name="imageLocation" value="<%=shops.getImageLocation() %>">
-	      				<input type="hidden" name="preOwned" value="<%=shops.getPreOwned() %>">
-                        <input type="number" min="1" class="form-control" name="number" value="<%=shops.getQuantity()%>">
+                        <input type="number" min="1" class="form-control" name="number" value="<%=shops.getUserquantity()%>">
                         <button type="submit" class="btn btn-default">
                             Update
                         </button></form>

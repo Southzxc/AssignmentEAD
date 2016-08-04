@@ -61,11 +61,6 @@
                         <h3><%=rs.getString("title") %><small class="gDTitleSide"><%=rs.getString("preowned").equals("Yes") ? "Pre-owned" : "Brand new!" %></small></h3>
                         <form action="addToCart">
                         		<input type="hidden" name="gameID" value="<%=rs.getInt("gameID")%>">
-	      					    <input type="hidden" name="title" value="<%=rs.getString("title") %>">
-	      					    <input type="hidden" name="company" value="<%=rs.getString("company") %>">
-	      					    <input type="hidden" name="price" value="<%=rs.getDouble("price") %>">
-	      					    <input type="hidden" name="imageLocation" value="<%=rs.getString("imageLocation") %>">
-	      					    <input type="hidden" name="preOwned" value="<%=rs.getString("preOwned") %>">
 	      					    <input type="hidden" name="quantity" value="1">
 	      					    <input type="submit" value="BUY" class="btn btn-success pull-right" role="button">
 	      				</form>

@@ -40,7 +40,7 @@ public class CheckQuantity extends HttpServlet {
 		for(shoppingCart shops: resultsList){
 			cartManager cm = new cartManager();
 			
-			 over = cm.checkQuantity(shops.getGameID(), shops.getQuantity());
+			 over = cm.checkQuantity(shops.getGameID(), shops.getUserquantity());
 			 if(over!=null){
 					session.setAttribute("limit", over);
 					response.sendRedirect("cart.jsp");

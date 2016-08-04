@@ -36,11 +36,6 @@ public class updateCart extends HttpServlet {
 
 		int scgid = Integer.parseInt(request.getParameter("scgid"));
 		int gameID = Integer.parseInt(request.getParameter("gameID"));
-		String title = request.getParameter("title");
-		String company = request.getParameter("company");
-		double price = Double.parseDouble(request.getParameter("price"));
-		String imageLocation=request.getParameter("imageLocation");
-		String preOwned=request.getParameter("preOwned");
 		int number = Integer.parseInt(request.getParameter("number"));
 		
 		HttpSession session = request.getSession();
@@ -48,8 +43,9 @@ public class updateCart extends HttpServlet {
 		
 		resultsList.remove(scgid);
 		
+		cartManager cm = new cartManager();
 		shoppingCart sc = new shoppingCart();
-		sc.setshoppingCart(gameID,title, company, price, imageLocation, preOwned, number);
+		sc = cm.addPurchases(gameID,number);
 		
 		resultsList.add(sc);
 		
