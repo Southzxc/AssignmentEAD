@@ -108,7 +108,10 @@
 					%>		
 						                </select>
 						            </div>												
-
+						            <div class="col-xs-2">
+						            	<label class="control-label">Quantity</label>
+						            	<input type="number" class= "form-control" name="gameQuantity" min="0"/>
+						            </div>
 						            <!-- Script for calling the drop down -->
 									<script type="text/javascript">
 									    $(document).ready(function() {
