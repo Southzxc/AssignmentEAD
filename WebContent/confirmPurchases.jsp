@@ -1,8 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import = "java.sql.*, java.util.*, db.*" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html> 
 <head>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+  Stripe.setPublishableKey('pk_test_KXA5yHKEOWN965jBq0XPBnLx');
+</script>
 
 	<%@include file="header.html" %>   
 	<title>SP Games Store</title>
@@ -59,39 +63,7 @@ ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribut
     <div class="row setup-content" id="step-2">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
-          <h3> Step 2: Payment Details</h3>
-           <div class='col-xs-12 form-group required'>
-                <label class='control-label'>Name on Card</label>
-                <input required="required" class='form-control' size='4' type='text'>
-           </div>
-          <div class="form-group">
-            <div class='col-xs-12 form-group card required'>
-                <label class='control-label'>Card Number</label>
-                <input required="required" autocomplete='off' class='form-control card-number' size='20' type='text'>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class='col-xs-4 form-group cvc required'>
-                <label class='control-label'>CVC</label>
-                <input required="required" autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
-              </div>
-              <div class='col-xs-4 form-group expiration required'>
-                <label class='control-label'>Expiration</label>
-                <input required="required" class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
-              </div>
-              <div class='col-xs-4 form-group expiration required'>
-                <label class='control-label'> </label>
-                <input required="required" class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
-              </div>
-          </div>
-          <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
-        </div>
-      </div>
-    </div>
-    <div class="row setup-content" id="step-3">
-      <div class="col-xs-6 col-md-offset-3">
-        <div class="col-md-12">
-          <h3> Step 3: Cart Summary</h3>
+          <h3> Step 2: Cart Summary</h3>
           <label class="control-label">Game:</label><br />
           <%
           double total;
@@ -104,14 +76,31 @@ ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribut
           <br /><label class="control-label">Total:</label><br />
           $<%=String.format("%.2f", subtotal) %>
         </div>
-        <form action="Transaction">
-        <input type="hidden" name="userID" value="<%=details.getUserID()%>">
-        <button class="btn btn-success btn-lg pull-right" type="submit">Pay Now</button>
-        </form>
+          <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+        </div>
+      </div>
+    <div class="row setup-content" id="step-3">
+      <div class="col-xs-6 col-md-offset-3">
+        <div class="col-md-12">
+          <h3> Step 3: Card Details</h3>
+          <form action="Transaction">
+          <input type="hidden" name="userID" value="<%=details.getUserID()%>">
+          <script
+  			 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  			 data-key="pk_test_KXA5yHKEOWN965jBq0XPBnLx"
+   			 data-amount=""
+   			 data-name="SP Gaming Store"
+   			 data-description="Payment"
+   			 data-image="./favicon.ico"
+   			 data-locale="auto"
+  			 data-currency="sgd">
+  			</script>
+              </form>
+          </div>
       </div>
     </div>
+ </div>
   
-</div>
 <%} else {
 	response.sendRedirect("unauthorised.jsp");
 }%>
