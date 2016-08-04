@@ -31,27 +31,26 @@ ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribut
       </div>
     </div>
   </div>
-  
-  <form role="form" action="" method="post">
+  <%UserModel details = (UserModel)session.getAttribute("userDetails");%>
     <div class="row setup-content" id="step-1">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
           <h3> Step 1: Detail Confirmation</h3>
           <div class="form-group">
             <label class="control-label">Name:</label><br />
-            <%=session.getAttribute("username") %>
+            <%=details.getUsername() %>
           </div>
           <div class="form-group">
             <label class="control-label">Email:</label><br />
-            <%=session.getAttribute("email") %>
+            <%=details.getEmail() %>
           </div>
           <div class="form-group">
             <label class="control-label">Contact:</label><br />
-            <%=session.getAttribute("contact") %>
+            <%=details.getContact() %>
           </div>
           <div class="form-group">
             <label class="control-label">Address:</label><br />
-            <%=session.getAttribute("address") %>
+            <%=details.getAddress() %>
           </div>
           <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
         </div>
@@ -105,10 +104,12 @@ ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribut
           <br /><label class="control-label">Total:</label><br />
           $<%=String.format("%.2f", subtotal) %>
         </div>
+        <form action="Transaction">
+        <input type="hidden" name="userID" value="<%=details.getUserID()%>">
         <button class="btn btn-success btn-lg pull-right" type="submit">Pay Now</button>
+        </form>
       </div>
     </div>
-  </form>
   
 </div>
 <%} else {

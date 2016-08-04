@@ -19,7 +19,15 @@
 	
 	<%
 	session.removeAttribute("errorMsg");
-	}%>	
+	} if(session.getAttribute("login") != null) {%>
+	<div class="alert alert-danger">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	 	<strong>Error:</strong> <%=session.getAttribute("login") %>
+	</div>
+	<%
+	session.removeAttribute("login");
+	}%>
+		
 	<!-- Home page carousel -->
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		 <!-- Indicators -->
@@ -102,7 +110,6 @@
 	     					    <h3><%=rs.getString("title") %></h3>
 	      						<p><%=rs.getString("description") %></p>
 	     					    <p>$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></p>
-	     					    <%if(session.getAttribute("userDetails")!=null){ %>
 	      					    <form action="addToCart">
 	      					    <input type="hidden" name="gameID" value="<%=rs.getInt("gameID")%>">
 	      					    <input type="hidden" name="title" value="<%=rs.getString("title") %>">
@@ -112,8 +119,6 @@
 	      					    <input type="hidden" name="preOwned" value="<%=rs.getString("preOwned") %>">
 	      					    <input type="hidden" name="quantity" value="1">
 	      					    <input type="submit" value="Buy Now" class="btn btn-primary" role="button"></form>
-	      					    <%} else { %>
-	      					    <p><a href="#" class="btn btn-primary" role="button" hidden="<%=rs.getInt("gameID")%>">Buy Now</a><%} %>
 	      					    <a href="gameDetails.jsp?gameID=<%=rs.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
 	    				     </div>
 	 				     </div>

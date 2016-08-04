@@ -50,6 +50,7 @@
 				double total=0;
 				double subtotal=0;
 				int scgid = -1;
+				
                 for (shoppingCart shops:resultsList) {
                 	total = shops.getPrice()*shops.getQuantity();
                 	subtotal = subtotal+total;
@@ -60,9 +61,9 @@
                         <div class="media">
                              <img class="media-object" src=<%=shops.getImageLocation() %> > 
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#"><%=shops.getTitle() %></a></h4>
-                                <h5 class="media-heading"> by <a href="#"><%=shops.getCompany() %></a></h5>
-                                <span>Pre-Owned: </span><span class="text-success"><strong><%=shops.getPreOwned() %></strong></span>
+                                <h4 class="media-heading"><%=shops.getTitle() %></h4>
+                                <h5 class="media-heading"> by <%=shops.getCompany() %></h5>
+                                <span>Pre-Owned: </span><span class="text-success"><strong><%=shops.getPreOwned() %></strong></span><br />
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">

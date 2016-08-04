@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class CheckQuantity
+ * Servlet implementation class Transaction
  */
-@WebServlet("/CheckQuantity")
-public class CheckQuantity extends HttpServlet {
+@WebServlet("/Transaction")
+public class Transaction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckQuantity() {
+    public Transaction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +30,22 @@ public class CheckQuantity extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
-		String over = null;
 		
+		int userID = Integer.parseInt(request.getParameter("userID"));
+		Date date = new Date();
 		
+		cartManager cm = new cartManager();
+		boolean success = cm.insertTransaction(userID, date.toString());
 		
-		for(shoppingCart shops: resultsList){
-			cartManager cm = new cartManager();
-			
-			 over = cm.checkQuantity(shops.getGameID(), shops.getQuantity());
-			 if(over!=null){
-					session.setAttribute("limit", over);
-					response.sendRedirect("cart.jsp");
-					return;
-			}
+		if(success == true){
+			session.removeAttribute("results");
+			response.sendRedirect("index.jsp"); //can direct to history page
+		} else {
+			response.sendRedirect("cart.jsp");
 		}
-		response.sendRedirect("confirmPurchases.jsp");
+		
 	}
 
 	/**

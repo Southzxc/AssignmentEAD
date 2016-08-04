@@ -17,7 +17,22 @@
 	<%@include file="navbar.jsp" %>
     <!-- Page Content -->
     <div class="container">
-
+	<%if(session.getAttribute("nogame") != null){ %>
+		<div class="alert alert-danger">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		 	<strong>Error:</strong> <%=session.getAttribute("nogame") %>
+		</div>
+	
+	<%
+	session.removeAttribute("nogame");
+	}if(session.getAttribute("login") != null) {%>
+	<div class="alert alert-danger">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	 	<strong>Error:</strong> <%=session.getAttribute("login") %>
+	</div>
+	<%
+	session.removeAttribute("login");
+	}%>	
         <div class="row">
 
             <div class="col-md-10 col-md-offset-1">
@@ -44,7 +59,6 @@
                     <div class="caption-full">
                         <h3 class="pull-right">$<%out.println(String.format("%.2f", rs.getDouble("price"))); %></h3>
                         <h3><%=rs.getString("title") %><small class="gDTitleSide"><%=rs.getString("preowned").equals("Yes") ? "Pre-owned" : "Brand new!" %></small></h3>
-                        <%if(session.getAttribute("userDetails")!=null){ %>
                         <form action="addToCart">
                         		<input type="hidden" name="gameID" value="<%=rs.getInt("gameID")%>">
 	      					    <input type="hidden" name="title" value="<%=rs.getString("title") %>">
@@ -55,8 +69,6 @@
 	      					    <input type="hidden" name="quantity" value="1">
 	      					    <input type="submit" value="BUY" class="btn btn-success pull-right" role="button">
 	      				</form>
-	      				<%} else { %>
-	      				<input type="submit" value="BUY" class="btn btn-success pull-right" role="button"><%} %>
                         <b>Company</b> <p><%=rs.getString("company") %></p>
                                                <%
                         pstmt=conn.prepareStatement("SELECT gg.genreID, genreName FROM games ga, genre ge, games_genre gg WHERE ga.gameID = gg.gameID and ge.genreID = gg.genreID and ga.gameID = ?");
@@ -72,6 +84,7 @@
                        	   displayGenre.close();%>
                         </p>
                         <b>Description</b><p><%=rs.getString("description") %></p>
+                        <b>Quantity</b><p><%=(rs.getInt("quantity") ==0 ? " Out of stock ":rs.getInt("quantity"))%></p>
                     </div>                         
                 </div>
 

@@ -62,10 +62,6 @@ try{
 				UserModel.setEmail(emaildb);
 				UserModel.setContact(contactdb);
 				session.setAttribute("userDetails", UserModel);
-				session.setAttribute("userID",userIDdb);
-				session.setAttribute("address", addressdb);
-				session.setAttribute("email", emaildb);
-				session.setAttribute("contact", contactdb);
 				session.setAttribute("username", usernamedb);
 				response.sendRedirect("index.jsp");				
 		}

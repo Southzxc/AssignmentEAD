@@ -19,9 +19,7 @@ public class cartManager {
 			pstmt.setInt(1, gameID);
 		
 			ResultSet rs = pstmt.executeQuery();
-		
-			System.out.println(quantity);
-			
+					
 			if(rs.next()){
 				if(quantity > rs.getInt("quantity")){
 					return "There is only "+rs.getInt("quantity")+ (rs.getInt("quantity") ==1 ? " copy ":" copies ") +rs.getString("title")+" left.";
@@ -31,6 +29,53 @@ public class cartManager {
 			System.out.println(err);
 		}
 		return null;
+	}
+	
+	public String checkZero(int gameID){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String connURL ="jdbc:mysql://13.67.63.213/mkd?user=root&password=iloveeadxoxo"; 
+
+			Connection conn =   DriverManager.getConnection(connURL);
+				
+			PreparedStatement pstmt=conn.prepareStatement("Select title, quantity from games where gameID = ?");
+			
+			pstmt.setInt(1, gameID);
+		
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				if(rs.getInt("quantity")==0){
+					return "You cannot buy "+rs.getString("title")+", it is currently out of stock.";
+				}
+			}
+			
+		}catch(Exception err) {
+			System.out.println(err);
+		}
+		return null;
+	}
+	
+	public boolean insertTransaction(int userID, String timestamp){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String connURL ="jdbc:mysql://13.67.63.213/mkd?user=root&password=iloveeadxoxo"; 
+
+			Connection conn =   DriverManager.getConnection(connURL);
+				
+			PreparedStatement pstmt=conn.prepareStatement("insert into transaction(userID, timestamp) values (?,?)");
+			
+			pstmt.setInt(1, userID);
+			pstmt.setString(2, timestamp);
+			
+			pstmt.executeUpdate();
+			return true;
+		}catch(Exception err) {
+			System.out.println(err);
+		}
+		return false;
 	}
 	
 	/*public ArrayList<shoppingCart> addPurchase(int gamePurchase) {
