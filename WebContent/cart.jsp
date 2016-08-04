@@ -79,11 +79,18 @@
                         <td class="col-sm-1 col-md-1 text-center"><strong>$<%=String.format("%.2f", shops.getPrice()) %></strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>$<%=String.format("%.2f", total)%></strong></td>
                         <td class="col-sm-1 col-md-1">
+                        <%if(resultsList.size()==1){ %>
+                        	<form action ="deleteAll">
+                        	<input type="hidden" name="scgid" value="<%=scgid %>"/>
+                       		<button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button></form>
+                        <%} else{ %>
                         <form action ="removeFromCart">
                         <input type="hidden" name="scgid" value="<%=scgid %>"/>
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></form>
+                        </button></form><%} %>
                         </td>
                     </tr>
                     <%} %>
