@@ -37,7 +37,7 @@ public class Transaction extends HttpServlet {
 		Date date = new Date();
 		
 		cartManager cm = new cartManager();
-		boolean success = cm.insertTransaction(userID, date.toString());
+		boolean success = cm.insertTransaction(request, response, date.toString());
 		
 		if(success == true){
 			session.removeAttribute("results");

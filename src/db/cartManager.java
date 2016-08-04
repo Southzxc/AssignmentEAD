@@ -1,6 +1,11 @@
 package db;
 
 import java.sql.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.util.*;
 
 
@@ -57,26 +62,47 @@ public class cartManager {
 		return null;
 	}
 	
-	public boolean insertTransaction(int userID, String timestamp){
+	public boolean insertTransaction(HttpServletRequest request, HttpServletResponse response, String timestamp){
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-
-			String connURL ="jdbc:mysql://13.67.63.213/mkd?user=root&password=iloveeadxoxo"; 
-
-			Connection conn =   DriverManager.getConnection(connURL);
+			HttpSession session = request.getSession();
+			ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
+			UserModel userdetails =(UserModel)session.getAttribute("userDetails");
+			
+			Connection conn = DBConnection.getConnection();
 				
-			PreparedStatement pstmt=conn.prepareStatement("insert into transaction(userID, timestamp) values (?,?)");
-			
-			pstmt.setInt(1, userID);
-			pstmt.setString(2, timestamp);
-			
+			PreparedStatement pstmt=conn.prepareStatement("insert into transaction(userID, timestamp) values (?,?)",Statement.RETURN_GENERATED_KEYS);
+			System.out.println("asd");
+			System.out.println(userdetails.getUserID());
+				pstmt.setString(1, userdetails.getUserID());
+				pstmt.setString(2, timestamp);
+				
 			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			
+			int lasttransid=0;
+			
+			if(rs.next()){
+				lasttransid = rs.getInt(1);
+			}
+			
+			for(shoppingCart shops: resultsList){
+				pstmt = conn.prepareStatement("insert into transaction_game (transactionID, gameID, quantity) values (?,?,?)");
+				
+				pstmt.setInt(1, lasttransid);
+				pstmt.setInt(2, shops.getGameID());
+				pstmt.setInt(3, shops.getQuantity());
+				
+				pstmt.executeUpdate();
+			}
 			return true;
 		}catch(Exception err) {
-			System.out.println(err);
+			err.printStackTrace();
+			return false;
 		}
-		return false;
 	}
+	
+	
+	
 	
 	/*public ArrayList<shoppingCart> addPurchase(int gamePurchase) {
 		try{

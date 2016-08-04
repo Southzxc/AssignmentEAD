@@ -145,7 +145,8 @@
 	     					    <h3><%=game.getString("title") %></h3>
 	      						<p><%=game.getString("description") %></p>
 	     					    <p>$<%out.println(String.format("%.2f", game.getDouble("price"))); %></p>
-	      					    <p><form action="addToCart"><a href="#" class="btn btn-primary" role="button" hidden="<%=game.getInt("gameID")%>">Buy Now</a></form> <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
+	      					    
+ <a href="gameDetails.jsp?gameID=<%=game.getInt("gameID")%>" class="btn btn-default" role="button">View</a></p>
 	    				     </div>
 	 				     </div>
 	 				 </div>
