@@ -32,8 +32,9 @@ public class addToCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		
 		if(session.getAttribute("userDetails")==null){
-			session.setAttribute("login", "Please login to buy");
+			session.setAttribute("errorMsg", "Please login to buy");
 			response.sendRedirect("index.jsp");
 			return;
 		}
@@ -52,7 +53,7 @@ public class addToCart extends HttpServlet {
 		String nogame = cm.checkZero(gameID);
 		
 		if(nogame!=null){
-			session.setAttribute("nogame", nogame);
+			session.setAttribute("errorMsg", nogame);
 			response.sendRedirect("gameDetails.jsp?gameID="+gameID);
 			return;
 		}

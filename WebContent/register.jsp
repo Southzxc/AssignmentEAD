@@ -26,7 +26,9 @@
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<strong>Registered!</strong> <%= session.getAttribute("success") %>
 			</div>
-		<%} %>
+		<%} 
+		session.removeAttribute("success");
+		%>
 					
 			<div class="panel panel-default">			
 				<div class="panel-heading">

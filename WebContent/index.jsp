@@ -19,14 +19,15 @@
 	
 	<%
 	session.removeAttribute("errorMsg");
-	} if(session.getAttribute("login") != null) {%>
-	<div class="alert alert-danger">
-		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	 	<strong>Error:</strong> <%=session.getAttribute("login") %>
-	</div>
-	<%
-	session.removeAttribute("login");
-	}%>
+	} %>
+	
+	<%if(session.getAttribute("added")!=null){ %>
+	<div class="alert alert-success">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		 	<strong>Error:</strong> <%=session.getAttribute("added") %> <a href="purchaseHistory.jsp">Click here</a> to view history purchases
+		</div>
+	<%session.removeAttribute("added");} %>
+	
 		
 	<!-- Home page carousel -->
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

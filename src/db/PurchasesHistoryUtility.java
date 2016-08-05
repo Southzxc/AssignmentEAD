@@ -7,7 +7,7 @@ public class PurchasesHistoryUtility {
 		ArrayList<PurchasesHistoryModel> displayPDetails = new ArrayList<PurchasesHistoryModel>();
 		try {
 			Connection conn = DBConnection.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("SELECT title, tg.quantity, price, timestamp FROM games g, transaction t, transaction_game tg where g.gameID = tg.gameID and t.transactionID = tg.transactionID and userID =?");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT title, tg.quantity, price, timestamp FROM games g, transaction t, transaction_game tg where g.gameID = tg.gameID and t.transactionID = tg.transactionID and userID =? order by 4 desc");
 			pstmt.setString(1, userID);
 			
 			ResultSet rs = pstmt.executeQuery();

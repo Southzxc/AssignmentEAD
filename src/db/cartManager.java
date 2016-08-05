@@ -13,11 +13,7 @@ public class cartManager {
 	
 	public String checkQuantity(int gameID, int quantity){
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-
-			String connURL ="jdbc:mysql://13.67.63.213/mkd?user=root&password=iloveeadxoxo"; 
-
-			Connection conn =   DriverManager.getConnection(connURL);
+			Connection conn = DBConnection.getConnection();
 				
 			PreparedStatement pstmt=conn.prepareStatement("Select title, quantity from games where gameID = ?");
 			
@@ -38,11 +34,7 @@ public class cartManager {
 	
 	public String checkZero(int gameID){
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-
-			String connURL ="jdbc:mysql://13.67.63.213/mkd?user=root&password=iloveeadxoxo"; 
-
-			Connection conn =   DriverManager.getConnection(connURL);
+			Connection conn = DBConnection.getConnection();
 				
 			PreparedStatement pstmt=conn.prepareStatement("Select title, quantity from games where gameID = ?");
 			
@@ -54,7 +46,7 @@ public class cartManager {
 				if(rs.getInt("quantity")==0){
 					return "You cannot buy "+rs.getString("title")+", it is currently out of stock.";
 				}
-			}
+			} conn.close();
 			
 		}catch(Exception err) {
 			System.out.println(err);
@@ -98,7 +90,7 @@ public class cartManager {
 				
 				pstmt.executeUpdate();
 			}
-			
+			conn.close();
 			return true;
 		}catch(Exception err) {
 			err.printStackTrace();
@@ -126,7 +118,7 @@ public class cartManager {
 				shoppingCart.setTitle(rs.getString("title"));
 				shoppingCart.setQuantityDB(rs.getInt("quantity"));
 				shoppingCart.setUserquantity(userquantity);
-			}
+			} conn.close();
 		} catch(Exception e){
 			e.printStackTrace();
 		}

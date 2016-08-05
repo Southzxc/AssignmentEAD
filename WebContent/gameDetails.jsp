@@ -17,22 +17,16 @@
 	<%@include file="navbar.jsp" %>
     <!-- Page Content -->
     <div class="container">
-	<%if(session.getAttribute("nogame") != null){ %>
+	<%if(session.getAttribute("errorMsg") != null){ %>
 		<div class="alert alert-danger">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		 	<strong>Error:</strong> <%=session.getAttribute("nogame") %>
+		 	<strong>Error:</strong> <%=session.getAttribute("errorMsg") %>
 		</div>
 	
 	<%
-	session.removeAttribute("nogame");
-	}if(session.getAttribute("login") != null) {%>
-	<div class="alert alert-danger">
-		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	 	<strong>Error:</strong> <%=session.getAttribute("login") %>
-	</div>
-	<%
-	session.removeAttribute("login");
-	}%>	
+	session.removeAttribute("errorMsg");
+	}%>
+	
         <div class="row">
 
             <div class="col-md-10 col-md-offset-1">

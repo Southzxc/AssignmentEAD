@@ -34,8 +34,10 @@ if(session.getAttribute("userDetails") == null){
            					<th>Date & Time purchased</th>
            				</tr>
                 	</thead>
-				<%ArrayList<PurchasesHistoryModel> displayPDetails = (ArrayList<PurchasesHistoryModel>)session.getAttribute("displayPDetails");
-				if(displayPDetails != null){
+				<%
+				
+				if(session.getAttribute("displayPDetails") != null){
+					ArrayList<PurchasesHistoryModel> displayPDetails = (ArrayList<PurchasesHistoryModel>)session.getAttribute("displayPDetails");
 					for(PurchasesHistoryModel pDetails : displayPDetails){%>
 						<tbody>
 							<tr>
@@ -46,8 +48,10 @@ if(session.getAttribute("userDetails") == null){
 							</tr>
 						</tbody>
 				<%	}
-					displayPDetails = null;
+					session.removeAttribute("displayPDetails");
+					System.out.println(session.getAttribute("displayPDetails"));
 				}else{
+				System.out.println("else statement");
 				response.sendRedirect("PurchasesHistoryController");
 				}%>
 				</table>

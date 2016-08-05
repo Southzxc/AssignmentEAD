@@ -1,6 +1,8 @@
 package db;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.ServletException;
@@ -34,13 +36,15 @@ public class Transaction extends HttpServlet {
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
 		int userID = Integer.parseInt(request.getParameter("userID"));
-		Date date = new Date();
 		
 		cartManager cm = new cartManager();
-		boolean success = cm.insertTransaction(request, response, date.toString());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		boolean success = cm.insertTransaction(request, response, dateFormat.format(date));
 		
 		if(success == true){
 			session.removeAttribute("results");
+			session.setAttribute("added", "Purchases successful!");
 			response.sendRedirect("index.jsp"); //can direct to history page
 		} else {
 			response.sendRedirect("cart.jsp");
