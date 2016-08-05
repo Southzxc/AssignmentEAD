@@ -42,7 +42,7 @@ public class CheckQuantity extends HttpServlet {
 			
 			 over = cm.checkQuantity(shops.getGameID(), shops.getUserquantity());
 			 if(over!=null){
-					session.setAttribute("limit", over);
+					session.setAttribute("errorMsg", over);
 					response.sendRedirect("cart.jsp");
 					return;
 			}

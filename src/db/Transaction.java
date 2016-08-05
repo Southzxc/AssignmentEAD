@@ -47,6 +47,7 @@ public class Transaction extends HttpServlet {
 			session.setAttribute("added", "Purchases successful!");
 			response.sendRedirect("index.jsp"); //can direct to history page
 		} else {
+			session.setAttribute("errorMsg", "Oops! Something went wrong!");
 			response.sendRedirect("cart.jsp");
 		}
 		

@@ -23,14 +23,14 @@
 		<%@include file="navbar.jsp" %>
 		
 		<div class="container">
-		<%if(session.getAttribute("limit") != null){ %>
+		<%if(session.getAttribute("errorMsg") != null){ %>
 	<div class="alert alert-danger">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	 	<strong>Error:</strong> <%=session.getAttribute("limit") %>
+	 	<strong>Error:</strong> <%=session.getAttribute("errorMsg") %>
 	</div>
 	
 	<%
-	session.removeAttribute("limit");
+	session.removeAttribute("errorMsg");
 	}%>	
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
