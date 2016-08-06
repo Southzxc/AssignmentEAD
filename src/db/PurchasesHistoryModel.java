@@ -1,5 +1,6 @@
 package db;
 
+//Model for PurchasesHistory, it contains all getters and setters
 public class PurchasesHistoryModel {
 	private String title;
 	private double price;

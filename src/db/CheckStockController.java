@@ -28,6 +28,11 @@ public class CheckStockController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * This controller will get the input of stock check and pass it to check stock utility to get the stock and game details from DB
+		 * Results are stored in an ArrayList and set into a session named gameDetails
+		 * It will then redirect to stockCheck.jsp 
+		 */
 		int stockCheck = Integer.parseInt(request.getParameter("stockCheck"));
 		CheckStockUtility CheckStockUtility = new CheckStockUtility();
 		ArrayList<CheckStockModel> gameDetails = CheckStockUtility.stockCheck(stockCheck);

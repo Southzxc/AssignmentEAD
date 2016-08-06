@@ -9,7 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class RegUtility {	
+//RegUtility consist of chkRegDetails and addRegDetails classes
+public class RegUtility {
+	/*
+	 * chkRegDetails will return a string value
+	 * chkRegDetails will accept 6 string parameters
+	 */
 	public String chkRegDetails(String username, String address, String email, String contact, String password, String cfpassword){
 		
 		//regex for checking contact
@@ -71,10 +76,16 @@ public class RegUtility {
 		
 	}
 	
+	/*
+	 * addRegDetails will not return any value
+	 * addRegDetails will accept a request and a response parameter
+	 */
 	public void addRegDetails(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
 		UserModel UserModel = (UserModel)session.getAttribute("RegUserDetails");
 		int isAdmin = 0;
+		
+		//This will insert all user registration details into the database
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (username, userpwd, address, email, contact, isAdmin) VALUES (?, ?, ?, ?, ?, ?)");

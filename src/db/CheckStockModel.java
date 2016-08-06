@@ -1,5 +1,5 @@
 package db;
-
+//Model for CheckStock, it contains all getters and setters
 public class CheckStockModel {
 	private String title;
 	private double price;

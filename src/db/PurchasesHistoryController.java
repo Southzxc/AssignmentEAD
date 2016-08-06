@@ -29,6 +29,12 @@ public class PurchasesHistoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * This controller will get the ID of the user logged in and pass it to PurchasesHistoryUtility to get the purchase history
+		 * of the current user
+		 * Results are stored in an ArrayList and set into a session named displayPDetails
+		 * It will then redirect to purchaseHistory.jsp
+		 */
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		UserModel userDetails = (UserModel)session.getAttribute("userDetails");

@@ -28,7 +28,12 @@ public class UpdateProfileController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		/*
+		 * This controller will get the userdetails parameters and pass them into chkProfileDetails class in ProfileUtility
+		 * It will then check if chkProfileDetails will return an empty String, if it does, all the parameters will then be stored in
+		 * the UserModel and then the class updtProfileDetails will be called
+		 * The controller will then redirect back to updateProfile.jsp with a success message
+		 */
 		HttpSession session = request.getSession();		
 		UserModel userDetails = (UserModel)session.getAttribute("userDetails");
 		String emaildb = userDetails.getEmail();
@@ -58,10 +63,16 @@ public class UpdateProfileController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * This controller will get all the password parameters and pass them into chkPasswordDetails in the ProfileUtility
+		 * It will then check if chkPasswordDetails returns an empty String, if it does, it will store the new password details in the
+		 * UserModel
+		 * updtPasswordDetails class is then called to update the password in the DB
+		 * After that, it will then redirect to updateProfile.jsp and display a success message
+		 */
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();		
 		UserModel userDetails = (UserModel)session.getAttribute("userDetails");
-		String userIDdb = userDetails.getUserID();
 		String passworddb = userDetails.getPassword();
 		String password = request.getParameter("password");
 		String npassword = request.getParameter("npassword");

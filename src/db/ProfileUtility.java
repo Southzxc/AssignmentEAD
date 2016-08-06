@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//ProfileUtility consist of chkProfileDetails updtProfileDetails, chkPasswordDetails and updtPasswordDetails
 public class ProfileUtility {
+	/*
+	 * chkProfileDetails returns a String value
+	 * chkProfileDetails will accept 5 string parameters
+	 */
 	public String chkProfileDetails(String emaildb, String username, String address, String email, String contact){
 		//regex for checking contact
 		Pattern pcontact = Pattern.compile("^[\\d+]{8}$");
@@ -59,10 +64,16 @@ public class ProfileUtility {
 			return "";
 		}
 	}
-	
+	/*
+	 * updtProfileDetails does not return any value
+	 * updtProfileDetails will accept a request and a response parameter
+	 */
 	public void updtProfileDetails(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
+		//getting of session userDetails set in verifyUser.jsp
 		UserModel UserDetails = (UserModel)session.getAttribute("userDetails");
+		
+		 //Updating of the user details
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET username = ?, address = ?, email = ?, contact = ? where userID = ?");
@@ -80,12 +91,22 @@ public class ProfileUtility {
 		}
 	}
 	
+	/*
+	 * chkPasswordDetails returns a value string
+	 * chkPasswordDetails will accept 5 string parameteres
+	 */
 	public String chkPasswordDetails(String passworddb, String password, String npassword, String cfpassword){
 		
 		//regex for checking if password contains at least alphanumeric characters with minimum length of 8 characters 
 		Pattern ppassword = Pattern.compile("^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d])|(?=.*\\d))|(?=.*[A-Z])(?=.*\\d)).{8,16}$");
 		Matcher mpassword = ppassword.matcher(cfpassword);
 		
+		/*
+		 * 1st 'if' check if all 3 password fields are empty
+		 * 2nd 'if' check if the current password match with the password stored in the database
+		 * 3rd 'if' check if new password and confirm password matches
+		 * 4th 'if' check if the new password provided by the user matches the criteria of alphanumeric characters
+		 */
 		if(password.isEmpty() || npassword.isEmpty() || cfpassword.isEmpty()){
 			return "Please fill in all the blanks.";
 		}else if(!password.equals(passworddb)){
@@ -99,9 +120,17 @@ public class ProfileUtility {
 		}		
 	}
 	
+	/*
+	 * updtPasswordDetails does not return any value
+	 * updtPasswordDetails will accept a request and a response parameter
+	 */
 	public void updtPasswordDetails(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
+		
+		//getting of session userDetails set in verifyUser.jsp
 		UserModel UserDetails = (UserModel)session.getAttribute("userDetails");
+		
+		//Updating of user password
 		try{
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET userpwd = ? where userID = ?");

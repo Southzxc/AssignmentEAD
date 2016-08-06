@@ -34,7 +34,12 @@ public class RegisterController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		/*
+		 * This controller will get all the parameters from register.jsp and pass them to chkRegDetails in regutility
+		 * It will then check if chkRegDetails returns an empty string, if it does, all the parameters will be set using a model
+		 * addRegDetails will then be invoked where it will add the new user into the database
+		 *
+		 */
 		String username = request.getParameter("username");
 		String address = request.getParameter("address");
 		String email = request.getParameter("email");
@@ -58,7 +63,7 @@ public class RegisterController extends HttpServlet {
 			session.setAttribute("RegUserDetails", UserModel);
 			RegUtility.addRegDetails(request, response);
 			session.setAttribute("success", "Thank you for registering with us!");
-			response.sendRedirect("register.jsp");//TODO redirect to register.jsp and display success msg
+			response.sendRedirect("register.jsp");
 		}
 	}
 
