@@ -49,9 +49,7 @@ if(session.getAttribute("userDetails") == null){
 						</tbody>
 				<%	}
 					session.removeAttribute("displayPDetails");
-					System.out.println(session.getAttribute("displayPDetails"));
 				}else{
-				System.out.println("else statement");
 				response.sendRedirect("PurchasesHistoryController");
 				}%>
 				</table>
