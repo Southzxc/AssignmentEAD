@@ -11,6 +11,9 @@
 	<%@include file="header.html" %>   
 	<title>SP Games Store</title>
 </head>
+
+<!-- This page allows the user to confirm their purchase -->
+
 <body>
 <%if(session.getAttribute("userDetails")!=null) {
 ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");%>

@@ -34,6 +34,8 @@ public class updateCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		
+		//This updates the amount of quantity the user wants to buy
 		int scgid = Integer.parseInt(request.getParameter("scgid"));
 		int gameID = Integer.parseInt(request.getParameter("gameID"));
 		int number = Integer.parseInt(request.getParameter("number"));

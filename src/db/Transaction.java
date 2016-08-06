@@ -37,16 +37,19 @@ public class Transaction extends HttpServlet {
 		
 		int userID = Integer.parseInt(request.getParameter("userID"));
 		
+		//Calls the function to set confirmed purchases into database
 		cartManager cm = new cartManager();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		boolean success = cm.insertTransaction(request, response, dateFormat.format(date));
 		
+		//Transactions that are successful will be redirected to index page
 		if(success == true){
 			session.removeAttribute("results");
 			session.setAttribute("added", "Purchases successful!");
 			response.sendRedirect("index.jsp"); //can direct to history page
 		} else {
+		//Failure transactions will be redirected back to shopping cart
 			session.setAttribute("errorMsg", "Oops! Something went wrong!");
 			response.sendRedirect("cart.jsp");
 		}

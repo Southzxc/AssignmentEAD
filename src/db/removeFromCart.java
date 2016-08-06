@@ -31,11 +31,14 @@ public class removeFromCart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//Gets the unique value for each game in shopping cart
 		int scgid = Integer.parseInt(request.getParameter("scgid"));
 		
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
+		//Removing the selected game from shopping cart
 		resultsList.remove(scgid);
 		
 		response.sendRedirect("cart.jsp");

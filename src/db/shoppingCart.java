@@ -1,7 +1,11 @@
 package db;
 
+//java class
+
 public class shoppingCart {
 
+	//This java class gets and sets the value
+	
 	private int gameID;
 	private String title;
 	private String company;

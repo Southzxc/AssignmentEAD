@@ -35,6 +35,7 @@ public class deleteAll extends HttpServlet {
 		HttpSession session = request.getSession();
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		
+		//remove session "results" to clear all games in shopping cart
 		session.removeAttribute("results");
 		
 		response.sendRedirect("cart.jsp");

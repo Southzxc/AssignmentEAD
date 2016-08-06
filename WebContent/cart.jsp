@@ -7,18 +7,13 @@
 	<title>SP Games Store</title>
 </head>
 <body>
+
+	<!-- This is the page that displays the shopping cart -->
+	
 	<%
-	if(session.getAttribute("userDetails")!=null/* cookies!=null */){%>
+	if(session.getAttribute("userDetails")!=null){%>
 		
 	<%	ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
-		/* for (Cookie cookie : cookies) {
-		       if (cookie.getName().equals("c1")) {
-		           name=cookie.getValue();
-		       }
-		       if(cookie.getName().equals("c2")){
-		           pass=cookie.getValue();
-		       }
-		    } */
 		%>
 		<%@include file="navbar.jsp" %>
 		
