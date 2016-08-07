@@ -88,7 +88,7 @@
 	<script type="text/javascript">
 		jQuery.validator.addMethod("alphanumeric", function(value, element) {
 		  return this.optional(element) || /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d])|(?=.*\d))|(?=.*[A-Z])(?=.*\d)).{8,16}$/.test(value);
-		}, "Please provide a password that has numbers and alphabets that is at least 8 characters long");
+		}, "Please provide a password with numbers and alphabets that is 8 to 16 characters long");
 	
 		/* $.validator.setDefaults( {
 			submitHandler: function () {
@@ -128,11 +128,11 @@
 					username: "Please enter your username",
 					password: {
 						required: "Please provide a password",
-						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
+						alphanumeric: "Please provide a password with numbers and alphabets that is 8 to 16 characters long",
 					},
 					cfpassword: {
 						required: "Please provide a password",
-						alphanumeric: "Please provide a password with numbers and alphabets that is at least 8 characters long",
+						alphanumeric: "Please provide a password with numbers and alphabets that is 8 to 16 characters long",
 						equalTo: "Please enter the same password as above"
 					},
 					address:"Please enter your mailing address",
