@@ -19,7 +19,7 @@
 ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 
 if(resultsList==null){
-	session.setAttribute("errorMsg", "Please add games into your shopping cart");
+	session.setAttribute("errorMsg", "Please add games into your shopping cart before confirming your purchase");
 	response.sendRedirect("index.jsp");
 	return;
 }%>

@@ -35,8 +35,7 @@ public class CheckQuantity extends HttpServlet {
 		ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
 		String over = null;
 		
-		
-		
+		//Checks if the user wanted to purchase more than what the stock haves
 		for(shoppingCart shops: resultsList){
 			cartManager cm = new cartManager();
 			
