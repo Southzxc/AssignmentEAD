@@ -27,6 +27,10 @@ public class cartManager {
 				if(quantity > rs.getInt("quantity")){
 					return "There is only "+rs.getInt("quantity")+ (rs.getInt("quantity") ==1 ? " copy ":" copies ") +rs.getString("title")+" left.";
 				}
+				if(quantity <= 0){
+					return "Please buy at least 1 game";
+				} 
+				
 			}conn.close();
 		}catch(Exception err) {
 			System.out.println(err);
@@ -124,7 +128,7 @@ public class cartManager {
 				shoppingCart.setCompany(rs.getString("company"));
 				shoppingCart.setImageLocation(rs.getString("imageLocation"));
 				shoppingCart.setPreOwned(rs.getString("preOwned"));
-				shoppingCart.setPrice(rs.getInt("price"));
+				shoppingCart.setPrice(rs.getDouble("price"));
 				shoppingCart.setTitle(rs.getString("title"));
 				shoppingCart.setQuantityDB(rs.getInt("quantity"));
 				shoppingCart.setUserquantity(userquantity);

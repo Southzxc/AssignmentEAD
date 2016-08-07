@@ -16,7 +16,13 @@
 
 <body>
 <%if(session.getAttribute("userDetails")!=null) {
-ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");%>
+ArrayList<shoppingCart> resultsList=(ArrayList<shoppingCart>)session.getAttribute("results");
+
+if(resultsList==null){
+	session.setAttribute("errorMsg", "Please add games into your shopping cart");
+	response.sendRedirect("index.jsp");
+	return;
+}%>
 <%@include file="navbar.jsp" %>
 
 <script src="js/confirmPurchases.js"></script>
