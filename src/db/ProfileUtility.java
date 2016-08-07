@@ -114,7 +114,7 @@ public class ProfileUtility {
 		}else if(!npassword.equals(cfpassword)){
 			return "New password and confirm password does not match.";
 		}else if(mpassword.matches() == false){
-			return "Please provide a password with numbers and alphabets that is at least 8 characters long";
+			return "Please provide a password with numbers and alphabets that is 8 to 16 characters long";
 		}else{
 			return "";
 		}		

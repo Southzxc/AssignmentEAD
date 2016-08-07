@@ -63,7 +63,7 @@ public class RegUtility {
 		}else if(countsymbol != 1 || !email.contains(".")){
 			return "Please enter a valid email address";
 		}else if(mpassword.matches() == false){
-			return "Please provide a password with numbers and alphabets that is at least 8 characters long";
+			return "Please provide a password with numbers and alphabets that is 8 to 16 characters long";
 		}else if(!password.equals(cfpassword)){
 			return "Password and confirm password does not match.";
 		}else if(emailFound == true){
